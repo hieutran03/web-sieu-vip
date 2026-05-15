@@ -14,6 +14,7 @@ import {
   Tooltip
 } from "chart.js";
 import { Bar, Bubble, Doughnut, Line, Radar } from "react-chartjs-2";
+import { companyMedia } from "./companyMedia";
 import { corridors, filters, investors } from "./investors";
 
 ChartJS.register(
@@ -79,6 +80,20 @@ const chartSeriesColors = [
 
 function withAlpha(color, alpha) {
   return color.replace("rgb(", "rgba(").replace(")", `, ${alpha})`);
+}
+
+function getInvestorMedia(investor) {
+  return companyMedia[investor.id] ?? {};
+}
+
+function getInitials(name) {
+  return name
+    .split(/[\s/]+/)
+    .filter(Boolean)
+    .slice(0, 2)
+    .map((part) => part[0])
+    .join("")
+    .toUpperCase();
 }
 
 const languages = [
@@ -1507,9 +1522,12 @@ function CompanySidePanel({ investor, isOpen, language, onClose, selectInvestor,
 
 function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
   const lens = t.map.categoryLens[investor.category] ?? t.map.categoryLens.Urban;
+  const media = getInvestorMedia(investor);
 
   return (
     <div>
+      <CompanyVisual investor={investor} media={media} variant="hero" />
+
       <div className="flex items-start justify-between gap-3">
         <div>
           <div className="flex flex-wrap gap-2">
@@ -1547,6 +1565,16 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
       <div className="mt-5">
         <div className="text-xs font-black uppercase tracking-[0.12em] text-muted">{t.common.sourceLinks}</div>
         <div className="mt-3 flex flex-wrap gap-2">
+          {media.sourceHref ? (
+            <a
+              className="inline-flex min-h-9 items-center rounded-md border border-line bg-paper px-2.5 py-1.5 text-xs font-black text-green no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
+              href={media.sourceHref}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {media.sourceLabel}
+            </a>
+          ) : null}
           {investor.sources.map(([label, href]) => (
             <a
               key={href}
@@ -1561,6 +1589,36 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
         </div>
       </div>
     </div>
+  );
+}
+
+function CompanyVisual({ investor, media, variant = "thumb" }) {
+  const [imageFailed, setImageFailed] = useState(false);
+  const showImage = media.image && !imageFailed;
+  const initials = getInitials(investor.name);
+
+  return (
+    <figure className={`company-visual ${variant === "hero" ? "is-hero" : "is-thumb"}`}>
+      {showImage ? (
+        <img src={media.image} alt={media.title || investor.name} loading="lazy" onError={() => setImageFailed(true)} />
+      ) : (
+        <div className="company-visual-fallback" style={{ "--visual-color": investor.color }}>
+          <strong>{initials}</strong>
+          <span>{investor.category}</span>
+        </div>
+      )}
+      {media.icon ? (
+        <span className="company-icon">
+          <img src={media.icon} alt="" loading="lazy" onError={(event) => event.currentTarget.remove()} />
+        </span>
+      ) : null}
+      {variant === "hero" ? (
+        <figcaption>
+          <strong>{media.title || investor.name}</strong>
+          <span>{media.sourceLabel || investor.sector}</span>
+        </figcaption>
+      ) : null}
+    </figure>
   );
 }
 
@@ -1589,8 +1647,9 @@ function InvestorDirectory({ investors: listedInvestors, language, selectInvesto
         {listedInvestors.map((investor) => (
           <article
             key={investor.id}
-            className="grid gap-3 rounded-md border border-line bg-paper p-3 md:grid-cols-[1fr_0.7fr_1.3fr_auto] md:items-center"
+            className="investor-directory-row"
           >
+            <CompanyVisual investor={investor} media={getInvestorMedia(investor)} />
             <strong className="text-sm leading-5">{investor.name}</strong>
             <span className="text-sm font-bold text-muted">{localCategory(investor.category, language, t)}</span>
             <span className="text-sm leading-6 text-muted">{investor.location}</span>

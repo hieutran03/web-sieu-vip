@@ -480,6 +480,108 @@ select {
   padding: 0.42rem 0.56rem;
 }
 
+.company-visual {
+  background: oklch(91.4% 0.041 154);
+  border: 1px solid oklch(82% 0.022 154);
+  border-radius: 0.65rem;
+  margin: 0;
+  overflow: hidden;
+  position: relative;
+}
+
+.company-visual.is-hero {
+  aspect-ratio: 16 / 9;
+  margin-bottom: 1rem;
+}
+
+.company-visual.is-thumb {
+  aspect-ratio: 4 / 3;
+  border-radius: 0.5rem;
+  width: 4.5rem;
+}
+
+.company-visual img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  width: 100%;
+}
+
+.company-visual-fallback {
+  --visual-color: oklch(47% 0.11 162);
+  align-items: center;
+  background:
+    linear-gradient(135deg, color-mix(in oklch, var(--visual-color) 24%, oklch(97.7% 0.009 98)), oklch(91.4% 0.041 154));
+  color: oklch(22% 0.018 176);
+  display: grid;
+  height: 100%;
+  justify-items: center;
+  padding: 0.8rem;
+  text-align: center;
+  width: 100%;
+}
+
+.company-visual-fallback strong {
+  font-size: 1.35rem;
+  font-weight: 950;
+  line-height: 1;
+}
+
+.company-visual-fallback span {
+  color: oklch(46% 0.028 176);
+  font-size: 0.68rem;
+  font-weight: 900;
+  line-height: 1;
+  margin-top: 0.35rem;
+}
+
+.company-icon {
+  align-items: center;
+  background: oklch(97.7% 0.009 98);
+  border: 1px solid oklch(82% 0.022 154);
+  border-radius: 0.45rem;
+  bottom: 0.65rem;
+  box-shadow: 0 8px 24px rgb(23 43 38 / 0.14);
+  display: inline-flex;
+  height: 2.45rem;
+  justify-content: center;
+  overflow: hidden;
+  padding: 0.2rem;
+  position: absolute;
+  right: 0.65rem;
+  width: 2.45rem;
+}
+
+.company-icon img {
+  height: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.company-visual figcaption {
+  background: linear-gradient(180deg, transparent, rgb(23 32 31 / 0.76));
+  bottom: 0;
+  color: oklch(97.7% 0.009 98);
+  display: grid;
+  gap: 0.18rem;
+  left: 0;
+  padding: 2.5rem 4rem 0.7rem 0.85rem;
+  position: absolute;
+  right: 0;
+}
+
+.company-visual figcaption strong {
+  font-size: 0.86rem;
+  font-weight: 950;
+  line-height: 1.15;
+}
+
+.company-visual figcaption span {
+  color: oklch(91% 0.01 108);
+  font-size: 0.72rem;
+  font-weight: 800;
+}
+
 .company-drawer {
   bottom: 0;
   pointer-events: none;
@@ -508,6 +610,41 @@ select {
   background: oklch(95.8% 0.012 112);
   box-shadow: -22px 0 70px rgb(23 43 38 / 0.18);
   padding: 1.25rem;
+}
+
+.investor-directory-row {
+  align-items: center;
+  border: 1px solid oklch(82% 0.022 154);
+  border-radius: 0.5rem;
+  background: oklch(97.7% 0.009 98);
+  display: grid;
+  gap: 0.75rem;
+  grid-template-columns: auto minmax(0, 1fr);
+  padding: 0.75rem;
+}
+
+.investor-directory-row > .company-visual {
+  grid-row: span 3;
+}
+
+.investor-directory-row > .primary-button {
+  grid-column: 2;
+  justify-self: start;
+}
+
+@media (min-width: 768px) {
+  .investor-directory-row {
+    grid-template-columns: 4.5rem minmax(10rem, 1fr) minmax(7rem, 0.58fr) minmax(14rem, 1.25fr) auto;
+  }
+
+  .investor-directory-row > .company-visual {
+    grid-row: auto;
+  }
+
+  .investor-directory-row > .primary-button {
+    grid-column: auto;
+    justify-self: end;
+  }
 }
 
 .static-map {
