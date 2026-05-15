@@ -1,0 +1,402 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-15T00:00:00Z",
+  "title": "Design System: Vietnam Japan Capital Atlas",
+  "extensions": {
+    "colorMeta": {
+      "mekong-teal": {
+        "role": "primary",
+        "displayName": "Mekong Teal",
+        "canonical": "oklch(47% 0.11 162)",
+        "tonalRamp": [
+          "oklch(15% 0.04 162)",
+          "oklch(24% 0.065 162)",
+          "oklch(33% 0.09 162)",
+          "oklch(47% 0.11 162)",
+          "oklch(57% 0.115 162)",
+          "oklch(67% 0.10 162)",
+          "oklch(78% 0.07 162)",
+          "oklch(90% 0.04 162)"
+        ]
+      },
+      "jade-wave": {
+        "role": "secondary",
+        "displayName": "Jade Wave",
+        "canonical": "oklch(62% 0.13 168)",
+        "tonalRamp": [
+          "oklch(18% 0.045 168)",
+          "oklch(28% 0.075 168)",
+          "oklch(40% 0.105 168)",
+          "oklch(50% 0.12 168)",
+          "oklch(62% 0.13 168)",
+          "oklch(72% 0.11 168)",
+          "oklch(82% 0.075 168)",
+          "oklch(92% 0.04 168)"
+        ]
+      },
+      "dispatch-ink": {
+        "role": "neutral",
+        "displayName": "Dispatch Ink",
+        "canonical": "oklch(22% 0.018 176)",
+        "tonalRamp": [
+          "oklch(8% 0.008 176)",
+          "oklch(15% 0.012 176)",
+          "oklch(22% 0.018 176)",
+          "oklch(32% 0.022 176)",
+          "oklch(46% 0.020 176)",
+          "oklch(60% 0.016 176)",
+          "oklch(74% 0.012 176)",
+          "oklch(88% 0.008 176)"
+        ]
+      },
+      "night-ground": {
+        "role": "neutral",
+        "displayName": "Night Ground",
+        "canonical": "oklch(18% 0.02 176)",
+        "tonalRamp": [
+          "oklch(5% 0.005 176)",
+          "oklch(10% 0.010 176)",
+          "oklch(18% 0.020 176)",
+          "oklch(27% 0.022 176)",
+          "oklch(38% 0.020 176)",
+          "oklch(52% 0.016 176)",
+          "oklch(68% 0.012 176)",
+          "oklch(84% 0.008 176)"
+        ]
+      },
+      "field-muted": {
+        "role": "neutral",
+        "displayName": "Field Muted",
+        "canonical": "oklch(46% 0.028 176)",
+        "tonalRamp": [
+          "oklch(12% 0.010 176)",
+          "oklch(22% 0.016 176)",
+          "oklch(32% 0.022 176)",
+          "oklch(40% 0.025 176)",
+          "oklch(46% 0.028 176)",
+          "oklch(56% 0.025 176)",
+          "oklch(70% 0.018 176)",
+          "oklch(86% 0.010 176)"
+        ]
+      },
+      "thread-line": {
+        "role": "neutral",
+        "displayName": "Thread Line",
+        "canonical": "oklch(82% 0.022 154)",
+        "tonalRamp": [
+          "oklch(32% 0.028 154)",
+          "oklch(44% 0.028 154)",
+          "oklch(56% 0.028 154)",
+          "oklch(67% 0.025 154)",
+          "oklch(74% 0.024 154)",
+          "oklch(82% 0.022 154)",
+          "oklch(88% 0.018 154)",
+          "oklch(94% 0.012 154)"
+        ]
+      },
+      "surface-tonal": {
+        "role": "neutral",
+        "displayName": "Surface Tonal",
+        "canonical": "oklch(91.4% 0.041 154)",
+        "tonalRamp": [
+          "oklch(25% 0.06 154)",
+          "oklch(38% 0.065 154)",
+          "oklch(52% 0.060 154)",
+          "oklch(64% 0.055 154)",
+          "oklch(74% 0.050 154)",
+          "oklch(83% 0.045 154)",
+          "oklch(91.4% 0.041 154)",
+          "oklch(96% 0.022 154)"
+        ]
+      },
+      "surface-mid": {
+        "role": "neutral",
+        "displayName": "Surface Mid",
+        "canonical": "oklch(95.8% 0.012 112)",
+        "tonalRamp": [
+          "oklch(34% 0.012 112)",
+          "oklch(48% 0.012 112)",
+          "oklch(62% 0.012 112)",
+          "oklch(74% 0.012 112)",
+          "oklch(83% 0.012 112)",
+          "oklch(89% 0.012 112)",
+          "oklch(95.8% 0.012 112)",
+          "oklch(98.5% 0.006 112)"
+        ]
+      },
+      "paper-warm": {
+        "role": "neutral",
+        "displayName": "Paper Warm",
+        "canonical": "oklch(97.7% 0.009 98)",
+        "tonalRamp": [
+          "oklch(30% 0.012 98)",
+          "oklch(46% 0.012 98)",
+          "oklch(62% 0.012 98)",
+          "oklch(76% 0.010 98)",
+          "oklch(86% 0.010 98)",
+          "oklch(92% 0.009 98)",
+          "oklch(97.7% 0.009 98)",
+          "oklch(99.2% 0.005 98)"
+        ]
+      },
+      "data-gold": {
+        "role": "tertiary",
+        "displayName": "Data Gold",
+        "canonical": "oklch(69% 0.14 76)",
+        "tonalRamp": [
+          "oklch(20% 0.055 76)",
+          "oklch(32% 0.085 76)",
+          "oklch(44% 0.110 76)",
+          "oklch(56% 0.130 76)",
+          "oklch(69% 0.14 76)",
+          "oklch(78% 0.12 76)",
+          "oklch(86% 0.09 76)",
+          "oklch(93% 0.05 76)"
+        ]
+      },
+      "data-coral": {
+        "role": "tertiary",
+        "displayName": "Data Coral",
+        "canonical": "oklch(60% 0.16 38)",
+        "tonalRamp": [
+          "oklch(18% 0.060 38)",
+          "oklch(29% 0.090 38)",
+          "oklch(40% 0.120 38)",
+          "oklch(50% 0.145 38)",
+          "oklch(60% 0.16 38)",
+          "oklch(70% 0.135 38)",
+          "oklch(80% 0.100 38)",
+          "oklch(91% 0.055 38)"
+        ]
+      },
+      "data-sky": {
+        "role": "tertiary",
+        "displayName": "Data Sky",
+        "canonical": "oklch(54% 0.12 235)",
+        "tonalRamp": [
+          "oklch(16% 0.045 235)",
+          "oklch(26% 0.070 235)",
+          "oklch(38% 0.095 235)",
+          "oklch(46% 0.110 235)",
+          "oklch(54% 0.12 235)",
+          "oklch(65% 0.105 235)",
+          "oklch(76% 0.080 235)",
+          "oklch(88% 0.045 235)"
+        ]
+      },
+      "data-violet": {
+        "role": "tertiary",
+        "displayName": "Data Violet",
+        "canonical": "oklch(55% 0.16 286)",
+        "tonalRamp": [
+          "oklch(16% 0.060 286)",
+          "oklch(27% 0.090 286)",
+          "oklch(38% 0.120 286)",
+          "oklch(47% 0.145 286)",
+          "oklch(55% 0.16 286)",
+          "oklch(65% 0.135 286)",
+          "oklch(76% 0.100 286)",
+          "oklch(88% 0.058 286)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Major section analysis headings and report titles. Heaviest text the interface produces." },
+      "headline": { "displayName": "Headline", "purpose": "Prominent metric numbers in chart cards, investor drawer titles." },
+      "title": { "displayName": "Title", "purpose": "Chart card headings, navigation labels, signal row headings. The workhorse heading level." },
+      "body": { "displayName": "Body", "purpose": "All running analysis prose. Max line-length 54-65ch enforced via container max-width." },
+      "label": { "displayName": "Label (Eyebrow)", "purpose": "Section markers and category identifiers only. Uppercase with 0.12em letter-spacing. The only tracking in the system." },
+      "caption": { "displayName": "Caption", "purpose": "Chart sub-descriptions, investor metadata, coordinate and confidence labels." }
+    },
+    "shadows": [
+      {
+        "name": "ambient-lift",
+        "value": "0 16px 48px rgb(23 43 38 / 0.08)",
+        "purpose": "Language dropdown panel and other overlaid surfaces. Barely perceptible separation from the page at rest."
+      },
+      {
+        "name": "hover-pull",
+        "value": "0 10px 28px rgb(23 43 38 / 0.16)",
+        "purpose": "Standard interactive lift for hovered/focused clickable surfaces: buttons, cluster markers."
+      },
+      {
+        "name": "drawer-dominance",
+        "value": "-22px 0 70px rgb(23 43 38 / 0.18)",
+        "purpose": "Company drawer left-edge shadow only. Scale signals this is the dominant surface while open."
+      },
+      {
+        "name": "company-icon",
+        "value": "0 8px 24px rgb(23 43 38 / 0.14)",
+        "purpose": "Floating company logo badge inside company visual figures."
+      },
+      {
+        "name": "marker-drop",
+        "value": "0 16px 36px oklch(22% 0.018 176 / 0.26)",
+        "purpose": "Map investor pin drop shadow. Combined with concentric color-tinted ring shadows on hover."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-standard",
+        "value": "180ms ease-out",
+        "purpose": "Default easing for all micro-interactions: button color, border-color, background, opacity transitions."
+      },
+      {
+        "name": "ease-entrance",
+        "value": "240ms cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Ease-out-expo for drawer open, dropdown reveal, and other surface entrance animations."
+      },
+      {
+        "name": "ease-marker",
+        "value": "180ms ease-out",
+        "purpose": "Map pin hover scale and shadow transitions."
+      }
+    ],
+    "breakpoints": [
+      { "name": "xs", "value": "560px", "purpose": "Topbar stacks vertically; select control spans full width." },
+      { "name": "sm", "value": "640px", "purpose": "Topbar horizontal padding increases to 1.5rem." },
+      { "name": "md", "value": "768px", "purpose": "Investor directory rows expand to 5-column layout." },
+      { "name": "lg", "value": "1024px", "purpose": "Analysis grid becomes 2-column; map header gains sidebar column." },
+      { "name": "map-sm", "value": "720px", "purpose": "Mobile map: map stage height reduces, fallback pins truncate, timeline stacks vertically." },
+      { "name": "nav", "value": "1180px", "purpose": "Primary nav tab row hides; page-select dropdown replaces it." }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Primary call-to-action. Mekong Teal fill, Paper Warm text. View on Map, Report Source.",
+      "html": "<button class=\"ds-btn-primary\">View on Map</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 2.35rem; padding: 0.58rem 0.78rem; background: oklch(47% 0.11 162); color: oklch(97.7% 0.009 98); border: 1px solid oklch(47% 0.11 162); border-radius: 0.48rem; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.88rem; font-weight: 900; line-height: 1.1; text-decoration: none; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 180ms ease-out; } .ds-btn-primary:hover, .ds-btn-primary:focus-visible { background: oklch(41% 0.105 162); border-color: oklch(41% 0.105 162); transform: translateY(-1px); outline: none; }"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Secondary working-surface control. Paper Warm fill at rest; Surface Tonal + Mekong Teal border on hover.",
+      "html": "<button class=\"ds-btn-secondary\">Report Source</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; justify-content: center; min-height: 2.35rem; padding: 0.58rem 0.78rem; background: oklch(97.7% 0.009 98); color: oklch(22% 0.018 176); border: 1px solid oklch(82% 0.022 154); border-radius: 0.5rem; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.88rem; font-weight: 900; line-height: 1.1; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 180ms ease-out; } .ds-btn-secondary:hover, .ds-btn-secondary:focus-visible { background: oklch(91.4% 0.041 154); border-color: oklch(55% 0.11 162); color: oklch(24% 0.045 162); transform: translateY(-1px); outline: none; }"
+    },
+    {
+      "name": "Filter Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Sector filter pill used above the investor map. Identical to secondary at rest; is-active mirrors hover state without lift.",
+      "html": "<button class=\"ds-btn-filter\">Urban</button><button class=\"ds-btn-filter ds-btn-filter--active\">Industrial</button>",
+      "css": ".ds-btn-filter { display: inline-flex; align-items: center; justify-content: center; min-height: 2.35rem; padding: 0.58rem 0.78rem; background: oklch(97.7% 0.009 98); color: oklch(22% 0.018 176); border: 1px solid oklch(82% 0.022 154); border-radius: 0.48rem; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.88rem; font-weight: 900; line-height: 1.1; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out, transform 180ms ease-out; } .ds-btn-filter:hover, .ds-btn-filter:focus-visible, .ds-btn-filter--active { background: oklch(91.4% 0.041 154); border-color: oklch(55% 0.11 162); color: oklch(24% 0.045 162); outline: none; }"
+    },
+    {
+      "name": "Navigation Tab",
+      "kind": "nav",
+      "refersTo": "nav-tab",
+      "description": "Primary page tab. Transparent at rest. Active state: Surface Tonal fill, Mekong Teal border, dark green text.",
+      "html": "<nav class=\"ds-primary-nav\"><button class=\"ds-nav-tab\">Overview</button><button class=\"ds-nav-tab ds-nav-tab--active\">Map</button><button class=\"ds-nav-tab\">Regions</button></nav>",
+      "css": ".ds-primary-nav { display: flex; flex-wrap: wrap; gap: 0.25rem; align-items: center; } .ds-nav-tab { display: inline-flex; align-items: center; justify-content: center; min-height: 2.25rem; padding: 0.48rem 0.72rem; background: transparent; color: oklch(35% 0.023 176); border: 1px solid transparent; border-radius: 0.45rem; font-family: Inter, ui-sans-serif, system-ui, sans-serif; font-size: 0.88rem; font-weight: 850; line-height: 1; cursor: pointer; transition: background-color 180ms ease-out, border-color 180ms ease-out, color 180ms ease-out; } .ds-nav-tab:hover, .ds-nav-tab:focus-visible { background: oklch(94.8% 0.013 120); border-color: oklch(82% 0.022 154); color: oklch(22% 0.018 176); outline: none; } .ds-nav-tab--active { background: oklch(90.5% 0.04 156); border-color: oklch(67% 0.09 162); color: oklch(27% 0.058 162); }"
+    },
+    {
+      "name": "Investor Map Marker",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Signature teardrop map pin. Rotated square with asymmetric radius creates the teardrop. Initials counter-rotate to stay upright.",
+      "html": "<button class=\"ds-investor-marker\" data-label=\"VH\" aria-label=\"Vinhomes\"></button>",
+      "css": ".ds-investor-marker { --marker-color: oklch(47% 0.11 162); position: relative; width: 34px; height: 34px; padding: 0; border: 2px solid oklch(97.5% 0.01 108); border-radius: 50% 50% 50% 7px; appearance: none; display: grid; place-items: center; color: oklch(97.5% 0.01 108); background: var(--marker-color); box-shadow: 0 10px 28px oklch(22% 0.018 176 / 0.2), 0 0 0 7px color-mix(in oklch, var(--marker-color) 18%, transparent); cursor: pointer; transform: rotate(-45deg); transition: box-shadow 180ms ease-out, filter 180ms ease-out, transform 180ms ease-out; } .ds-investor-marker::before { content: attr(data-label); width: 18px; height: 18px; border-radius: 50%; display: grid; place-items: center; background: oklch(97.5% 0.01 108 / 0.18); font-size: 10px; font-weight: 950; transform: rotate(45deg); font-family: Inter, ui-sans-serif, sans-serif; } .ds-investor-marker:hover, .ds-investor-marker:focus-visible { z-index: 10; filter: saturate(1.14); outline: none; transform: rotate(-45deg) scale(1.16); box-shadow: 0 16px 36px oklch(22% 0.018 176 / 0.26), 0 0 0 11px color-mix(in oklch, var(--marker-color) 20%, transparent), 0 0 24px color-mix(in oklch, var(--marker-color) 42%, transparent); }"
+    },
+    {
+      "name": "Status Chip",
+      "kind": "chip",
+      "refersTo": "status-chip",
+      "description": "Sector category label in the investor directory. Color-mixed background adapts to any --chip-color accent.",
+      "html": "<span class=\"ds-status-chip\">Industrial</span><span class=\"ds-status-chip ds-status-chip--urban\">Urban</span>",
+      "css": ".ds-status-chip { --chip-color: oklch(47% 0.11 162); display: inline-flex; align-items: center; background: color-mix(in oklch, var(--chip-color) 12%, oklch(97.7% 0.009 98)); border: 1px solid color-mix(in oklch, var(--chip-color) 28%, oklch(78% 0.02 150)); border-radius: 0.45rem; color: oklch(24% 0.035 176); font-family: Inter, ui-sans-serif, sans-serif; font-size: 0.75rem; font-weight: 900; line-height: 1; min-height: 1.8rem; padding: 0.42rem 0.56rem; } .ds-status-chip--urban { --chip-color: oklch(54% 0.12 235); }"
+    },
+    {
+      "name": "Chart Card",
+      "kind": "card",
+      "refersTo": "button-secondary",
+      "description": "Analysis surface container for all chart types. No resting shadow; Thread Line border; Surface Mid fill.",
+      "html": "<div class=\"ds-chart-card\"><div class=\"ds-chart-card-head\"><h3>FDI by Sector</h3><p>Registered capital, USD billions, 2024-2026.</p></div><div class=\"ds-chart-body\"><!-- chart renders here --></div></div>",
+      "css": ".ds-chart-card { border: 1px solid oklch(82% 0.022 154); border-radius: 0.65rem; background: oklch(95.8% 0.012 112); padding: 1rem; } .ds-chart-card-head { margin-bottom: 1rem; } .ds-chart-card-head h3 { font-family: Inter, ui-sans-serif, sans-serif; font-size: 1rem; font-weight: 950; line-height: 1.25; margin: 0; color: oklch(22% 0.018 176); } .ds-chart-card-head p { font-family: Inter, ui-sans-serif, sans-serif; color: oklch(46% 0.028 176); font-size: 0.82rem; font-weight: 800; line-height: 1.55; margin: 0.45rem 0 0; } .ds-chart-body { height: 20rem; min-height: 0; position: relative; }"
+    },
+    {
+      "name": "Signal Row",
+      "kind": "custom",
+      "refersTo": "status-chip",
+      "description": "Numbered analysis finding. Night Ground index badge + content body. No resting shadow; Thread Line border.",
+      "html": "<div class=\"ds-signal-row\"><div class=\"ds-signal-index\">01</div><div class=\"ds-signal-body\"><h4>Framework Law Tightening</h4><p>Land, Housing and Real Estate Business laws raise deployment discipline.</p></div></div>",
+      "css": ".ds-signal-row { align-items: start; border: 1px solid oklch(82% 0.022 154); border-radius: 0.6rem; background: oklch(95.8% 0.012 112); display: grid; gap: 1rem; grid-template-columns: 4.25rem minmax(0, 1fr); padding: 1rem; } .ds-signal-index { align-items: center; background: oklch(22% 0.018 176); border-radius: 0.5rem; color: oklch(97.5% 0.01 108); display: inline-flex; font-family: Inter, ui-sans-serif, sans-serif; font-size: 1rem; font-weight: 950; height: 3.25rem; justify-content: center; } .ds-signal-body h4 { font-family: Inter, ui-sans-serif, sans-serif; font-size: 0.88rem; font-weight: 950; line-height: 1.3; margin: 0 0 0.5rem; color: oklch(22% 0.018 176); } .ds-signal-body p { font-family: Inter, ui-sans-serif, sans-serif; font-size: 0.82rem; font-weight: 400; line-height: 1.55; color: oklch(46% 0.028 176); margin: 0; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Dispatch Table",
+    "overview": "A senior analyst's command surface: every element positioned with purpose, density calibrated to expertise, confidence expressed through precision not decoration. The palette reads like a document printed on good paper, the typography carries institutional weight through weight contrast alone, and the single accent earns its authority by appearing rarely. When this tool is open on a screen at the front of a meeting room, the room should read it as credible before anyone speaks.\n\nThe system is warm without being soft. The paper tone leans amber, the neutrals carry a persistent green tint toward hue 154-176, the borders share that tint. Nothing is the default gray of a system that forgot to think about color. Depth is expressed through a tonal stack (Paper Warm, Surface Mid, Surface Tonal) reinforced by 1px green-tinted borders. Shadows are earned by interaction, not assigned to status.\n\nThis system explicitly rejects the government data portal aesthetic (austere, under-designed, spiritually resigned) and startup pitch deck energy (oversized metric heroes, bar charts that animate on scroll for spectacle, Series A framing). The Dispatch Table is an intelligence product used by people who already know the thesis and need evidence to travel credibly across three languages and two national investment cultures.",
+    "keyCharacteristics": [
+      "Warm-neutral light mode base (Paper Warm to Surface Mid to Surface Tonal hierarchy)",
+      "Single structural accent (Mekong Teal) on under 15% of any screen at any time",
+      "Weight contrast (950 vs 400) as the primary typographic hierarchy signal, not just size",
+      "State-reactive elevation: zero resting shadow, lifted on hover and interaction",
+      "Six-series data color vocabulary reserved strictly for encoding, never decoration",
+      "All text and data must read at presentation distance (2 meters from a projector)",
+      "OKLCH-only color doctrine throughout the codebase"
+    ],
+    "rules": [
+      {
+        "name": "The Mekong Rule",
+        "body": "Mekong Teal appears on under 15% of any screen. Its rarity is its authority. If teal covers more than 15% of the viewport at once, it has become a theme, not an accent, and the system loses its restraint.",
+        "section": "colors"
+      },
+      {
+        "name": "The Six-Series Rule",
+        "body": "The data palette (Jade Wave, Data Gold, Data Coral, Data Sky, Data Violet, plus Mekong Teal as series one) is reserved for encoding data series on charts and map markers. Never apply a data color to a UI state, status badge, or decorative element.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tint Rule",
+        "body": "Every neutral in the system carries a nonzero chroma toward hue 150-176. No new neutral may be added at chroma 0. That is a pure gray and it does not belong in this palette.",
+        "section": "colors"
+      },
+      {
+        "name": "The Weight Stack Rule",
+        "body": "No heading level may increase in size without also increasing in weight, and no weight increase is meaningful without a size shift. Hierarchy is always both dimensions together.",
+        "section": "typography"
+      },
+      {
+        "name": "The Eyebrow Rule",
+        "body": "The eyebrow pattern (uppercase, weight 900, 0.12em letter-spacing, 0.72rem) is the only typographic context in the entire system that uses letter-spacing. Do not add tracking to any other text element.",
+        "section": "typography"
+      },
+      {
+        "name": "The Line Length Rule",
+        "body": "Body text containers are capped at 54-65ch. No body paragraph runs wall-to-wall at wide viewport widths.",
+        "section": "typography"
+      },
+      {
+        "name": "The Flat-First Rule",
+        "body": "Shadows are earned by state change, not assigned to hierarchy. Every interactive component starts at zero box-shadow. Shadows appear only on hover, focus-visible, or open/active states.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do use OKLCH for every color value in the codebase. No hex, HSL, or RGB literals for new tokens.",
+      "Do keep Mekong Teal under 15% surface coverage at any viewport state.",
+      "Do encode data series using the six-series vocabulary in order: Mekong Teal, Jade Wave, Data Gold, Data Coral, Data Sky, Data Violet. Never invent a new data color.",
+      "Do apply Thread Line borders (oklch(82% 0.022 154)) on all container borders. Never use a gray or neutral border.",
+      "Do make shadows reactive. Start every component at zero box-shadow. Elevate only on hover, focus-visible, or active/open states.",
+      "Do use ease-out curves for all transitions: cubic-bezier(0.16, 1, 0.3, 1) for entrances, ease-out for micro-interactions.",
+      "Do reserve the eyebrow label pattern for section markers and category identifiers only. It is the only tracking in the system.",
+      "Do test all critical data labels at presentation distance. Chart legends, map legends, and region labels must read at 2 meters.",
+      "Do maintain the tonal stack when adding new surfaces: containers inside Paper Warm use Surface Mid; containers inside Surface Mid use Surface Tonal or Paper Warm."
+    ],
+    "donts": [
+      "Don't use border-left or border-right wider than 1px as a colored accent stripe on any card, callout, list item, or alert. Use full border or background tint instead.",
+      "Don't use background-clip: text with a gradient. All emphasis is weight and size. Gradient text has no role here.",
+      "Don't apply the government data portal aesthetic: default-gray surfaces, unstyled system font, flat tables with no visual hierarchy.",
+      "Don't use startup pitch energy: a hero section leading with a big number, small supporting label, and gradient accent (the hero-metric anti-pattern).",
+      "Don't use glassmorphism. No backdrop-filter: blur() as decoration on any card, panel, or overlay.",
+      "Don't add shadows to resting surfaces. Chart cards, signal rows, and nav tabs have zero box-shadow at rest.",
+      "Don't use #000000 or #ffffff. Night Ground (oklch(18% 0.02 176)) and Paper Warm (oklch(97.7% 0.009 98)) are the system extremes.",
+      "Don't nest two bordered containers with the same border style inside each other.",
+      "Don't use the data palette colors (Data Gold, Data Coral, Data Sky, Data Violet, Jade Wave) as UI state colors or decorative accents."
+    ]
+  }
+}

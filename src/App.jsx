@@ -178,7 +178,7 @@ const copy = {
       sector: "Phân khúc",
       coordinate: "Tọa độ đại diện",
       confidence: "Độ tin cậy tọa độ",
-      reportLens: "Góc đọc từ báo cáo",
+      reportLens: "Báo cáo",
       listTitle: "Danh mục điểm trên bản đồ",
       categoryLens: {
         Urban: "Lớp đô thị cho thấy công thức liên doanh với chủ đất nội địa: phía Việt Nam xử lý quỹ đất, phía Nhật mang vốn dài hạn và chuẩn vận hành.",
@@ -714,6 +714,113 @@ const copy = {
   }
 };
 
+/* ─── SVG Icon System ──────────────────────────────────────────────── */
+
+function IconMapPin({ size = 16 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M8 1.5C5.52 1.5 3.5 3.52 3.5 6c0 3.5 4.5 8.5 4.5 8.5S12.5 9.5 12.5 6C12.5 3.52 10.48 1.5 8 1.5z" />
+      <circle cx="8" cy="6" r="1.75" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+function IconArrowRight({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M2.5 7h9M8 3.5L11.5 7 8 10.5" />
+    </svg>
+  );
+}
+
+function IconExternalLink({ size = 11 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M1.5 10.5l9-9M10.5 1.5H5.5M10.5 1.5V6.5" />
+    </svg>
+  );
+}
+
+function IconClose({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" aria-hidden="true">
+      <path d="M2 2l10 10M12 2L2 12" />
+    </svg>
+  );
+}
+
+function IconGrid({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="1.5" y="1.5" width="4" height="4" rx="0.75" />
+      <rect x="8.5" y="1.5" width="4" height="4" rx="0.75" />
+      <rect x="1.5" y="8.5" width="4" height="4" rx="0.75" />
+      <rect x="8.5" y="8.5" width="4" height="4" rx="0.75" />
+    </svg>
+  );
+}
+
+function IconPoles({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <circle cx="7" cy="2.5" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="2.5" cy="11.5" r="1.5" fill="currentColor" stroke="none" />
+      <circle cx="11.5" cy="11.5" r="1.5" fill="currentColor" stroke="none" />
+      <line x1="7" y1="4" x2="3.2" y2="10.1" />
+      <line x1="7" y1="4" x2="10.8" y2="10.1" />
+      <line x1="4" y1="11.5" x2="10" y2="11.5" />
+    </svg>
+  );
+}
+
+function IconChain({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" aria-hidden="true">
+      <circle cx="2" cy="7" r="1.5" />
+      <circle cx="7" cy="2" r="1.5" />
+      <circle cx="12" cy="7" r="1.5" />
+      <circle cx="7" cy="12" r="1.5" />
+      <line x1="3.5" y1="7" x2="5.5" y2="2.8" />
+      <line x1="8.5" y1="2.8" x2="10.5" y2="7" />
+      <line x1="3.5" y1="7" x2="5.5" y2="11.2" />
+      <line x1="8.5" y1="11.2" x2="10.5" y2="7" />
+    </svg>
+  );
+}
+
+function IconBarChart({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <line x1="2" y1="12.5" x2="12" y2="12.5" />
+      <line x1="4" y1="12.5" x2="4" y2="6" />
+      <line x1="7" y1="12.5" x2="7" y2="3" />
+      <line x1="10" y1="12.5" x2="10" y2="8.5" />
+    </svg>
+  );
+}
+
+function IconDocument({ size = 14 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <rect x="2" y="1" width="10" height="12" rx="1.5" />
+      <line x1="5" y1="5" x2="9" y2="5" />
+      <line x1="5" y1="7.5" x2="9" y2="7.5" />
+      <line x1="5" y1="10" x2="7.5" y2="10" />
+    </svg>
+  );
+}
+
+const PAGE_ICONS = {
+  overview: IconGrid,
+  map: IconMapPin,
+  regions: IconPoles,
+  strategy: IconChain,
+  signals: IconBarChart,
+  method: IconDocument,
+};
+
+/* ─── End SVG Icon System ──────────────────────────────────────────── */
+
 function getInitialLanguage() {
   if (typeof window === "undefined") return "en";
 
@@ -949,46 +1056,48 @@ function App() {
         t={t}
       />
 
-      <main id="content" className="mx-auto w-full max-w-[1760px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
-        {activePage === "overview" ? (
-          <OverviewPage navigate={navigate} t={t} />
-        ) : null}
+      <main id="content" className="mx-auto w-full max-w-[1500px] px-4 pb-12 pt-6 sm:px-6 lg:px-8">
+        <div key={activePage} className="page-enter">
+          {activePage === "overview" ? (
+            <OverviewPage navigate={navigate} t={t} />
+          ) : null}
 
-        {activePage === "map" ? (
-          <MapPage
-            activeFilter={activeFilter}
-            activeInvestor={activeInvestor}
-            focusRequest={focusRequest}
-            language={language}
-            mapStageRef={mapStageRef}
-            isCompanyPanelOpen={isCompanyPanelOpen}
-            onCloseCompanyPanel={() => setCompanyPanelOpen(false)}
-            selectInvestor={selectInvestor}
-            setActiveFilter={setActiveFilter}
-            t={t}
-            visibleInvestors={visibleInvestors}
-          />
-        ) : null}
+          {activePage === "map" ? (
+            <MapPage
+              activeFilter={activeFilter}
+              activeInvestor={activeInvestor}
+              focusRequest={focusRequest}
+              language={language}
+              mapStageRef={mapStageRef}
+              isCompanyPanelOpen={isCompanyPanelOpen}
+              onCloseCompanyPanel={() => setCompanyPanelOpen(false)}
+              selectInvestor={selectInvestor}
+              setActiveFilter={setActiveFilter}
+              t={t}
+              visibleInvestors={visibleInvestors}
+            />
+          ) : null}
 
-        {activePage === "regions" ? (
-          <RegionsPage language={language} selectInvestor={selectInvestor} t={t} />
-        ) : null}
+          {activePage === "regions" ? (
+            <RegionsPage language={language} selectInvestor={selectInvestor} t={t} />
+          ) : null}
 
-        {activePage === "strategy" ? (
-          <StrategyPage t={t} />
-        ) : null}
+          {activePage === "strategy" ? (
+            <StrategyPage t={t} />
+          ) : null}
 
-        {activePage === "signals" ? (
-          <SignalsPage t={t} />
-        ) : null}
+          {activePage === "signals" ? (
+            <SignalsPage t={t} />
+          ) : null}
 
-        {activePage === "method" ? (
-          <MethodPage t={t} />
-        ) : null}
+          {activePage === "method" ? (
+            <MethodPage t={t} />
+          ) : null}
+        </div>
       </main>
 
       <footer className="border-t border-line bg-surface px-4 py-6 text-sm text-muted sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-[1760px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <span>{t.footer}</span>
           <span>{t.app.reportDate}</span>
         </div>
@@ -999,11 +1108,15 @@ function App() {
 
 function Topbar({ activePage, language, navigate, onLanguageChange, t }) {
   return (
-    <header className="border-b border-line bg-paper/95 shadow-soft">
+    <header className="sticky top-0 z-50 border-b border-line bg-paper shadow-soft">
+      <div className="topbar-accent" />
       <div className="topbar-layout">
         <button type="button" className="brand-button" onClick={() => navigate("overview")}>
-          <span className="grid h-10 w-10 shrink-0 place-items-center rounded-lg bg-ink text-sm font-black text-paper shadow-focus">
-            JP
+          <span className="brand-mark">
+            <svg className="absolute inset-0 opacity-[0.22]" viewBox="0 0 40 40" fill="none" aria-hidden="true">
+              <path d="M27 6 C32 8, 33 14, 30 19 C27 23, 22 27, 21 32 C20 36, 22 38, 24 40" stroke="oklch(62% 0.13 168)" strokeWidth="5" strokeLinecap="round" />
+            </svg>
+            <span className="relative z-10 text-sm font-black tracking-[0.02em]">JP</span>
           </span>
           <span className="min-w-0">
             <span className="block truncate text-base font-black tracking-normal">{t.app.title}</span>
@@ -1019,17 +1132,23 @@ function Topbar({ activePage, language, navigate, onLanguageChange, t }) {
         </div>
 
         <nav className="primary-nav" aria-label="Primary">
-          {PAGE_KEYS.map((page) => (
-            <button
-              key={page}
-              type="button"
-              aria-current={activePage === page ? "page" : undefined}
-              className={`nav-tab ${activePage === page ? "is-active" : ""}`}
-              onClick={() => navigate(page)}
-            >
-              {t.nav[page]}
-            </button>
-          ))}
+          {PAGE_KEYS.map((page) => {
+            const PageIcon = PAGE_ICONS[page];
+            return (
+              <button
+                key={page}
+                type="button"
+                aria-current={activePage === page ? "page" : undefined}
+                className={`nav-tab ${activePage === page ? "is-active" : ""}`}
+                onClick={() => navigate(page)}
+              >
+                <span className="hidden sm:contents">
+                  <PageIcon size={13} />
+                </span>
+                {t.nav[page]}
+              </button>
+            );
+          })}
         </nav>
       </div>
     </header>
@@ -1127,32 +1246,38 @@ function LanguageSelect({ language, onLanguageChange, t }) {
 
 function OverviewPage({ navigate, t }) {
   return (
-    <div className="grid gap-8">
-      <section className="grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.58fr)] lg:items-end">
-        <div>
-          <div className="eyebrow">{t.common.reportSource}</div>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-tight tracking-normal sm:text-5xl">
+    <div className="grid gap-10">
+      <section className="relative overflow-hidden grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.58fr)] lg:items-end">
+        <div className="hero-grid" aria-hidden="true" />
+
+        <div className="relative">
+          <div className="eyebrow">{t.nav.overview}</div>
+          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-6xl">
             {t.overview.title}
           </h1>
-          <p className="mt-5 max-w-3xl text-lg leading-8 text-muted">{t.overview.intro}</p>
-          <div className="mt-7 flex flex-wrap gap-3">
+          <p className="mt-5 max-w-[52ch] text-lg leading-8 text-muted">{t.overview.intro}</p>
+          <div className="mt-8 flex flex-wrap items-center gap-5">
             <button type="button" className="primary-button" onClick={() => navigate("map")}>
+              <IconMapPin size={15} />
               {t.common.jumpToMap}
             </button>
-            <button type="button" className="secondary-button" onClick={() => navigate("regions")}>
+            <button
+              type="button"
+              className="inline-flex items-center gap-1.5 text-sm font-[900] text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-green/20"
+              onClick={() => navigate("regions")}
+            >
               {t.nav.regions}
+              <IconArrowRight size={13} />
             </button>
           </div>
         </div>
 
-        <aside className="rounded-lg border border-line bg-surface p-5">
+        <aside className="relative rounded-xl border border-line bg-surface/80 p-5 backdrop-blur-[2px]">
           <div className="eyebrow">{t.overview.spineTitle}</div>
-          <ol className="mt-4 grid gap-3">
+          <ol className="mt-4 grid list-none gap-0 p-0">
             {t.overview.spine.map((item, index) => (
-              <li key={item} className="grid grid-cols-[34px_minmax(0,1fr)] gap-3 text-sm leading-6 text-muted">
-                <span className="grid h-8 w-8 place-items-center rounded-md bg-paper font-black text-ink">
-                  {index + 1}
-                </span>
+              <li key={item} className="grid grid-cols-[1.5rem_minmax(0,1fr)] gap-3 border-b border-line/60 py-3 text-sm leading-6 text-muted last:border-b-0 last:pb-0 first:pt-0">
+                <span className="font-[950] tabular-nums text-ink/40 text-xs pt-0.5">{String(index + 1).padStart(2, "0")}</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -1161,18 +1286,22 @@ function OverviewPage({ navigate, t }) {
       </section>
 
       <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Report metrics">
-        {t.overview.metrics.map((metric) => (
-          <MetricTile key={metric.label} metric={metric} />
+        {t.overview.metrics.map((metric, index) => (
+          <MetricTile key={metric.label} metric={metric} tier={index < 2 ? "primary" : "secondary"} />
         ))}
       </section>
 
-      <section className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <SectionIntro title={t.overview.thesisTitle} body={t.overview.intro} />
+      <section className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
+        <div>
+          <div className="eyebrow">{t.nav.overview}</div>
+          <h2 className="mt-3 text-2xl font-black leading-tight tracking-normal">{t.overview.thesisTitle}</h2>
+        </div>
         <div className="grid gap-3 md:grid-cols-2">
-          {t.overview.thesis.map((item) => (
-            <article key={item.title} className="rounded-lg border border-line bg-surface p-5">
-              <h2 className="text-lg font-black tracking-normal">{item.title}</h2>
-              <p className="mt-3 text-sm leading-6 text-muted">{item.body}</p>
+          {t.overview.thesis.map((item, index) => (
+            <article key={item.title} className="rounded-xl border border-line bg-surface p-5">
+              <div className="mb-3 text-[0.68rem] font-[950] tabular-nums text-muted/60">{String(index + 1).padStart(2, "0")}</div>
+              <h3 className="text-base font-black leading-snug tracking-normal">{item.title}</h3>
+              <p className="mt-2.5 text-sm leading-6 text-muted">{item.body}</p>
             </article>
           ))}
         </div>
@@ -1181,10 +1310,13 @@ function OverviewPage({ navigate, t }) {
   );
 }
 
-function MetricTile({ metric }) {
+function MetricTile({ metric, tier = "secondary" }) {
+  const isPrimary = tier === "primary";
   return (
-    <article className="min-h-[178px] rounded-lg border border-line bg-surface p-5">
-      <strong className="block text-3xl font-black leading-none text-green">{metric.value}</strong>
+    <article className={`rounded-lg border border-line p-5 ${isPrimary ? "bg-paper" : "bg-surface"}`}>
+      <strong className={`block font-black leading-none text-ink ${isPrimary ? "text-4xl" : "text-3xl"}`}>
+        {metric.value}
+      </strong>
       <span className="mt-4 block text-sm font-black leading-5 text-ink">{metric.label}</span>
       <span className="mt-3 block text-sm leading-6 text-muted">{metric.note}</span>
     </article>
@@ -1480,7 +1612,7 @@ function StaticReportMap({ activeId, investors: visibleInvestors, language, onSe
 function FilterControls({ activeFilter, language, setActiveFilter, t }) {
   return (
     <div className="rounded-lg border border-line bg-surface p-3">
-      <div className="mb-2 text-xs font-black uppercase tracking-[0.12em] text-muted">{t.map.legendTitle}</div>
+      <div className="eyebrow mb-2">{t.map.legendTitle}</div>
       <div className="flex flex-wrap gap-2" aria-label={t.map.legendTitle}>
         {filters.map((filter) => (
           <button
@@ -1512,7 +1644,7 @@ function CompanySidePanel({ investor, isOpen, language, onClose, selectInvestor,
   }, [isOpen, onClose]);
 
   return (
-    <aside className={`company-drawer ${isOpen ? "is-open" : ""}`} aria-hidden={!isOpen} aria-live="polite">
+    <aside className={`company-drawer ${isOpen ? "is-open" : ""}`} aria-hidden={!isOpen}>
       <div className="company-drawer-panel">
         <InvestorDetail investor={investor} language={language} onClose={onClose} selectInvestor={selectInvestor} t={t} />
       </div>
@@ -1526,7 +1658,7 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
 
   return (
     <div>
-      <CompanyVisual investor={investor} media={media} variant="hero" />
+      <CompanyVisual investor={investor} media={media} variant="hero" language={language} t={t} />
 
       <div className="flex items-start justify-between gap-3">
         <div>
@@ -1541,6 +1673,7 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
           <h2 className="mt-4 text-2xl font-black leading-tight tracking-normal">{investor.name}</h2>
         </div>
         <button type="button" className="secondary-button shrink-0" onClick={onClose}>
+          <IconClose size={13} />
           {t.common.close}
         </button>
       </div>
@@ -1553,37 +1686,39 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
       </dl>
 
       <div className="mt-5 rounded-md bg-paper p-4">
-        <div className="text-xs font-black uppercase tracking-[0.12em] text-muted">{t.map.project}</div>
+        <div className="eyebrow">{t.map.project}</div>
         <p className="mt-2 text-sm leading-6 text-ink">{investor.project}</p>
       </div>
 
       <div className="mt-4 rounded-md border border-line bg-paper p-4">
-        <div className="text-xs font-black uppercase tracking-[0.12em] text-muted">{t.map.reportLens}</div>
+        <div className="eyebrow">{t.map.reportLens}</div>
         <p className="mt-2 text-sm leading-6 text-muted">{lens}</p>
       </div>
 
       <div className="mt-5">
-        <div className="text-xs font-black uppercase tracking-[0.12em] text-muted">{t.common.sourceLinks}</div>
+        <div className="eyebrow">{t.common.sourceLinks}</div>
         <div className="mt-3 flex flex-wrap gap-2">
           {media.sourceHref ? (
             <a
-              className="inline-flex min-h-9 items-center rounded-md border border-line bg-paper px-2.5 py-1.5 text-xs font-black text-green no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
+              className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-line bg-paper px-2.5 py-1.5 text-xs font-black text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
               href={media.sourceHref}
               target="_blank"
               rel="noreferrer"
             >
               {media.sourceLabel}
+              <IconExternalLink />
             </a>
           ) : null}
           {investor.sources.map(([label, href]) => (
             <a
               key={href}
-              className="inline-flex min-h-9 items-center rounded-md border border-line bg-paper px-2.5 py-1.5 text-xs font-black text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
+              className="inline-flex min-h-9 items-center gap-1.5 rounded-md border border-line bg-paper px-2.5 py-1.5 text-xs font-black text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
               href={href}
               target="_blank"
               rel="noreferrer"
             >
               {label}
+              <IconExternalLink />
             </a>
           ))}
         </div>
@@ -1592,19 +1727,20 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
   );
 }
 
-function CompanyVisual({ investor, media, variant = "thumb" }) {
+function CompanyVisual({ investor, media, variant = "thumb", language, t }) {
   const [imageFailed, setImageFailed] = useState(false);
   const showImage = media.image && !imageFailed;
   const initials = getInitials(investor.name);
+  const categoryLabel = language && t ? localCategory(investor.category, language, t) : investor.category;
 
   return (
     <figure className={`company-visual ${variant === "hero" ? "is-hero" : "is-thumb"}`}>
       {showImage ? (
-        <img src={media.image} alt={media.title || investor.name} loading="lazy" onError={() => setImageFailed(true)} />
+        <img src={media.image} alt={media.title || investor.name} loading={variant === "hero" ? "eager" : "lazy"} onError={() => setImageFailed(true)} />
       ) : (
         <div className="company-visual-fallback" style={{ "--visual-color": investor.color }}>
           <strong>{initials}</strong>
-          <span>{investor.category}</span>
+          <span>{categoryLabel}</span>
         </div>
       )}
       {media.icon ? (
@@ -1649,7 +1785,7 @@ function InvestorDirectory({ investors: listedInvestors, language, selectInvesto
             key={investor.id}
             className="investor-directory-row"
           >
-            <CompanyVisual investor={investor} media={getInvestorMedia(investor)} />
+            <CompanyVisual investor={investor} media={getInvestorMedia(investor)} language={language} t={t} />
             <strong className="text-sm leading-5">{investor.name}</strong>
             <span className="text-sm font-bold text-muted">{localCategory(investor.category, language, t)}</span>
             <span className="text-sm leading-6 text-muted">{investor.location}</span>
@@ -1658,6 +1794,7 @@ function InvestorDirectory({ investors: listedInvestors, language, selectInvesto
               className="primary-button justify-self-start md:justify-self-end"
               onClick={() => selectInvestor(investor.id, { focus: true, openMap: true, showPanel: true })}
             >
+              <IconMapPin size={14} />
               {t.common.viewOnMap}
             </button>
           </article>
@@ -1676,7 +1813,7 @@ function RegionsPage({ language, selectInvestor, t }) {
 
   return (
     <div className="grid gap-6">
-      <SectionHeader title={t.regions.title} body={t.regions.intro} />
+      <SectionHeader title={t.regions.title} body={t.regions.intro} eyebrow={t.nav.regions} />
       <div className="grid gap-4">
         {t.regions.items.map((region, index) => (
           <article key={region.id} className="region-panel">
@@ -1696,6 +1833,7 @@ function RegionsPage({ language, selectInvestor, t }) {
                         className="filter-button"
                         onClick={() => selectInvestor(id, { focus: true, openMap: true, showPanel: true })}
                       >
+                        <IconMapPin size={13} />
                         {investor.name}
                       </button>
                     );
@@ -1730,7 +1868,7 @@ function EvidenceList({ evidence, t }) {
 function StrategyPage({ t }) {
   return (
     <div className="grid gap-7">
-      <SectionHeader title={t.strategy.title} body={t.strategy.intro} />
+      <SectionHeader title={t.strategy.title} body={t.strategy.intro} eyebrow={t.nav.strategy} />
 
       <section className="grid gap-4 lg:grid-cols-[280px_minmax(0,1fr)]">
         <SectionIntro title={t.strategy.layersTitle} body={t.strategy.intro} />
@@ -1791,7 +1929,7 @@ function StrategyPage({ t }) {
 function SignalsPage({ t }) {
   return (
     <div className="grid gap-6">
-      <SectionHeader title={t.signals.title} body={t.signals.intro} />
+      <SectionHeader title={t.signals.title} body={t.signals.intro} eyebrow={t.nav.signals} />
       <section className="grid gap-3">
         {t.signals.items.map((item, index) => (
           <article key={item.title} className="signal-row">
@@ -2083,7 +2221,7 @@ function commonChartOptions() {
 function MethodPage({ t }) {
   return (
     <div className="grid gap-6">
-      <SectionHeader title={t.method.title} body={t.method.intro} />
+      <SectionHeader title={t.method.title} body={t.method.intro} eyebrow={t.nav.method} />
       <section className="grid gap-3 md:grid-cols-2">
         {t.method.notes.map((note) => (
           <article key={note.title} className="rounded-lg border border-line bg-surface p-5">
@@ -2102,9 +2240,10 @@ function MethodPage({ t }) {
               href={href}
               target="_blank"
               rel="noreferrer"
-              className="rounded-md border border-line bg-paper p-3 text-sm font-bold leading-5 text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
+              className="flex items-center justify-between gap-2 rounded-md border border-line bg-paper p-3 text-sm font-bold leading-5 text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
             >
-              {label}
+              <span className="min-w-0 truncate">{label}</span>
+              <IconExternalLink size={11} />
             </a>
           ))}
         </div>
@@ -2122,22 +2261,22 @@ function collectSourceLinks() {
   });
 }
 
-function SectionHeader({ title, body }) {
+function SectionHeader({ title, body, eyebrow }) {
   return (
     <section className="max-w-5xl">
-      <div className="eyebrow">Report</div>
+      {eyebrow ? <div className="eyebrow">{eyebrow}</div> : null}
       <h1 className="mt-3 text-3xl font-black leading-tight tracking-normal sm:text-4xl">{title}</h1>
       <p className="mt-4 max-w-3xl text-base leading-7 text-muted">{body}</p>
     </section>
   );
 }
 
-function SectionIntro({ title, body }) {
+function SectionIntro({ title, body, eyebrow }) {
   return (
     <div>
-      <div className="eyebrow">Focus</div>
-      <h2 className="mt-3 text-2xl font-black leading-tight tracking-normal">{title}</h2>
-      <p className="mt-3 text-sm leading-6 text-muted">{body}</p>
+      {eyebrow ? <div className="eyebrow">{eyebrow}</div> : null}
+      <h2 className={`${eyebrow ? "mt-3" : ""} text-2xl font-black leading-tight tracking-normal`}>{title}</h2>
+      {body ? <p className="mt-3 text-sm leading-6 text-muted">{body}</p> : null}
     </div>
   );
 }
