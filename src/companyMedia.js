@@ -163,7 +163,6 @@ export const companyMedia = {
     sourceHref: "https://www.tokyo-gas.co.jp/en/"
   },
   taisei: {
-    image: "https://www.taisei.co.jp/cms/upload/news/image/2024/1231/20240523-01.jpg",
     icon: "https://www.taisei.co.jp/favicon.ico",
     title: "Taisei Hanoi Office Tower",
     description: "Taisei completed its Grade A Hanoi Office Tower in May 2024, built by its own Vinata International subsidiary — a milestone shift from contracting to developer-operator.",

@@ -87,6 +87,8 @@ function withAlpha(color, alpha) {
   return color.replace("rgb(", "rgba(").replace(")", `, ${alpha})`);
 }
 
+const IMAGE_ERROR_CACHE = new Set();
+
 function getInvestorMedia(investor) {
   return companyMedia[investor.id] ?? {};
 }
@@ -1807,27 +1809,38 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
 }
 
 function CompanyVisual({ investor, media, variant = "thumb", language, t }) {
-  const [imageFailed, setImageFailed] = useState(false);
-  const showImage = media.image && !imageFailed;
+  const isHero = variant === "hero";
+  const [imageFailed, setImageFailed] = useState(() => IMAGE_ERROR_CACHE.has(media.image));
+  const showImage = !!media.image && !imageFailed;
   const initials = getInitials(investor.name);
   const categoryLabel = language && t ? localCategory(investor.category, language, t) : investor.category;
 
+  function handleImageError() {
+    IMAGE_ERROR_CACHE.add(media.image);
+    setImageFailed(true);
+  }
+
   return (
-    <figure className={`company-visual ${variant === "hero" ? "is-hero" : "is-thumb"}`}>
+    <figure className={`company-visual ${isHero ? "is-hero" : "is-thumb"}`}>
       {showImage ? (
-        <img src={media.image} alt={media.title || investor.name} loading={variant === "hero" ? "eager" : "lazy"} onError={() => setImageFailed(true)} />
+        <img
+          src={media.image}
+          alt={media.title || investor.name}
+          loading={isHero ? "eager" : "lazy"}
+          onError={handleImageError}
+        />
       ) : (
         <div className="company-visual-fallback" style={{ "--visual-color": investor.color }}>
           <strong>{initials}</strong>
           <span>{categoryLabel}</span>
         </div>
       )}
-      {media.icon ? (
+      {isHero && media.icon ? (
         <span className="company-icon">
           <img src={media.icon} alt="" loading="lazy" onError={(event) => event.currentTarget.remove()} />
         </span>
       ) : null}
-      {variant === "hero" ? (
+      {isHero ? (
         <figcaption>
           <strong>{media.title || investor.name}</strong>
           <span>{media.sourceLabel || investor.sector}</span>
