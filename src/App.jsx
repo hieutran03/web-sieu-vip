@@ -38,7 +38,7 @@ const CLUSTER_DISABLE_ZOOM = 12.2;
 const CLUSTER_EXPAND_MIN_ZOOM = 8;
 const CLUSTER_EXPAND_MAX_ZOOM = 14;
 const CLUSTER_ZOOM_STEP_DELAY = 150;
-const PAGE_KEYS = ["overview", "map", "regions", "strategy", "signals", "method"];
+const PAGE_KEYS = ["overview", "map", "regions", "strategy", "signals"];
 const VIETNAM_BOUNDS = { minLat: 8.2, maxLat: 23.6, minLng: 102.1, maxLng: 109.8 };
 const regionalMatrixValues = [
   { id: "north", values: { industrial: 92, urban: 58, energy: 84, logistics: 88, soft: 45 } },
@@ -59,15 +59,15 @@ const timelineValues = [
   { id: "fdi2026", x: 92 }
 ];
 const chartPalette = {
-  ink: "rgb(23, 32, 31)",
-  muted: "rgb(102, 112, 110)",
-  line: "rgba(118, 145, 136, 0.28)",
-  green: "rgb(21, 128, 95)",
-  jade: "rgb(31, 183, 144)",
-  gold: "rgb(184, 128, 36)",
-  coral: "rgb(205, 88, 56)",
-  sky: "rgb(32, 122, 165)",
-  violet: "rgb(112, 85, 214)"
+  ink: "oklch(20% 0.022 176)",
+  muted: "oklch(43% 0.03 176)",
+  line: "oklch(72% 0.03 154 / 0.34)",
+  green: "oklch(39% 0.12 164)",
+  jade: "oklch(58% 0.13 168)",
+  gold: "oklch(66% 0.14 76)",
+  coral: "oklch(57% 0.16 38)",
+  sky: "oklch(50% 0.12 235)",
+  violet: "oklch(52% 0.16 286)"
 };
 const chartSeriesColors = [
   chartPalette.green,
@@ -79,6 +79,10 @@ const chartSeriesColors = [
 ];
 
 function withAlpha(color, alpha) {
+  if (color.startsWith("oklch(")) {
+    return color.replace(/\)$/, ` / ${alpha})`);
+  }
+
   return color.replace("rgb(", "rgba(").replace(")", `, ${alpha})`);
 }
 
@@ -114,8 +118,7 @@ const copy = {
       map: "Bản đồ trình bày",
       regions: "Ba cực tăng trưởng",
       strategy: "Chuỗi giá trị",
-      signals: "Phân tích",
-      method: "Phương pháp"
+      signals: "Phân tích"
     },
     common: {
       language: "Ngôn ngữ",
@@ -293,18 +296,7 @@ const copy = {
         infra2025: { date: "12/2025", label: "234 dự án hạ tầng khởi công/khánh thành" },
         fdi2026: { date: "02/2026", label: "Nhật đạt gần 79 tỷ USD vốn đăng ký lũy kế" }
       }
-    },
-    method: {
-      title: "Phương pháp chuyển báo cáo thành giao diện",
-      intro: "Ứng dụng không thay thế báo cáo gốc. Nó biến các luận điểm dài thành bản đồ, bảng, chuỗi giá trị và trang trình bày để người xem đọc theo lớp.",
-      notes: [
-        { title: "Nền nội dung", body: "Các trang tóm tắt lấy từ deep-research-report.md, ưu tiên cấu trúc chương 1 đến chương 5." },
-        { title: "Tọa độ", body: "Điểm trên bản đồ là tọa độ đại diện theo dự án, khu công nghiệp, trung tâm thương mại hoặc địa danh công khai, không phải ranh pháp lý thửa đất." },
-        { title: "Bản đồ", body: "Nếu có Google Maps API key, ứng dụng dùng bản đồ tương tác. Nếu không, bản đồ minh họa vẫn giữ được logic trình bày và danh mục điểm." },
-        { title: "Ngôn ngữ", body: "Các trang điều hướng, nhãn dữ liệu và phần diễn giải chính hỗ trợ tiếng Việt, tiếng Anh và tiếng Nhật." }
-      ]
-    },
-    footer: "Tạo để minh họa báo cáo nghiên cứu chuyên sâu về vốn Nhật Bản tại Việt Nam."
+    }
   },
   en: {
     app: {
@@ -317,8 +309,7 @@ const copy = {
       map: "Presentation map",
       regions: "Growth poles",
       strategy: "Value chain",
-      signals: "Analysis",
-      method: "Method"
+      signals: "Analysis"
     },
     common: {
       language: "Language",
@@ -496,18 +487,7 @@ const copy = {
         infra2025: { date: "Dec 2025", label: "234 infrastructure projects started or opened" },
         fdi2026: { date: "Feb 2026", label: "Japan nears USD 79B in accumulated registered capital" }
       }
-    },
-    method: {
-      title: "How the report became an interface",
-      intro: "The app does not replace the source report. It turns long arguments into a map, tables, a value chain and presentation pages so the reader can move by layer.",
-      notes: [
-        { title: "Content base", body: "The report pages summarize deep-research-report.md and follow the chapter 1 to chapter 5 structure." },
-        { title: "Coordinates", body: "Map points are representative coordinates for projects, industrial parks, malls or public landmarks, not legal parcel boundaries." },
-        { title: "Map behavior", body: "With a Google Maps API key, the app uses the interactive basemap. Without one, the illustrated map keeps the presentation logic and point directory." },
-        { title: "Languages", body: "Navigation pages, data labels and the main interpretation layer support Vietnamese, English and Japanese." }
-      ]
-    },
-    footer: "Built to illustrate the deep research report on Japanese capital in Vietnam."
+    }
   },
   ja: {
     app: {
@@ -520,8 +500,7 @@ const copy = {
       map: "発表用マップ",
       regions: "成長極",
       strategy: "価値連鎖",
-      signals: "分析",
-      method: "方法"
+      signals: "分析"
     },
     common: {
       language: "言語",
@@ -699,18 +678,7 @@ const copy = {
         infra2025: { date: "2025年12月", label: "234件のインフラ案件が着工または開業" },
         fdi2026: { date: "2026年2月", label: "日本の累計登録資本が約790億米ドルに接近" }
       }
-    },
-    method: {
-      title: "レポートをインターフェースに変える方法",
-      intro: "このアプリは元レポートの代替ではありません。長い論点をマップ、表、価値連鎖、発表ページに分け、層ごとに読めるようにします。",
-      notes: [
-        { title: "内容の基盤", body: "各ページは deep-research-report.md を要約し、第1章から第5章の構成を尊重しています。" },
-        { title: "座標", body: "マップの点は案件、工業団地、モール、公開ランドマークの代表座標であり、法的な筆界ではありません。" },
-        { title: "マップ挙動", body: "Google Maps API key があればインタラクティブ地図を使います。ない場合も説明用マップで発表の流れと一覧性を保ちます。" },
-        { title: "言語", body: "ナビゲーション、データラベル、主要な解釈はベトナム語、英語、日本語に対応しています。" }
-      ]
-    },
-    footer: "ベトナムにおける日本資本の深掘りレポートを説明するために作成しました。"
+    }
   }
 };
 
@@ -799,24 +767,12 @@ function IconBarChart({ size = 14 }) {
   );
 }
 
-function IconDocument({ size = 14 }) {
-  return (
-    <svg width={size} height={size} viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      <rect x="2" y="1" width="10" height="12" rx="1.5" />
-      <line x1="5" y1="5" x2="9" y2="5" />
-      <line x1="5" y1="7.5" x2="9" y2="7.5" />
-      <line x1="5" y1="10" x2="7.5" y2="10" />
-    </svg>
-  );
-}
-
 const PAGE_ICONS = {
   overview: IconGrid,
   map: IconMapPin,
   regions: IconPoles,
   strategy: IconChain,
   signals: IconBarChart,
-  method: IconDocument,
 };
 
 /* ─── End SVG Icon System ──────────────────────────────────────────── */
@@ -1090,18 +1046,8 @@ function App() {
             <SignalsPage t={t} />
           ) : null}
 
-          {activePage === "method" ? (
-            <MethodPage t={t} />
-          ) : null}
         </div>
       </main>
-
-      <footer className="border-t border-line bg-surface px-4 py-6 text-sm text-muted sm:px-6 lg:px-8">
-        <div className="mx-auto flex max-w-[1500px] flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
-          <span>{t.footer}</span>
-          <span>{t.app.reportDate}</span>
-        </div>
-      </footer>
     </div>
   );
 }
@@ -1246,24 +1192,24 @@ function LanguageSelect({ language, onLanguageChange, t }) {
 
 function OverviewPage({ navigate, t }) {
   return (
-    <div className="grid gap-10">
-      <section className="relative overflow-hidden grid gap-6 lg:grid-cols-[minmax(0,0.92fr)_minmax(360px,0.58fr)] lg:items-end">
+    <div className="overview-page">
+      <section className="atlas-hero">
         <div className="hero-grid" aria-hidden="true" />
 
-        <div className="relative">
+        <div className="atlas-hero-copy">
           <div className="eyebrow">{t.nav.overview}</div>
-          <h1 className="mt-3 max-w-4xl text-4xl font-black leading-[1.08] tracking-normal sm:text-5xl lg:text-6xl">
+          <h1>
             {t.overview.title}
           </h1>
-          <p className="mt-5 max-w-[52ch] text-lg leading-8 text-muted">{t.overview.intro}</p>
-          <div className="mt-8 flex flex-wrap items-center gap-5">
+          <p>{t.overview.intro}</p>
+          <div className="atlas-hero-actions">
             <button type="button" className="primary-button" onClick={() => navigate("map")}>
               <IconMapPin size={15} />
               {t.common.jumpToMap}
             </button>
             <button
               type="button"
-              className="inline-flex items-center gap-1.5 text-sm font-[900] text-muted transition-colors hover:text-ink focus-visible:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-green/20"
+              className="text-link-button"
               onClick={() => navigate("regions")}
             >
               {t.nav.regions}
@@ -1272,12 +1218,14 @@ function OverviewPage({ navigate, t }) {
           </div>
         </div>
 
-        <aside className="relative rounded-xl border border-line bg-surface/80 p-5 backdrop-blur-[2px]">
+        <AtlasVisual t={t} />
+
+        <aside className="report-spine">
           <div className="eyebrow">{t.overview.spineTitle}</div>
-          <ol className="mt-4 grid list-none gap-0 p-0">
+          <ol>
             {t.overview.spine.map((item, index) => (
-              <li key={item} className="grid grid-cols-[1.5rem_minmax(0,1fr)] gap-3 border-b border-line/60 py-3 text-sm leading-6 text-muted last:border-b-0 last:pb-0 first:pt-0">
-                <span className="font-[950] tabular-nums text-ink/40 text-xs pt-0.5">{String(index + 1).padStart(2, "0")}</span>
+              <li key={item}>
+                <span>{String(index + 1).padStart(2, "0")}</span>
                 <span>{item}</span>
               </li>
             ))}
@@ -1285,23 +1233,23 @@ function OverviewPage({ navigate, t }) {
         </aside>
       </section>
 
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Report metrics">
+      <section className="metric-grid" aria-label="Report metrics">
         {t.overview.metrics.map((metric, index) => (
           <MetricTile key={metric.label} metric={metric} tier={index < 2 ? "primary" : "secondary"} />
         ))}
       </section>
 
-      <section className="grid gap-6 lg:grid-cols-[280px_minmax(0,1fr)]">
-        <div>
+      <section className="thesis-section">
+        <div className="section-kicker">
           <div className="eyebrow">{t.nav.overview}</div>
-          <h2 className="mt-3 text-2xl font-black leading-tight tracking-normal">{t.overview.thesisTitle}</h2>
+          <h2>{t.overview.thesisTitle}</h2>
         </div>
-        <div className="grid gap-3 md:grid-cols-2">
+        <div className="thesis-grid">
           {t.overview.thesis.map((item, index) => (
-            <article key={item.title} className="rounded-xl border border-line bg-surface p-5">
-              <div className="mb-3 text-[0.68rem] font-[950] tabular-nums text-muted/60">{String(index + 1).padStart(2, "0")}</div>
-              <h3 className="text-base font-black leading-snug tracking-normal">{item.title}</h3>
-              <p className="mt-2.5 text-sm leading-6 text-muted">{item.body}</p>
+            <article key={item.title} className="thesis-card">
+              <div>{String(index + 1).padStart(2, "0")}</div>
+              <h3>{item.title}</h3>
+              <p>{item.body}</p>
             </article>
           ))}
         </div>
@@ -1310,15 +1258,67 @@ function OverviewPage({ navigate, t }) {
   );
 }
 
+function AtlasVisual({ t }) {
+  const hasLiveMap = Boolean(GOOGLE_MAPS_API_KEY);
+
+  return (
+    <div className="atlas-visual" aria-hidden="true">
+      <div className={`atlas-visual-map ${hasLiveMap ? "is-live-map" : ""}`}>
+        {hasLiveMap ? (
+          <APIProvider apiKey={GOOGLE_MAPS_API_KEY} libraries={["marker"]} version="beta">
+            <Map
+              mapId={GOOGLE_MAP_ID}
+              defaultCenter={MAP_CENTER}
+              defaultZoom={5.35}
+              gestureHandling="none"
+              keyboardShortcuts={false}
+              clickableIcons={false}
+              disableDefaultUI
+              style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
+            />
+          </APIProvider>
+        ) : (
+          <AtlasFallbackMap t={t} />
+        )}
+        <div className="atlas-live-overlay">
+          <span className="atlas-live-chip atlas-live-chip-north">{t.regions.items[0].title}</span>
+          <span className="atlas-live-chip atlas-live-chip-central">{t.regions.items[1].title}</span>
+          <span className="atlas-live-chip atlas-live-chip-south">{t.regions.items[2].title}</span>
+        </div>
+      </div>
+      <div className="atlas-visual-caption">
+        <span>2024-2026</span>
+        <strong>{t.common.presentationReady}</strong>
+      </div>
+    </div>
+  );
+}
+
+function AtlasFallbackMap({ t }) {
+  return (
+    <>
+      <span className="atlas-landmass" />
+      <span className="atlas-route atlas-route-one" />
+      <span className="atlas-route atlas-route-two" />
+      <span className="atlas-pin atlas-pin-north">JP</span>
+      <span className="atlas-pin atlas-pin-central">FDI</span>
+      <span className="atlas-pin atlas-pin-south">TOD</span>
+      <span className="atlas-region atlas-region-north">{t.regions.items[0].title}</span>
+      <span className="atlas-region atlas-region-central">{t.regions.items[1].title}</span>
+      <span className="atlas-region atlas-region-south">{t.regions.items[2].title}</span>
+    </>
+  );
+}
+
 function MetricTile({ metric, tier = "secondary" }) {
   const isPrimary = tier === "primary";
   return (
-    <article className={`rounded-lg border border-line p-5 ${isPrimary ? "bg-paper" : "bg-surface"}`}>
-      <strong className={`block font-black leading-none text-ink ${isPrimary ? "text-4xl" : "text-3xl"}`}>
+    <article className={`metric-tile ${isPrimary ? "is-primary" : ""}`}>
+      <strong>
         {metric.value}
       </strong>
-      <span className="mt-4 block text-sm font-black leading-5 text-ink">{metric.label}</span>
-      <span className="mt-3 block text-sm leading-6 text-muted">{metric.note}</span>
+      <span>{metric.label}</span>
+      <span>{metric.note}</span>
     </article>
   );
 }
@@ -1337,7 +1337,7 @@ function MapPage({
   visibleInvestors
 }) {
   return (
-    <div className="grid gap-5">
+    <div className="map-command-page">
       <section className="map-page-header">
         <div>
           <div className="eyebrow">{t.common.presentationReady}</div>
@@ -1347,6 +1347,25 @@ function MapPage({
           <p className="mt-4 max-w-3xl text-base leading-7 text-muted">{t.map.intro}</p>
         </div>
         <FilterControls activeFilter={activeFilter} language={language} setActiveFilter={setActiveFilter} t={t} />
+      </section>
+
+      <section className="map-intelligence-strip" aria-label={t.map.detailTitle}>
+        <div>
+          <span>{t.map.detailTitle}</span>
+          <strong>{activeInvestor.name}</strong>
+        </div>
+        <div>
+          <span>{t.map.sector}</span>
+          <strong>{localCategory(activeInvestor.category, language, t)}</strong>
+        </div>
+        <div>
+          <span>{t.map.location}</span>
+          <strong>{activeInvestor.location}</strong>
+        </div>
+        <div>
+          <span>{t.common.projects}</span>
+          <strong>{visibleInvestors.length} / {investors.length}</strong>
+        </div>
       </section>
 
       <section className="map-workspace">
@@ -1611,9 +1630,9 @@ function StaticReportMap({ activeId, investors: visibleInvestors, language, onSe
 
 function FilterControls({ activeFilter, language, setActiveFilter, t }) {
   return (
-    <div className="rounded-lg border border-line bg-surface p-3">
-      <div className="eyebrow mb-2">{t.map.legendTitle}</div>
-      <div className="flex flex-wrap gap-2" aria-label={t.map.legendTitle}>
+    <div className="filter-panel">
+      <div className="eyebrow">{t.map.legendTitle}</div>
+      <div aria-label={t.map.legendTitle}>
         {filters.map((filter) => (
           <button
             key={filter}
@@ -2216,49 +2235,6 @@ function commonChartOptions() {
       }
     }
   };
-}
-
-function MethodPage({ t }) {
-  return (
-    <div className="grid gap-6">
-      <SectionHeader title={t.method.title} body={t.method.intro} eyebrow={t.nav.method} />
-      <section className="grid gap-3 md:grid-cols-2">
-        {t.method.notes.map((note) => (
-          <article key={note.title} className="rounded-lg border border-line bg-surface p-5">
-            <h2 className="text-lg font-black tracking-normal">{note.title}</h2>
-            <p className="mt-3 text-sm leading-6 text-muted">{note.body}</p>
-          </article>
-        ))}
-      </section>
-
-      <section className="rounded-lg border border-line bg-surface p-5">
-        <div className="eyebrow">{t.common.sourceLinks}</div>
-        <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-          {collectSourceLinks().slice(0, 12).map(([label, href]) => (
-            <a
-              key={href}
-              href={href}
-              target="_blank"
-              rel="noreferrer"
-              className="flex items-center justify-between gap-2 rounded-md border border-line bg-paper p-3 text-sm font-bold leading-5 text-ink no-underline transition hover:border-green hover:bg-surface2 focus:outline-none focus-visible:border-green focus-visible:ring-2 focus-visible:ring-green/20"
-            >
-              <span className="min-w-0 truncate">{label}</span>
-              <IconExternalLink size={11} />
-            </a>
-          ))}
-        </div>
-      </section>
-    </div>
-  );
-}
-
-function collectSourceLinks() {
-  const seen = new Set();
-  return investors.flatMap((investor) => investor.sources).filter(([, href]) => {
-    if (seen.has(href)) return false;
-    seen.add(href);
-    return true;
-  });
 }
 
 function SectionHeader({ title, body, eyebrow }) {
