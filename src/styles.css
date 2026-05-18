@@ -1512,6 +1512,12 @@ header.sticky {
   animation: menu-enter 180ms var(--atlas-ease) both;
 }
 
+.language-menu.is-portal {
+  max-width: calc(100vw - 1.5rem);
+  position: fixed;
+  z-index: 1200;
+}
+
 .primary-button {
   background:
     linear-gradient(180deg, oklch(43% 0.122 164), var(--atlas-green));

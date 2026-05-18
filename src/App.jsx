@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { AdvancedMarker, APIProvider, Map, Polygon, useMap } from "@vis.gl/react-google-maps";
 import {
   ArcElement,
@@ -1144,14 +1145,31 @@ function PageSelect({ activePage, navigate, t }) {
 
 function LanguageSelect({ language, onLanguageChange, t }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [menuPosition, setMenuPosition] = useState(null);
   const dropdownRef = useRef(null);
+  const buttonRef = useRef(null);
+  const menuRef = useRef(null);
   const selectedLanguage = languages.find((item) => item.id === language) ?? languages[0];
+
+  const updateMenuPosition = useCallback(() => {
+    if (typeof window === "undefined" || !buttonRef.current) return;
+
+    const rect = buttonRef.current.getBoundingClientRect();
+    const viewportGutter = 12;
+
+    setMenuPosition({
+      top: `${rect.bottom + 6}px`,
+      right: `${Math.max(viewportGutter, window.innerWidth - rect.right)}px`
+    });
+  }, []);
 
   useEffect(() => {
     if (!isOpen) return undefined;
 
+    updateMenuPosition();
+
     const closeOnOutside = (event) => {
-      if (!dropdownRef.current?.contains(event.target)) {
+      if (!dropdownRef.current?.contains(event.target) && !menuRef.current?.contains(event.target)) {
         setIsOpen(false);
       }
     };
@@ -1164,28 +1182,42 @@ function LanguageSelect({ language, onLanguageChange, t }) {
 
     document.addEventListener("pointerdown", closeOnOutside);
     document.addEventListener("keydown", closeOnEscape);
+    window.addEventListener("resize", updateMenuPosition);
+    window.addEventListener("scroll", updateMenuPosition, true);
     return () => {
       document.removeEventListener("pointerdown", closeOnOutside);
       document.removeEventListener("keydown", closeOnEscape);
+      window.removeEventListener("resize", updateMenuPosition);
+      window.removeEventListener("scroll", updateMenuPosition, true);
     };
-  }, [isOpen]);
+  }, [isOpen, updateMenuPosition]);
 
   return (
     <div className="language-dropdown shrink-0" ref={dropdownRef}>
       <button
+        ref={buttonRef}
         type="button"
         className="language-dropdown-button"
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={t.common.language}
-        onClick={() => setIsOpen((current) => !current)}
+        onClick={() => {
+          updateMenuPosition();
+          setIsOpen((current) => !current);
+        }}
       >
         <span className={`flag flag-${selectedLanguage.id}`} aria-hidden="true" />
         <span>{selectedLanguage.short}</span>
       </button>
 
-      {isOpen ? (
-        <div className="language-menu" role="listbox" aria-label={t.common.language}>
+      {isOpen && typeof document !== "undefined" ? createPortal(
+        <div
+          ref={menuRef}
+          className="language-menu is-portal"
+          role="listbox"
+          aria-label={t.common.language}
+          style={menuPosition ?? undefined}
+        >
           {languages.map((item) => (
             <button
               key={item.id}
@@ -1205,7 +1237,8 @@ function LanguageSelect({ language, onLanguageChange, t }) {
               </span>
             </button>
           ))}
-        </div>
+        </div>,
+        document.body
       ) : null}
     </div>
   );
