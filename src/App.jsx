@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { AdvancedMarker, APIProvider, Map, useMap } from "@vis.gl/react-google-maps";
+import { AdvancedMarker, APIProvider, Map, Polygon, useMap } from "@vis.gl/react-google-maps";
 import {
   ArcElement,
   BarElement,
@@ -15,6 +15,7 @@ import {
 } from "chart.js";
 import { Bar, Bubble, Doughnut, Line, Radar } from "react-chartjs-2";
 import { companyMedia } from "./companyMedia";
+import { investorCopy } from "./investorCopy";
 import { corridors, filters, investors } from "./investors";
 
 ChartJS.register(
@@ -88,6 +89,24 @@ function withAlpha(color, alpha) {
 
 function getInvestorMedia(investor) {
   return companyMedia[investor.id] ?? {};
+}
+
+function getInvestorLocale(investor, language) {
+  if (language !== "vi" && language !== "ja") {
+    return {
+      sector: investor.sector,
+      location: investor.location,
+      project: investor.project,
+      confidence: investor.confidence,
+    };
+  }
+  const loc = investorCopy[investor.id]?.[language];
+  return loc ?? {
+    sector: investor.sector,
+    location: investor.location,
+    project: investor.project,
+    confidence: investor.confidence,
+  };
 }
 
 function getInitials(name) {
@@ -1386,6 +1405,11 @@ function MapPage({
                 style={{ width: "100%", height: "100%", position: "absolute", inset: 0 }}
                 >
                   <MapFocus focusRequest={focusRequest} />
+                <InvestorPolygons
+                  activeId={activeInvestor.id}
+                  investors={visibleInvestors}
+                  onSelect={selectInvestor}
+                />
                 <ClusteredInvestorMarkers
                   activeId={activeInvestor.id}
                   investors={visibleInvestors}
@@ -1561,6 +1585,41 @@ function ClusteredInvestorMarkers({ activeId, investors: visibleInvestors, langu
   });
 }
 
+const OKLCH_TO_HEX = {
+  "oklch(54% 0.12 235)": "#3b7db5",
+  "oklch(47% 0.11 162)": "#2d6b4e",
+  "oklch(55% 0.16 286)": "#7c52a8",
+  "oklch(69% 0.14 76)": "#c4891c",
+  "oklch(60% 0.16 38)": "#c25c35",
+};
+
+function toMapColor(oklch) {
+  return OKLCH_TO_HEX[oklch] ?? "#666666";
+}
+
+function InvestorPolygons({ activeId, investors: visibleInvestors, onSelect }) {
+  return visibleInvestors
+    .filter((inv) => inv.boundary)
+    .map((inv) => {
+      const isActive = inv.id === activeId;
+      const hex = toMapColor(inv.color);
+      return (
+        <Polygon
+          key={inv.id}
+          paths={inv.boundary.map(([lat, lng]) => ({ lat, lng }))}
+          fillColor={hex}
+          fillOpacity={isActive ? 0.28 : 0.15}
+          strokeColor={hex}
+          strokeOpacity={isActive ? 1 : 0.72}
+          strokeWeight={isActive ? 2.5 : 1.5}
+          clickable
+          zIndex={isActive ? 6 : 3}
+          onClick={() => onSelect(inv.id, { focus: true, showPanel: true })}
+        />
+      );
+    });
+}
+
 function SingleInvestorMarker({ activeId, investor, language, onSelect, t }) {
   return (
     <AdvancedMarker
@@ -1674,6 +1733,7 @@ function CompanySidePanel({ investor, isOpen, language, onClose, selectInvestor,
 function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
   const lens = t.map.categoryLens[investor.category] ?? t.map.categoryLens.Urban;
   const media = getInvestorMedia(investor);
+  const loc = getInvestorLocale(investor, language);
 
   return (
     <div>
@@ -1698,15 +1758,15 @@ function InvestorDetail({ investor, language, onClose, selectInvestor, t }) {
       </div>
 
       <dl className="mt-5 divide-y divide-line border-y border-line text-sm">
-        <DetailRow label={t.map.sector} value={investor.sector} />
-        <DetailRow label={t.map.location} value={investor.location} />
+        <DetailRow label={t.map.sector} value={loc.sector} />
+        <DetailRow label={t.map.location} value={loc.location} />
         <DetailRow label={t.map.coordinate} value={`${investor.coords[0].toFixed(4)}, ${investor.coords[1].toFixed(4)}`} />
-        <DetailRow label={t.map.confidence} value={investor.confidence} />
+        <DetailRow label={t.map.confidence} value={loc.confidence} />
       </dl>
 
       <div className="mt-5 rounded-md bg-paper p-4">
         <div className="eyebrow">{t.map.project}</div>
-        <p className="mt-2 text-sm leading-6 text-ink">{investor.project}</p>
+        <p className="mt-2 text-sm leading-6 text-ink">{loc.project}</p>
       </div>
 
       <div className="mt-4 rounded-md border border-line bg-paper p-4">
@@ -1807,7 +1867,7 @@ function InvestorDirectory({ investors: listedInvestors, language, selectInvesto
             <CompanyVisual investor={investor} media={getInvestorMedia(investor)} language={language} t={t} />
             <strong className="text-sm leading-5">{investor.name}</strong>
             <span className="text-sm font-bold text-muted">{localCategory(investor.category, language, t)}</span>
-            <span className="text-sm leading-6 text-muted">{investor.location}</span>
+            <span className="text-sm leading-6 text-muted">{getInvestorLocale(investor, language).location}</span>
             <button
               type="button"
               className="primary-button justify-self-start md:justify-self-end"

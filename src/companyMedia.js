@@ -153,5 +153,37 @@ export const companyMedia = {
     description: "Crawled from JOIN's official company outline page.",
     sourceLabel: "JOIN",
     sourceHref: "https://www.join-future.co.jp/english/about/outline/"
+  },
+  "tokyo-gas": {
+    image: "https://www.tokyo-gas.co.jp/news/img_og/ogimage.png",
+    icon: "https://www.tokyo-gas.co.jp/favicon.ico",
+    title: "Tokyo Gas Quang Ninh LNG power project",
+    description: "Tokyo Gas co-sponsors the 1,500 MW Quang Ninh LNG power plant with Marubeni, PV Power and Colavi, targeting 2028 commercial operation.",
+    sourceLabel: "Tokyo Gas",
+    sourceHref: "https://www.tokyo-gas.co.jp/en/"
+  },
+  taisei: {
+    image: "https://www.taisei.co.jp/cms/upload/news/image/2024/1231/20240523-01.jpg",
+    icon: "https://www.taisei.co.jp/favicon.ico",
+    title: "Taisei Hanoi Office Tower",
+    description: "Taisei completed its Grade A Hanoi Office Tower in May 2024, built by its own Vinata International subsidiary — a milestone shift from contracting to developer-operator.",
+    sourceLabel: "Taisei Corporation",
+    sourceHref: "https://www.taisei.co.jp/english/"
+  },
+  mikazuki: {
+    image: "https://danang.mikazuki.com.vn/wp-content/uploads/2022/03/OGP.jpg",
+    icon: "https://danang.mikazuki.com.vn/favicon.ico",
+    title: "Mikazuki Japanese Resorts & Spa Da Nang",
+    description: "Mikazuki opened its Da Nang resort complex in 2022, featuring onsen baths, ryokan rooms and a Japanese-themed water park on Non Nuoc Beach.",
+    sourceLabel: "Mikazuki Da Nang",
+    sourceHref: "https://danang.mikazuki.com.vn/"
+  },
+  shimizu: {
+    image: "https://www.shimz.co.jp/common/img/ogp.jpg",
+    icon: "https://www.shimz.co.jp/favicon.ico",
+    title: "Shimizu — HCMC Metro Line 1 CP1B",
+    description: "Shimizu (JV with Maeda and Vincons) executed underground station construction and TBM tunneling for Metro Line 1 Contract Package CP1B in central Ho Chi Minh City.",
+    sourceLabel: "Shimizu Corporation",
+    sourceHref: "https://www.shimz.co.jp/en/"
   }
 };

@@ -12,6 +12,7 @@ export const investors = [
     analysis:
       "Sumitomo is the northern corridor anchor: industrial parks create manufacturing gravity first, then smart-city housing and services follow the workforce and transport upgrades.",
     coords: [21.124, 105.815],
+    boundary: [[21.1314, 105.807], [21.1314, 105.823], [21.1166, 105.823], [21.1166, 105.807]],
     confidence: "Approximate project area",
     sources: [
       ["North Hanoi Smart City / Vietnam.vn", "https://www.vietnam.vn/en/ha-noi-trien-khai-du-an-thanh-pho-thong-minh-42-ty-usd"],
@@ -31,6 +32,7 @@ export const investors = [
     analysis:
       "Tokyu is exporting a transit-oriented city operating model: the asset is not one building, but a managed urban ecosystem around housing, commerce and mobility.",
     coords: [11.0528, 106.6708],
+    boundary: [[11.0575, 106.666], [11.0575, 106.6756], [11.0481, 106.6756], [11.0481, 106.666]],
     confidence: "Approximate project area",
     sources: [
       ["TOKYU Garden City", "https://www.tokyugardencity.com/en/about/"],
@@ -126,6 +128,7 @@ export const investors = [
     analysis:
       "Sojitz is a pure industrial-location play: Dong Nai gives it highway, port and future airport adjacency for manufacturing tenants.",
     coords: [10.8108, 106.9648],
+    boundary: [[10.8186, 106.9569], [10.8186, 106.9728], [10.803, 106.9728], [10.803, 106.9569]],
     confidence: "Approximate industrial park area",
     sources: [
       ["Long Duc IP / Invest Vietnam", "https://investvietnam.gov.vn/en/industrial-zones.pd/long-duc-industrial-park.html"],
@@ -145,6 +148,7 @@ export const investors = [
     analysis:
       "Daiwa House follows the airport-industrial corridor: multi-tenant logistics becomes more valuable as Long Thanh and southern supply chains mature.",
     coords: [10.7885, 106.9913],
+    boundary: [[10.7917, 106.9881], [10.7917, 106.9945], [10.7853, 106.9945], [10.7853, 106.9881]],
     confidence: "Approximate industrial park area",
     sources: [
       ["Daiwa House Vietnam projects", "https://www.daiwahouse.com/English/business/overseas/vietnam.html"],
@@ -164,6 +168,7 @@ export const investors = [
     analysis:
       "Mitsubishi targets scale and complexity: it pairs local land platforms with Japanese governance, capital discipline and long-horizon infrastructure exposure.",
     coords: [10.8396, 106.8421],
+    boundary: [[10.847, 106.8346], [10.847, 106.8497], [10.8322, 106.8497], [10.8322, 106.8346]],
     confidence: "Exact public township point from OSM",
     sources: [
       ["Mitsubishi Grand Park release", "https://www.mitsubishicorp.com/jp/en/news/release/2020/0000039140.html"],
@@ -183,6 +188,7 @@ export const investors = [
     analysis:
       "The Logicross pair creates a north-south logistics platform, tying port-side Hai Phong to the expanded HCMC consumption and manufacturing belt.",
     coords: [20.8444, 106.727],
+    boundary: [[20.8479, 106.7233], [20.8479, 106.7308], [20.8409, 106.7308], [20.8409, 106.7233]],
     confidence: "Approximate industrial park area",
     sources: [
       ["MOL and Mitsubishi Estate Logicross Hai Phong", "https://www.mol.co.jp/en/pr/2026/26018.html"],
@@ -202,6 +208,7 @@ export const investors = [
     analysis:
       "Nomura is a residential scale specialist; its Vietnam thesis is high-density housing with professional management, often beside strong domestic master developers.",
     coords: [20.9654, 105.9316],
+    boundary: [[20.9755, 105.9208], [20.9755, 105.9424], [20.9553, 105.9424], [20.9553, 105.9208]],
     confidence: "Approximate public Ecopark point",
     sources: [
       ["Nomura Ecopark release", "https://www.nomura-re-hd.co.jp/cfiles/engnews/n2020110500240.pdf"],
@@ -221,6 +228,7 @@ export const investors = [
     analysis:
       "NTT's value is operating intelligence: the investment hints at housing platforms where connectivity, management systems and digital services become part of the product.",
     coords: [10.934, 106.713],
+    boundary: [[10.9379, 106.7101], [10.9379, 106.7159], [10.9321, 106.7159], [10.9321, 106.7101]],
     confidence: "Approximate city project area",
     sources: [
       ["Kumagai Gumi project release", "https://www.kumagaigumi.co.jp/en/news/2024/pr-en-20240328-2.html"],
@@ -240,6 +248,7 @@ export const investors = [
     analysis:
       "The differentiator is housing quality and ESG: timber, low-carbon materials and long-term suburban demand fit a patient Japanese capital model.",
     coords: [10.9405, 106.719],
+    boundary: [[10.9379, 106.7101], [10.9379, 106.7159], [10.9321, 106.7159], [10.9321, 106.7101]],
     confidence: "Approximate city project area",
     sources: [
       ["Sumitomo Forestry release", "https://sfc.jp/english/news/pdf/20240328_01.pdf"],
@@ -259,6 +268,7 @@ export const investors = [
     analysis:
       "Kumagai brings execution credibility to decade-scale township delivery, adding contractor discipline to an equity-development structure.",
     coords: [10.9295, 106.7065],
+    boundary: [[10.9379, 106.7101], [10.9379, 106.7159], [10.9321, 106.7159], [10.9321, 106.7101]],
     confidence: "Approximate city project area",
     sources: [
       ["Kumagai Gumi project release", "https://www.kumagaigumi.co.jp/en/news/2024/pr-en-20240328-2.html"],
@@ -297,6 +307,7 @@ export const investors = [
     analysis:
       "Idemitsu's footprint is less about urban land and more about strategic supply security: refining capacity anchors downstream industrial ecosystems.",
     coords: [19.307, 105.8084],
+    boundary: [[19.3171, 105.7977], [19.3171, 105.8191], [19.2969, 105.8191], [19.2969, 105.7977]],
     confidence: "Approximate refinery area",
     sources: [
       ["NSRP overview", "https://nsrp.vn/about-overview/"],
@@ -316,6 +327,7 @@ export const investors = [
     analysis:
       "Mitsui Chemicals adds the process and chemical-materials layer, extending Japanese capital from power into industrial feedstock and advanced materials.",
     coords: [19.3015, 105.813],
+    boundary: [[19.3171, 105.7977], [19.3171, 105.8191], [19.2969, 105.8191], [19.2969, 105.7977]],
     confidence: "Approximate refinery area",
     sources: [
       ["NSRP overview", "https://nsrp.vn/about-overview/"],
@@ -378,6 +390,82 @@ export const investors = [
       ["JOIN Vu Yen project", "https://www.join-future.co.jp/english/investments/achievement/index.php?c=investment_en_view&pk=1723610912"],
       ["Nomura Vu Yen release", "https://www.nomura-re-hd.co.jp/cfiles/engnews/n2023113002402.pdf"]
     ]
+  },
+  {
+    id: "tokyo-gas",
+    name: "Tokyo Gas Co.",
+    label: "TG",
+    category: "Energy",
+    sector: "LNG power generation",
+    color: "oklch(60% 0.16 38)",
+    location: "Quang Ninh LNG Power Plant, Quang Ninh province",
+    project:
+      "Tokyo Gas and Marubeni co-sponsor the Quang Ninh LNG power plant with PV Power and Colavi — 1,500 MW capacity, near USD 2B total investment, targeting grid dispatch from 2028.",
+    analysis:
+      "Tokyo Gas brings LNG trading, regasification and power-generation expertise to Vietnam's energy-transition corridor, locking in a long-term supply role as coal plants retire.",
+    coords: [21.15, 107.35],
+    confidence: "Approximate LNG plant site, Quang Ninh province",
+    sources: [
+      ["Quang Ninh LNG project overview", "https://vnexpress.net/quang-ninh-se-co-nha-may-dien-lng-1-500-mw-4857621.html"],
+      ["Tokyo Gas overseas energy", "https://www.tokyo-gas.co.jp/en/"]
+    ]
+  },
+  {
+    id: "taisei",
+    name: "Taisei Corporation",
+    label: "TS",
+    category: "Urban",
+    sector: "Commercial real estate development",
+    color: "oklch(54% 0.12 235)",
+    location: "Ring Road 3 corridor, Hanoi",
+    project:
+      "Taisei completed the Taisei Hanoi Office Tower (18 floors, Grade A) in May 2024 — designed and built by its Vinata International subsidiary — marking its shift from contractor to developer-operator.",
+    analysis:
+      "The Hanoi tower is a structural move: Taisei is replacing one-time construction revenue with recurring lease income, following a medium-term plan to build a self-sustaining international real estate book.",
+    coords: [21.015, 105.803],
+    confidence: "Approximate office tower location, Hanoi Ring Road 3",
+    sources: [
+      ["Taisei Corporation corporate", "https://www.taisei.co.jp/english/"],
+      ["Taisei overseas real estate strategy", "https://www.taisei.co.jp/english/about_us/"]
+    ]
+  },
+  {
+    id: "mikazuki",
+    name: "Mikazuki Hotels & Resorts",
+    label: "MK",
+    category: "Retail",
+    sector: "Resort + hospitality",
+    color: "oklch(60% 0.16 38)",
+    location: "Non Nuoc Beach area, Da Nang",
+    project:
+      "Mikazuki opened its Da Nang Japanese Resorts & Spa complex on Non Nuoc beach in 2022, featuring onsen baths, ryokan-style rooms and a Japanese-themed water park.",
+    analysis:
+      "Mikazuki targets both inbound Japanese visitors and Vietnamese premium leisure demand, introducing an integrated resort format anchored by Japanese bath culture that differentiates sharply from standard beach hotel supply.",
+    coords: [16.0485, 108.2478],
+    confidence: "Approximate resort area, Non Nuoc Beach, Da Nang",
+    sources: [
+      ["Mikazuki Da Nang resort", "https://danang.mikazuki.com.vn/"],
+      ["Mikazuki Group", "https://mikazuki.co.jp/"]
+    ]
+  },
+  {
+    id: "shimizu",
+    name: "Shimizu Corporation",
+    label: "SZ",
+    category: "Urban",
+    sector: "Metro tunneling + infrastructure",
+    color: "oklch(54% 0.12 235)",
+    location: "Ben Thanh - Thu Thiem Metro area, HCMC",
+    project:
+      "Shimizu (in JV with Maeda and Vincons) executed Contract Package CP1B of HCMC Metro Line 1, covering underground station construction and TBM tunneling in the city centre.",
+    analysis:
+      "Shimizu's CP1B credentials position it as the preferred deep-infrastructure contractor for Metro Lines 2 and 3, converting a one-project presence into a long-term infrastructure platform in Vietnam.",
+    coords: [10.7785, 106.7052],
+    confidence: "Approximate Ben Thanh - Thu Thiem Metro station area, HCMC",
+    sources: [
+      ["Shimizu Corporation corporate", "https://www.shimz.co.jp/en/"],
+      ["HCMC Metro Line 1 project", "https://www.hcmcmetro.vn/en/"]
+    ]
   }
 ];
 
@@ -387,19 +475,19 @@ export const corridors = [
   {
     title: "Northern manufacturing and ports",
     accent: "oklch(54% 0.12 235)",
-    body: "Hanoi, Hung Yen, Vinh Phuc and Hai Phong combine industrial parks, smart-city development, logistics and port access.",
-    tags: ["Sumitomo", "Mitsubishi Estate", "Nomura", "JOIN"]
+    body: "Hanoi, Hung Yen, Vinh Phuc, Quang Ninh and Hai Phong combine industrial parks, smart-city development, LNG energy and port logistics.",
+    tags: ["Sumitomo", "Mitsubishi Estate", "Nomura", "JOIN", "Tokyo Gas", "Taisei"]
   },
   {
     title: "Expanded Ho Chi Minh City",
     accent: "oklch(47% 0.11 162)",
-    body: "HCMC, Binh Duong, Dong Nai and former Long An operate as one market for townships, housing, malls and logistics.",
-    tags: ["Tokyu", "NNR", "Sojitz", "JICA"]
+    body: "HCMC, Binh Duong, Dong Nai and former Long An operate as one market for townships, housing, metro, malls and logistics.",
+    tags: ["Tokyu", "NNR", "Sojitz", "JICA", "Shimizu"]
   },
   {
     title: "Central coast and heavy infrastructure",
     accent: "oklch(60% 0.16 38)",
     body: "Hue, Da Nang, Thanh Hoa and Ha Tinh show a thinner but strategic layer of retail, hotels, refining and power.",
-    tags: ["AEON", "Kajima", "Marubeni", "JBIC"]
+    tags: ["AEON", "Kajima", "Marubeni", "JBIC", "Mikazuki"]
   }
 ];
