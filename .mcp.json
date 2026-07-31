@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "v-tnf-documents": {
+      "command": "node",
+      "args": ["mcp/server.mjs"],
+      "env": {
+        "MCP_ALLOW_UPLOAD": "false"
+      }
+    }
+  }
+}
