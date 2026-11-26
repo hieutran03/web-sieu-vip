@@ -831,6 +831,63 @@
   width: 100%;
 }
 
+.docs-pdf {
+  height: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.docs-pdf-scroll {
+  background: #525659;
+  height: 100%;
+  overflow: auto;
+  padding: 12px;
+}
+
+.docs-pdf-page {
+  background: #fff;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 35%);
+  margin: 0 auto 12px;
+}
+
+/* Placeholder shimmer until the page's byte ranges arrive. */
+.docs-pdf-page:not(.is-rendered) {
+  background: linear-gradient(100deg, #f1f1f1 40%, #fafafa 50%, #f1f1f1 60%) 0 0 / 200% 100%;
+  animation: docs-pdf-shimmer 1.4s linear infinite;
+}
+
+@keyframes docs-pdf-shimmer {
+  to { background-position: -200% 0; }
+}
+
+.docs-pdf-page canvas {
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+
+.docs-pdf-status {
+  color: #fff;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.docs-viewer-body > .docs-pdf-status {
+  color: inherit;
+}
+
+.docs-pdf-counter {
+  background: rgb(0 0 0 / 65%);
+  border-radius: 999px;
+  bottom: 14px;
+  color: #fff;
+  font-size: 0.8rem;
+  padding: 0.25rem 0.75rem;
+  pointer-events: none;
+  position: absolute;
+  right: 24px;
+}
+
 .docs-viewer-body.is-admin {
   align-content: start;
   display: block;

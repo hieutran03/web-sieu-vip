@@ -35,6 +35,9 @@ import { AdminPanel } from "./AdminPanel.jsx";
 import { DocumentAnalytics } from "./DocumentAnalytics.jsx";
 import { googleMapsAvailable, ProvinceMap } from "./ProvinceMap.jsx";
 
+// PDF.js is large; only fetch it when a self-hosted PDF is actually opened.
+const PdfViewer = React.lazy(() => import("./PdfViewer.jsx"));
+
 const KIND_ICONS = {
   image: "🖼️",
   pdf: "📄",
@@ -803,6 +806,19 @@ function DocumentCard({ doc, dc, language, onOpen }) {
   );
 }
 
+// Self-hosted PDFs are the large ones (above the Cloudinary limit) and the store serves byte
+// ranges, so they get the progressive PDF.js viewer; the rest keep the browser's own viewer.
+function PdfFrame({ doc, url, dc }) {
+  const iframe = <iframe src={`${url}#view=FitH`} title={doc.title} />;
+  if (!doc.selfhost?.key) return iframe;
+  const labels = { loading: dc.viewer.loading, page: dc.viewer.page };
+  return (
+    <React.Suspense fallback={<p className="docs-pdf-status">{labels.loading}</p>}>
+      <PdfViewer url={url} labels={labels} fallback={iframe} />
+    </React.Suspense>
+  );
+}
+
 function DocumentViewer({ doc, dc, language, onClose }) {
   const url = viewUrl(doc);
 
@@ -842,7 +858,7 @@ function DocumentViewer({ doc, dc, language, onClose }) {
 
         <div className="docs-viewer-body">
           {doc.kind === "image" ? <img src={url} alt={doc.title} /> : null}
-          {doc.kind === "pdf" ? <iframe src={`${url}#view=FitH`} title={doc.title} /> : null}
+          {doc.kind === "pdf" ? <PdfFrame doc={doc} url={url} dc={dc} /> : null}
           {doc.kind === "video" ? <video src={url} controls preload="metadata" /> : null}
           {!canPreviewInline(doc) ? (
             <div className="docs-viewer-fallback">

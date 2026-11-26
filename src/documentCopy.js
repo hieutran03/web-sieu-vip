@@ -61,7 +61,7 @@ export const documentCopy = {
       onRequest: "Bản đầy đủ cấp theo yêu cầu",
       noPreview: "Không có bản xem trước"
     },
-    viewer: { close: "Đóng", openNewTab: "Mở trong tab mới", download: "Tải về" },
+    viewer: { close: "Đóng", openNewTab: "Mở trong tab mới", download: "Tải về", loading: "Đang tải hồ sơ…", page: "Trang" },
     analytics: {
       eyebrow: "Phân tích tự động",
       title: "Bức tranh dữ liệu địa chất theo vùng và tỉnh",
@@ -169,7 +169,7 @@ export const documentCopy = {
       onRequest: "Full report available on request",
       noPreview: "No preview available"
     },
-    viewer: { close: "Close", openNewTab: "Open in new tab", download: "Download" },
+    viewer: { close: "Close", openNewTab: "Open in new tab", download: "Download", loading: "Loading document…", page: "Page" },
     analytics: {
       eyebrow: "Automatic analysis",
       title: "The geotechnical data picture by region and province",
@@ -277,7 +277,7 @@ export const documentCopy = {
       onRequest: "全文は要望に応じて提供します",
       noPreview: "プレビューなし"
     },
-    viewer: { close: "閉じる", openNewTab: "新しいタブで開く", download: "ダウンロード" },
+    viewer: { close: "閉じる", openNewTab: "新しいタブで開く", download: "ダウンロード", loading: "資料を読み込み中…", page: "ページ" },
     analytics: {
       eyebrow: "自動分析",
       title: "地域・省別の地盤データ全体像",
