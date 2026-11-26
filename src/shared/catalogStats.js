@@ -17,7 +17,22 @@ function sortedEntries(record, limit) {
 }
 
 export function isHosted(doc) {
-  return Boolean(doc.imagekit?.url || doc.cloudinary?.secureUrl);
+  return Boolean(doc.selfhost?.key || doc.imagekit?.url || doc.cloudinary?.secureUrl);
+}
+
+const HOSTING_FIELDS = ["cloudinary", "imagekit", "selfhost"];
+
+/**
+ * Snapshot + live merge for one document: the snapshot stays authoritative for titles and
+ * classification, a live record only contributes where it is hosted. A live record from one
+ * store never erases the location recorded for another.
+ */
+export function mergeHosting(existing, live) {
+  const merged = { ...existing };
+  for (const field of HOSTING_FIELDS) {
+    if (live[field]) merged[field] = live[field];
+  }
+  return merged;
 }
 
 /** Group documents into zones: `province/zone` is the identity used across the app. */

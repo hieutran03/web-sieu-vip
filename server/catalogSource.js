@@ -1,10 +1,13 @@
 // Server-side view of the document catalog: the committed snapshot (built by scripts/buildCatalog.mjs)
-// merged with whatever currently lives in Cloudinary (so admin uploads appear without a rebuild).
+// merged with whatever currently lives in Cloudinary and the self-hosted store (so admin uploads
+// appear without a rebuild).
 
 import { createRequire } from "node:module";
+import { mergeHosting } from "../src/shared/catalogStats.js";
 import { inSiteScope } from "../src/shared/scope.js";
-import { listResources, searchResources } from "./cloudinary.mjs";
+import { listResources, ROOT_FOLDER, searchResources } from "./cloudinary.mjs";
 import { documentFromResource } from "./documentKeys.mjs";
+import { documentFromStored, listStored, selfStorageConfigured } from "./selfStorage.mjs";
 
 const require = createRequire(import.meta.url);
 // require() keeps the JSON traceable for the Vercel bundler.
@@ -17,11 +20,27 @@ export function catalogSnapshot() {
   return snapshot;
 }
 
-/** Every document Cloudinary knows about, newest first. */
+/** Every document Cloudinary or the self-hosted store knows about. */
 export async function liveDocuments({ force = false } = {}) {
   if (!force && cache.documents && Date.now() - cache.at < CACHE_TTL_MS) return cache.documents;
 
-  const folder = process.env.CLOUDINARY_ROOT_FOLDER || "v-tnf";
+  const sources = [];
+  if (process.env.CLOUDINARY_CLOUD_NAME) sources.push(cloudinaryDocuments());
+  if (selfStorageConfigured()) sources.push(listStored({ prefix: `${ROOT_FOLDER()}/` }).then((items) => items.map(documentFromStored)));
+  if (!sources.length) throw new Error("No document store is configured");
+
+  // One store being down (e.g. the home server rebooting) must not hide the other one.
+  const results = await Promise.allSettled(sources);
+  const documents = results.flatMap((result) => (result.status === "fulfilled" ? result.value : []));
+  const failure = results.find((result) => result.status === "rejected");
+  if (failure && !documents.length) throw failure.reason;
+
+  cache = { at: Date.now(), documents };
+  return documents;
+}
+
+async function cloudinaryDocuments() {
+  const folder = ROOT_FOLDER();
   const documents = [];
 
   try {
@@ -48,7 +67,6 @@ export async function liveDocuments({ force = false } = {}) {
     if (!documents.length) throw searchError;
   }
 
-  cache = { at: Date.now(), documents };
   return documents;
 }
 
@@ -65,7 +83,7 @@ export async function mergedDocuments({ includeLive = true, force = false } = {}
     try {
       for (const live of await liveDocuments({ force })) {
         const existing = byId.get(live.id);
-        if (existing) byId.set(live.id, { ...existing, cloudinary: live.cloudinary });
+        if (existing) byId.set(live.id, mergeHosting(existing, live));
         else if (inSiteScope(live)) byId.set(live.id, live);
       }
     } catch (error) {

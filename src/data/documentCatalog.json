@@ -3174,6 +3174,12 @@
     "project": "CÔNG TRÌNH TNHH SẢN XUẤT BAO BÌ HIỆP THÀNH",
     "address": "CÔNG TRÌNH TNHH SẢN XUẤT BAO BÌ HIỆP THÀNH, KCN Phú Mỹ (Bà Rịa - Vũng Tàu), Phú Mỹ, Bà Rịa - Vũng Tàu",
     "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/ba-ria-vung-tau/phu-my-2/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_CTY_SAN_XUAT_BAO_BI_HIEP_nae0ww.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/ba-ria-vung-tau/phu-my-2/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_CTY_SAN_XUAT_BAO_BI_HIEP_nae0ww.pdf",
+    "bytes": 55493543,
+    "uploadedAt": "2026-11-26T08:26:32.997Z"
    }
   },
   {
@@ -3210,6 +3216,12 @@
     "project": "NHÀ MÁY 3-GIAI ĐOẠN 1 TÔN ĐÔNG Á-POSCO VIỆT NAM",
     "address": "LÔ 23 KCN PHÚ MỸ II, KCN Phú Mỹ (Bà Rịa - Vũng Tàu), Xã Phú Mỹ, Phú Mỹ, Bà Rịa - Vũng Tàu",
     "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/ba-ria-vung-tau/phu-my-2/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Vung_Tau_-_KCN_Phu_My_II_enp9ih.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/ba-ria-vung-tau/phu-my-2/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Vung_Tau_-_KCN_Phu_My_II_enp9ih.pdf",
+    "bytes": 29043753,
+    "uploadedAt": "2026-11-26T08:23:26.242Z"
    }
   },
   {
@@ -3293,6 +3305,12 @@
     "project": "BỆNH VIỆN ĐA KHOA TỈNH BẾN TRE",
     "address": "Xã Bình Phú, Tp.Bến Tre, Bến Tre",
     "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/ben-tre/bv-da-khoa-tinh-ben-tre/BAO_CAO_DIA_CHAT_VA_KET_QUA_THI_NGHIEM_-_BV_DA_KHOA_TINH_BEN_penw1h.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/ben-tre/bv-da-khoa-tinh-ben-tre/BAO_CAO_DIA_CHAT_VA_KET_QUA_THI_NGHIEM_-_BV_DA_KHOA_TINH_BEN_penw1h.pdf",
+    "bytes": 87041006,
+    "uploadedAt": "2026-11-26T08:28:20.823Z"
    }
   },
   {
@@ -5435,7 +5453,13 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/dong-nai/nhon-trach/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_NHA_MAY_DIEN_NHON_TRACH__0v519h.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/dong-nai/nhon-trach/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_NHA_MAY_DIEN_NHON_TRACH__0v519h.pdf",
+    "bytes": 110802931,
+    "uploadedAt": "2026-11-26T08:30:39.188Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-nha-xuong-idic-6u762o",
@@ -5466,7 +5490,13 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/dong-nai/nhon-trach/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_NHA_XUONG_IDICO_NHON_TRA_6u762o.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/dong-nai/nhon-trach/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_NHA_XUONG_IDICO_NHON_TRA_6u762o.pdf",
+    "bytes": 31492819,
+    "uploadedAt": "2026-11-26T08:24:10.576Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-thap-huyen-cao-lanh-xa-my-long-bao-cao-ket-qua-khao-sat-dia-chat-do-utvaog",
@@ -5497,7 +5527,13 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "selfhost": {
+    "key": "v-tnf/zone-geology/south/dong-thap/huyen-cao-lanh-xa-my-long/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Dong_Thap_-_Cao_Lanh_-_M_utvaog.pdf",
+    "url": "https://serverit.tail093a51.ts.net/f/v-tnf/zone-geology/south/dong-thap/huyen-cao-lanh-xa-my-long/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Dong_Thap_-_Cao_Lanh_-_M_utvaog.pdf",
+    "bytes": 44888315,
+    "uploadedAt": "2026-11-26T08:25:19.750Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-huu-thanh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-huu-thanh-lo-vcldwa",
@@ -8049,5 +8085,5 @@
    "source": "share"
   }
  ],
- "uploadedAt": "2026-11-26T07:30:45.688Z"
+ "uploadedAt": "2026-11-26T08:30:37.134Z"
 }

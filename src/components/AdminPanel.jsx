@@ -4,7 +4,7 @@
 // passes through the serverless function (so the 4.5 MB body limit is irrelevant).
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { adminSession, api, CATEGORIES, formatBytes, PROVINCE_BY_SLUG, REGIONS, uploadToCloudinary } from "../lib/documents.js";
+import { adminSession, api, CATEGORIES, formatBytes, PROVINCE_BY_SLUG, REGIONS, uploadDocumentFile } from "../lib/documents.js";
 import { categoryLabel } from "../shared/classify.js";
 import { PROVINCES } from "../shared/provinceMeta.js";
 
@@ -123,17 +123,16 @@ export function AdminPanel({ dc, language, session, onSession, health, stats, on
 
         setItems((current) => current.map((entry) => (entry.id === item.id ? { ...entry, status: "uploading" } : entry)));
 
-        const result = await uploadToCloudinary({
+        const result = await uploadDocumentFile({
           file: item.file,
-          uploadUrl: signature.uploadUrl,
-          fields: signature.fields,
+          signature,
           onProgress: (progress) =>
             setItems((current) => current.map((entry) => (entry.id === item.id ? { ...entry, progress } : entry)))
         });
 
         setItems((current) =>
           current.map((entry) =>
-            entry.id === item.id ? { ...entry, status: "done", progress: 100, publicId: result.public_id, url: result.secure_url } : entry
+            entry.id === item.id ? { ...entry, status: "done", progress: 100, publicId: result.publicId, url: result.url } : entry
           )
         );
       } catch (uploadError) {

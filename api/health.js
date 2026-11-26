@@ -2,6 +2,7 @@
 
 import { adminAuthConfigured } from "../server/auth.mjs";
 import { requireMethod, sendJson } from "../server/http.js";
+import { selfStorageConfigured, STORAGE_URL } from "../server/selfStorage.mjs";
 
 export default async function handler(request, res) {
   if (!requireMethod(request, res, "GET")) return;
@@ -13,6 +14,10 @@ export default async function handler(request, res) {
       configured: Boolean(process.env.CLOUDINARY_CLOUD_NAME && process.env.CLOUDINARY_API_KEY && process.env.CLOUDINARY_API_SECRET),
       cloudName: process.env.CLOUDINARY_CLOUD_NAME ?? null,
       rootFolder: process.env.CLOUDINARY_ROOT_FOLDER ?? "v-tnf"
+    },
+    selfhost: {
+      configured: selfStorageConfigured(),
+      publicUrl: STORAGE_URL() || null
     },
     admin: { configured: adminAuthConfigured() },
     ai: {

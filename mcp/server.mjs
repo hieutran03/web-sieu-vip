@@ -49,8 +49,8 @@ function compactDocument(doc) {
     kind: doc.kind,
     sizeBytes: doc.sizeBytes,
     modifiedAt: doc.modifiedAt,
-    hosted: Boolean(doc.cloudinary?.secureUrl),
-    url: doc.cloudinary?.secureUrl ?? null,
+    hosted: Boolean(doc.selfhost?.url || doc.imagekit?.url || doc.cloudinary?.secureUrl),
+    url: doc.selfhost?.url ?? doc.imagekit?.url ?? doc.cloudinary?.secureUrl ?? null,
     sharePath: doc.relPath || null
   };
 }

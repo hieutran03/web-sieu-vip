@@ -11,6 +11,7 @@
     "docs:catalog": "node scripts/buildCatalog.mjs",
     "docs:upload": "node scripts/uploadDocs.mjs",
     "docs:upload-imagekit": "node scripts/uploadImagekit.mjs",
+    "docs:upload-selfhost": "node scripts/uploadSelfhost.mjs",
     "docs:sync": "npm run docs:catalog && npm run docs:upload",
     "mcp": "node mcp/server.mjs",
     "docs:prune": "node scripts/pruneCloudinary.mjs"

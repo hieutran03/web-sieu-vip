@@ -1,0 +1,11 @@
+services:
+  storage:
+    build: .
+    container_name: vtnf-storage
+    restart: unless-stopped
+    env_file: .env
+    # Only reachable from this machine: Tailscale Funnel is the public entry point.
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ${DATA_PATH:-./data}:/data

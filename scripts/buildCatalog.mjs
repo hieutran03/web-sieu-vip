@@ -153,6 +153,7 @@ async function main() {
       // Upload state survives rescans unless the file itself changed.
       cloudinary: changed ? null : previous?.cloudinary ?? null,
       imagekit: changed ? null : previous?.imagekit ?? null,
+      selfhost: changed ? null : previous?.selfhost ?? null,
       ...(previous?.projectLocation ? { projectLocation: previous.projectLocation } : {}),
       source: "share"
     };

@@ -42,6 +42,8 @@ Nguyên tắc: **catalog là nguồn sự thật cho metadata**, Cloudinary là 
 | `GEMINI_API_KEY`, `GEMINI_MODEL` | server | chỉ dùng khi bật AI |
 | `AI_ANALYSIS_ENABLED` | server | **`false` = mặc định**: mọi phân tích chạy bằng luật |
 | `ADMIN_PASSWORD`, `ADMIN_TOKEN_SECRET` | server | đăng nhập admin để upload |
+| `STORAGE_PUBLIC_URL`, `STORAGE_UPLOAD_SECRET` | server + scripts | máy chủ lưu trữ tự host cho file lớn, xem [storage-server/README.md](../storage-server/README.md) |
+| `VITE_STORAGE_PUBLIC_URL` | client | dựng link xem/tải hồ sơ lưu ở máy chủ tự host |
 | `DOCS_SOURCE_DIR` | scripts | đường dẫn ổ chia sẻ (chỉ cần trên máy có ổ Z:) |
 
 ## 3. Các script
@@ -55,11 +57,18 @@ npm run docs:catalog        # quét ổ chia sẻ -> src/data/documentCatalog.js
 npm run docs:upload         # upload các hồ sơ chưa có trên Cloudinary
 npm run docs:sync           # catalog + upload
 npm run docs:prune          # liệt kê asset mồ côi (thêm --delete để xoá thật)
+npm run docs:upload-selfhost  # đẩy hồ sơ vượt giới hạn Cloudinary lên máy chủ tự host
 npm run mcp                 # MCP server (stdio)
 ```
 
 Thêm hồ sơ mới trên ổ Z: → `npm run docs:sync`. Script bỏ qua tài liệu đã upload và giữ nguyên
 trạng thái upload khi quét lại.
+
+Hồ sơ vượt giới hạn Cloudinary → `npm run docs:upload-selfhost`. Script đẩy chúng lên máy chủ tự
+host (máy Linux 24/7, mở ra internet bằng Tailscale Funnel) và ghi `selfhost` vào catalog. Cài đặt
+máy chủ xem [storage-server/README.md](../storage-server/README.md). Khi một hồ sơ có nhiều nơi
+lưu, link xem/tải ưu tiên theo thứ tự `selfhost` → ImageKit → Cloudinary. Ảnh xem trước vẫn chỉ
+có với hồ sơ trên Cloudinary.
 
 Các PDF miền Nam chưa có trên Cloudinary có thể tải lên ImageKit bằng `npm run docs:upload-imagekit`.
 Đặt `IMAGEKIT_PRIVATE_KEY` trong `.env.local` và giữ khóa ở phía máy chủ. Danh mục lưu URL ImageKit
@@ -141,8 +150,11 @@ gộp thêm hồ sơ vừa upload qua trang admin.
 
 - **Gói Cloudinary Free**: ảnh/raw tối đa **10 MB**, video **100 MB**. 41/197 hồ sơ (báo cáo khảo
   sát địa chất dung lượng lớn, tới 668 MB) vượt giới hạn nên chưa phát hành trực tuyến — thẻ hồ sơ
-  hiển thị *"Bản đầy đủ cấp theo yêu cầu"* và không lộ đường dẫn nội bộ. Nâng gói là đủ để
-  `npm run docs:upload` đẩy tiếp, không cần sửa code.
+  hiển thị *"Bản đầy đủ cấp theo yêu cầu"* và không lộ đường dẫn nội bộ. Các hồ sơ này đi qua
+  máy chủ tự host (`npm run docs:upload-selfhost`). Upload qua trang admin thì file lớn tự động
+  được chuyển sang máy chủ đó.
+- **Máy chủ tự host**: máy tắt hoặc mất mạng thì hồ sơ lớn tạm thời không mở được; băng thông
+  Tailscale Funnel có giới hạn và không công bố con số.
 - Địa giới dùng **63 tỉnh trước 01/07/2025** vì tên thư mục trên ổ chia sẻ theo hệ cũ; mỗi tỉnh có
   kèm `mergedInto` và popover/panel hiển thị dòng "Sau sáp nhập 01/07/2025 thuộc …".
 - Chế độ Google Maps: `@vis.gl/react-google-maps` v1.8.3 gặp vấn đề khi React `StrictMode` mount

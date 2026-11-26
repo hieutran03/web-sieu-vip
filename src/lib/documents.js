@@ -3,12 +3,15 @@
 
 import catalog from "../data/documentCatalog.json";
 import provinceGeo from "../data/vietnamProvinces.geo.json";
-import { buildStats, filterDocuments, isHosted } from "../shared/catalogStats.js";
+import { buildStats, filterDocuments, isHosted, mergeHosting } from "../shared/catalogStats.js";
 import { CATEGORIES, CATEGORY_BY_ID, MEDIA_KINDS } from "../shared/classify.js";
 import { PROVINCE_BY_SLUG, REGIONS } from "../shared/provinceMeta.js";
 import { inSiteScope } from "../shared/scope.js";
 
 const CLOUD_NAME = import.meta.env.VITE_CLOUDINARY_CLOUD_NAME ?? "";
+// Public base URL of the self-hosted store. Building URLs from the key (rather than trusting the
+// URL recorded at upload time) means a new Funnel/tunnel hostname only needs this env var changed.
+const STORAGE_URL = (import.meta.env.VITE_STORAGE_PUBLIC_URL ?? "").replace(/\/+$/, "");
 
 export { CATEGORIES, CATEGORY_BY_ID, MEDIA_KINDS, REGIONS, PROVINCE_BY_SLUG, filterDocuments, isHosted };
 
@@ -32,7 +35,7 @@ export function mergeDocuments(snapshotDocuments, liveDocuments = []) {
   for (const live of liveDocuments) {
     const existing = byId.get(live.id);
     if (existing) {
-      byId.set(live.id, { ...existing, cloudinary: live.cloudinary ?? existing.cloudinary });
+      byId.set(live.id, mergeHosting(existing, live));
     } else if (inSiteScope(live)) {
       // New upload the snapshot has not seen yet — only if it belongs on this site.
       byId.set(live.id, live);
@@ -69,13 +72,21 @@ export function thumbnailUrl(doc, { width = 480, height = 320 } = {}) {
   return null;
 }
 
+function selfhostUrl(doc) {
+  const key = doc.selfhost?.key;
+  if (!key) return null;
+  return STORAGE_URL ? `${STORAGE_URL}/f/${key.split("/").map(encodeURIComponent).join("/")}` : doc.selfhost.url ?? null;
+}
+
 /** Full-size viewing URL (PDF/image inline, video streamed, raw downloaded). */
 export function viewUrl(doc) {
-  return doc.imagekit?.url ?? doc.cloudinary?.secureUrl ?? null;
+  return selfhostUrl(doc) ?? doc.imagekit?.url ?? doc.cloudinary?.secureUrl ?? null;
 }
 
 /** Force a download with the original file name. */
 export function downloadUrl(doc) {
+  const selfhost = selfhostUrl(doc);
+  if (selfhost) return `${selfhost}?dl=${encodeURIComponent(doc.fileName)}`;
   if (doc.imagekit?.url) return doc.imagekit.url;
   const url = doc.cloudinary?.secureUrl;
   if (!url) return null;
@@ -145,30 +156,45 @@ export const api = {
 };
 
 /**
- * Upload a file straight to Cloudinary using a server-issued signature.
+ * Upload a file straight to its store using a server-issued signature: a signed multipart POST
+ * for Cloudinary, a signed PUT of the raw bytes for the self-hosted store (large files).
  * XHR (not fetch) so the admin panel can show real progress.
+ * Resolves with `{ publicId, url }` whichever store took the file.
  */
-export function uploadToCloudinary({ file, uploadUrl, fields, onProgress }) {
-  return new Promise((resolve, reject) => {
-    const form = new FormData();
-    for (const [key, value] of Object.entries(fields)) form.append(key, String(value));
-    form.append("file", file);
+export function uploadDocumentFile({ file, signature, onProgress }) {
+  const selfhost = signature.provider === "selfhost";
+  const storeName = selfhost ? "máy chủ lưu trữ" : "Cloudinary";
 
+  return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
-    xhr.open("POST", uploadUrl);
+    xhr.open(selfhost ? "PUT" : "POST", signature.uploadUrl);
     xhr.upload.addEventListener("progress", (event) => {
       if (event.lengthComputable && onProgress) onProgress(Math.round((event.loaded / event.total) * 100));
     });
     xhr.addEventListener("load", () => {
       try {
         const payload = JSON.parse(xhr.responseText);
-        if (xhr.status >= 200 && xhr.status < 300) resolve(payload);
-        else reject(new Error(payload?.error?.message ?? `Cloudinary upload failed (${xhr.status})`));
+        if (xhr.status < 200 || xhr.status >= 300) {
+          reject(new Error(payload?.error?.message ?? payload?.error ?? `Upload lên ${storeName} thất bại (${xhr.status})`));
+        } else if (selfhost) {
+          resolve({ publicId: payload.key, url: signature.publicUrl });
+        } else {
+          resolve({ publicId: payload.public_id, url: payload.secure_url });
+        }
       } catch (error) {
         reject(error);
       }
     });
-    xhr.addEventListener("error", () => reject(new Error("Không kết nối được tới Cloudinary")));
+    xhr.addEventListener("error", () => reject(new Error(`Không kết nối được tới ${storeName}`)));
+
+    if (selfhost) {
+      xhr.setRequestHeader("Content-Type", "application/octet-stream");
+      xhr.send(file);
+      return;
+    }
+    const form = new FormData();
+    for (const [key, value] of Object.entries(signature.fields)) form.append(key, String(value));
+    form.append("file", file);
     xhr.send(form);
   });
 }
