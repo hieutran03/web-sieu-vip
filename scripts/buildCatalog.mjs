@@ -152,6 +152,8 @@ async function main() {
       sizeLimit: sizeLimitFor(classification.kind),
       // Upload state survives rescans unless the file itself changed.
       cloudinary: changed ? null : previous?.cloudinary ?? null,
+      imagekit: changed ? null : previous?.imagekit ?? null,
+      ...(previous?.projectLocation ? { projectLocation: previous.projectLocation } : {}),
       source: "share"
     };
   });

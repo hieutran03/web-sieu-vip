@@ -71,11 +71,12 @@ export function thumbnailUrl(doc, { width = 480, height = 320 } = {}) {
 
 /** Full-size viewing URL (PDF/image inline, video streamed, raw downloaded). */
 export function viewUrl(doc) {
-  return doc.cloudinary?.secureUrl ?? null;
+  return doc.imagekit?.url ?? doc.cloudinary?.secureUrl ?? null;
 }
 
 /** Force a download with the original file name. */
 export function downloadUrl(doc) {
+  if (doc.imagekit?.url) return doc.imagekit.url;
   const url = doc.cloudinary?.secureUrl;
   if (!url) return null;
   return withTransformation(url, `fl_attachment:${encodeURIComponent(doc.fileName.replace(/\.[A-Za-z0-9]+$/, ""))}`);

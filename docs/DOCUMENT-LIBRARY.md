@@ -61,6 +61,11 @@ npm run mcp                 # MCP server (stdio)
 Thêm hồ sơ mới trên ổ Z: → `npm run docs:sync`. Script bỏ qua tài liệu đã upload và giữ nguyên
 trạng thái upload khi quét lại.
 
+Các PDF miền Nam chưa có trên Cloudinary có thể tải lên ImageKit bằng `npm run docs:upload-imagekit`.
+Đặt `IMAGEKIT_PRIVATE_KEY` trong `.env.local` và giữ khóa ở phía máy chủ. Danh mục lưu URL ImageKit
+cho từng hồ sơ và giữ lại khi quét lại nếu tệp nguồn không thay đổi. Giới hạn kích thước phụ thuộc
+vào tài khoản ImageKit; những tệp bị từ chối vẫn hiển thị ở trạng thái cấp theo yêu cầu.
+
 ## 4. Giao diện
 
 Header có 2 tab:

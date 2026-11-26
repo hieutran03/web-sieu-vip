@@ -1617,3 +1617,12 @@
   height: 1px;
   scroll-margin-top: 5.5rem;
 }
+.docs-card-location {
+  margin: 0.65rem 0;
+  color: oklch(35% 0.023 176);
+  font-size: 0.8rem;
+  line-height: 1.45;
+}
+.docs-card-location span { font-weight: 700; }
+.docs-card-location p { margin: 0.2rem 0; }
+.docs-card-location a { color: oklch(41% 0.105 162); text-decoration: underline; }

@@ -17,7 +17,7 @@ function sortedEntries(record, limit) {
 }
 
 export function isHosted(doc) {
-  return Boolean(doc.cloudinary?.secureUrl);
+  return Boolean(doc.imagekit?.url || doc.cloudinary?.secureUrl);
 }
 
 /** Group documents into zones: `province/zone` is the identity used across the app. */

@@ -1,11 +1,11 @@
 {
- "generatedAt": "2026-07-30T09:31:43.406Z",
+ "generatedAt": "2026-11-26T07:30:24.372Z",
  "sourceRoot": "Z:\\Public\\7. MỤC TIÊU CÔNG TY - BỘ PHẬN - AMEBA\\※V-TNF工法研究\\★開発関係資料",
  "scope": "industrial-zones",
  "skipped": 187,
  "summary": {
   "total": 197,
-  "totalBytes": 2909902702,
+  "totalBytes": 2909522024,
   "uploadable": 156,
   "tooLarge": 41,
   "byRegion": {
@@ -30,12 +30,6 @@
    "thua-thien-hue": 2,
    "quang-nam": 4,
    "quang-ngai": 2,
-   "bac-lieu": 1,
-   "ca-mau": 3,
-   "can-tho": 1,
-   "dong-thap": 1,
-   "tien-giang": 1,
-   "vinh-long": 1,
    "bac-giang": 5,
    "ha-nam": 4,
    "ha-noi": 3,
@@ -47,7 +41,13 @@
    "binh-dinh": 6,
    "binh-thuan": 1,
    "ninh-thuan": 2,
-   "quang-binh": 1
+   "quang-binh": 1,
+   "bac-lieu": 1,
+   "ca-mau": 3,
+   "can-tho": 1,
+   "dong-thap": 1,
+   "tien-giang": 1,
+   "vinh-long": 1
   },
   "byCategory": {
    "zone-map": 72,
@@ -61,10 +61,11 @@
    "image": 45,
    "pdf": 94,
    "drawing": 11,
-   "document": 15,
-   "archive": 32
+   "archive": 32,
+   "document": 15
   },
-  "zones": 141
+  "zones": 141,
+  "uploaded": 156
  },
  "documents": [
   {
@@ -3104,8 +3105,8 @@
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bà Rịa - Vũng Tàu/KCN Châu Đức",
    "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Châu Đức.pdf",
    "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Châu Đức",
-   "sizeBytes": 12124261,
-   "modifiedAt": "2026-07-15T06:03:48.577Z",
+   "sizeBytes": 11998927,
+   "modifiedAt": "2026-11-04T08:46:51.199Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3127,7 +3128,17 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "KUK IL SPINNING VINA– PHASE 1",
+    "address": "LÔ SỐ 21, KHU CÔNG NGHIỆP CHÂU ĐỨC, KCN Châu Đức (Vũng Tàu), Xã  Suối Nghệ, Huyện Châu Đức, Bà Rịa - Vũng Tàu",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e28aead997d09a73b473",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/ba-ria-vung-tau/chau-duc/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ba-ria-vung-tau-kcn-chau-duc-bao-cao-ket-qua-khao-sat-dia-chat-chau-duc--kk6wht.pdf",
+    "uploadedAt": "2026-11-26T07:41:01.725Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ba-ria-vung-tau-kcn-phu-my-2-bao-cao-ket-qua-khao-sat-dia-chat-cty-san-x-nae0ww",
@@ -3135,8 +3146,8 @@
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bà Rịa - Vũng Tàu/KCN Phú Mỹ 2",
    "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CTY SẢN XUẤT BAO BÌ HIỆP THÀNH.pdf",
    "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CTY SẢN XUẤT BAO BÌ HIỆP THÀNH",
-   "sizeBytes": 55520571,
-   "modifiedAt": "2026-07-15T05:00:19.115Z",
+   "sizeBytes": 55493543,
+   "modifiedAt": "2026-11-04T08:46:38.832Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3158,7 +3169,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "CÔNG TRÌNH TNHH SẢN XUẤT BAO BÌ HIỆP THÀNH",
+    "address": "CÔNG TRÌNH TNHH SẢN XUẤT BAO BÌ HIỆP THÀNH, KCN Phú Mỹ (Bà Rịa - Vũng Tàu), Phú Mỹ, Bà Rịa - Vũng Tàu",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ba-ria-vung-tau-kcn-phu-my-2-bao-cao-ket-qua-khao-sat-dia-chat-vung-tau--enp9ih",
@@ -3166,8 +3182,8 @@
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bà Rịa - Vũng Tàu/KCN Phú Mỹ 2",
    "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Vung Tau - KCN Phu My II.pdf",
    "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Vung Tau - KCN Phu My II",
-   "sizeBytes": 29156132,
-   "modifiedAt": "2026-07-15T06:03:18.331Z",
+   "sizeBytes": 29043753,
+   "modifiedAt": "2026-11-05T08:41:01.102Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3189,7 +3205,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "NHÀ MÁY 3-GIAI ĐOẠN 1 TÔN ĐÔNG Á-POSCO VIỆT NAM",
+    "address": "LÔ 23 KCN PHÚ MỸ II, KCN Phú Mỹ (Bà Rịa - Vũng Tàu), Xã Phú Mỹ, Phú Mỹ, Bà Rịa - Vũng Tàu",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-bac-lieu-cum-trung-tam-thuong-mai-bac-lieu-bao-cao-dia-chat-va-ket-qua-t-7nicuz",
@@ -3231,7 +3252,12 @@
     "height": 841,
     "uploadedAt": "2026-07-30T08:48:29.546Z"
    },
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "CỤM SHOWROOM KIA-MAZDA-THƯƠNG MẠI BẠC LIÊU",
+    "address": "BẠC LIÊU, Phường 7, TP.Bạc Liêu, Bạc Liêu",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ben-tre-bv-da-khoa-tinh-ben-tre-bao-cao-dia-chat-va-ket-qua-thi-nghiem-b-penw1h",
@@ -3262,7 +3288,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "BỆNH VIỆN ĐA KHOA TỈNH BẾN TRE",
+    "address": "Xã Bình Phú, Tp.Bến Tre, Bến Tre",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ben-tre-kcn-giao-long-bao-cao-dia-chat-va-ket-qua-thi-nghiem-nha-xuong-k-ll2aez",
@@ -3270,8 +3301,8 @@
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bến Tre/KCN Giao Long",
    "fileName": "BÁO CÁO ĐỊA CHẤT VÀ KẾT QUẢ THÍ NGHIỆM - NHÀ XƯỞNG KCN GIAO LONG.pdf",
    "title": "BÁO CÁO ĐỊA CHẤT VÀ KẾT QUẢ THÍ NGHIỆM - NHÀ XƯỞNG KCN GIAO LONG",
-   "sizeBytes": 18711587,
-   "modifiedAt": "2026-07-20T03:54:03.717Z",
+   "sizeBytes": 18702627,
+   "modifiedAt": "2026-11-06T09:51:45.242Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3293,7 +3324,17 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "Nhà xưởng KCN-GL",
+    "address": "KCN Giao Long, Xã Giao Long, Huyện Châu Thành, Bến Tre",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e2c9ead997d09a74d258",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/ben-tre/giao-long/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ben-tre-kcn-giao-long-bao-cao-dia-chat-va-ket-qua-thi-nghiem-nha-xuong-k-ll2aez.pdf",
+    "uploadedAt": "2026-11-26T07:42:06.447Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-bau-bang-1-dia-hinh-1-bia-bao-cao-dia-hinh-sn-pdf-qt23q9",
@@ -3422,13 +3463,13 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-bau-bang-2-khao-sat-dia-chat-bao-cao-khao-sat-dia-chat-pd-1v58qt",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Bầu Bàng/2. KHAO SAT DIA CHAT/BAO CAO KHAO SAT DIA CHAT.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-bau-bang-2-khao-sat-dia-chat-bao-cao-khao-sat-dia-chat-ph-se55s7",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Bầu Bàng/2. KHAO SAT DIA CHAT/BAO CAO KHAO SAT DIA CHAT- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Bầu Bàng/2. KHAO SAT DIA CHAT",
-   "fileName": "BAO CAO KHAO SAT DIA CHAT.pdf",
-   "title": "BAO CAO KHAO SAT DIA CHAT",
-   "sizeBytes": 4367535,
-   "modifiedAt": "2019-11-08T06:52:27.000Z",
+   "fileName": "BAO CAO KHAO SAT DIA CHAT- PHAT.pdf",
+   "title": "BAO CAO KHAO SAT DIA CHAT- PHAT",
+   "sizeBytes": 4344172,
+   "modifiedAt": "2026-11-26T03:47:49.475Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3450,18 +3491,23 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/binh-duong/bau-bang/BAO_CAO_KHAO_SAT_DIA_CHAT_1v58qt",
+    "publicId": "v-tnf/zone-geology/south/binh-duong/bau-bang/BAO_CAO_KHAO_SAT_DIA_CHAT-_PHAT_se55s7",
     "resourceType": "image",
-    "version": 1785401308,
+    "version": 1795678240,
     "format": "pdf",
-    "bytes": 4367535,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401308/v-tnf/zone-geology/south/binh-duong/bau-bang/BAO_CAO_KHAO_SAT_DIA_CHAT_1v58qt.pdf",
+    "bytes": 4344172,
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678240/v-tnf/zone-geology/south/binh-duong/bau-bang/BAO_CAO_KHAO_SAT_DIA_CHAT-_PHAT_se55s7.pdf",
     "pages": 130,
     "width": 595,
     "height": 842,
-    "uploadedAt": "2026-07-30T08:48:30.144Z"
+    "uploadedAt": "2026-11-26T07:30:41.213Z"
    },
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "NHÀ MÁY CÔNG TY TNHH KISWIRE VIỆT NAM",
+    "address": "LÔ A_5A_CN, KCN BÀU BÀNG, KCN Bàu Bàng (Bình Dương), Xã Lai Uyên, Huyện Bàu Bàng, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-bau-bang-3-ban-ve-dia-dinh-20210112-bv-xuat-kiswire-bau-b-lhdpiv",
@@ -3548,13 +3594,13 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-phu-tan-bao-cao-ket-qua-khao-sat-dia-chat-du-an-newmotion-8annrz",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Tân/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-phu-tan-bao-cao-ket-qua-khao-sat-dia-chat-du-an-newmotion-eysjdp",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Tân/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Tân",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION",
-   "sizeBytes": 15382933,
-   "modifiedAt": "2026-07-15T06:09:19.396Z",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - DU AN NEWMOTION- PHAT",
+   "sizeBytes": 15299319,
+   "modifiedAt": "2026-11-26T03:47:47.049Z",
    "collection": "zone-geology",
    "category": "geology",
    "kind": "pdf",
@@ -3576,14 +3622,24 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "Dự án Công ty TNHH Công nghiệp NEW MOTION (Địa điểm 3+4).",
+    "address": "LÔ D1,D2,D3,D4,D5 KCN PHÚ TÂN, KCN Phú Tân, Phường Hòa Phú, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e2a6ead997d09a743166",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/binh-duong/phu-tan/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-phu-tan-bao-cao-ket-qua-khao-sat-dia-chat-du-an-newmotion-eysjdp.pdf",
+    "uploadedAt": "2026-11-26T07:41:31.008Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-phu-tho-bao-cao-ket-qua-khao-sat-dia-chat-phu-tho-thu-dau-6i0ixo",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Thọ/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-phu-tho-bao-cao-ket-qua-khao-sat-dia-chat-phu-tho-thu-dau-t8jld2",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Thọ/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Phú Thọ",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - PHU THO-THU DAU MOT- PHAT",
    "sizeBytes": 454608,
    "modifiedAt": "2026-07-15T06:07:43.391Z",
    "collection": "zone-geology",
@@ -3607,25 +3663,30 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/binh-duong/phu-tho/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_PHU_THO-THU_DAU_MOT_6i0ixo",
+    "publicId": "v-tnf/zone-geology/south/binh-duong/phu-tho/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_PHU_THO-THU_DAU_MOT-_PHA_t8jld2",
     "resourceType": "image",
-    "version": 1785401302,
+    "version": 1795678239,
     "format": "pdf",
     "bytes": 454608,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401302/v-tnf/zone-geology/south/binh-duong/phu-tho/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_PHU_THO-THU_DAU_MOT_6i0ixo.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678239/v-tnf/zone-geology/south/binh-duong/phu-tho/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_PHU_THO-THU_DAU_MOT-_PHA_t8jld2.pdf",
     "pages": 15,
     "width": 584,
     "height": 830,
-    "uploadedAt": "2026-07-30T08:48:24.224Z"
+    "uploadedAt": "2026-11-26T07:30:40.423Z"
    },
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "KHU DÂN CỨ PHÚ THỌ",
+    "address": "KDC Phú Thọ, Phường Phú Thọ, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-tan-binh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-tan-binh-p-jzwofb",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Tân Bình/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-tan-binh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-tan-binh-p-q5bphz",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Tân Bình/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Dương/KCN Tân Bình",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN TAN BINH- PHAT",
    "sizeBytes": 4914084,
    "modifiedAt": "2026-07-15T06:08:44.811Z",
    "collection": "zone-geology",
@@ -3649,18 +3710,23 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/binh-duong/tan-binh/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_TAN_BINH_jzwofb",
+    "publicId": "v-tnf/zone-geology/south/binh-duong/tan-binh/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_TAN_BINH-_PHAT_q5bphz",
     "resourceType": "image",
-    "version": 1785401313,
+    "version": 1795678242,
     "format": "pdf",
     "bytes": 4914084,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401313/v-tnf/zone-geology/south/binh-duong/tan-binh/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_TAN_BINH_jzwofb.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678242/v-tnf/zone-geology/south/binh-duong/tan-binh/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_TAN_BINH-_PHAT_q5bphz.pdf",
     "pages": 186,
     "width": 595,
     "height": 841,
-    "uploadedAt": "2026-07-30T08:48:35.386Z"
+    "uploadedAt": "2026-11-26T07:30:44.121Z"
    },
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "KHU CÔNG NGHIỆP TÂN BÌNH",
+    "address": "KCN Tân Bình (Bình Dương), Huyện Tân Uyên, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-vsip-i-bao-cao-khao-sat-dia-chat-cong-trinh-visip-i-pdf-1cr2d0",
@@ -3691,7 +3757,17 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "NHÀ MÁY CÔNG TY TNHH CÔNG NGHỆ EASTFIELD",
+    "address": "KCN VSIP1, Phường Bình Hòa, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e297ead997d09a73ed60",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/binh-duong/vsip-i/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-vsip-i-bao-cao-khao-sat-dia-chat-cong-trinh-visip-i-pdf-1cr2d0.pdf",
+    "uploadedAt": "2026-11-26T07:41:15.536Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-vsip-ii-bao-cao-ket-qua-khao-sat-dia-chat-binh-duong-kcn--qdnhvs",
@@ -3722,7 +3798,17 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "NHÀ MÁY EAST WEST INDUSTRIES MỞ RỘNG",
+    "address": "Đường số 5, VSIP II, KCN VSIP2, Phường Hòa Phú, TP. Thủ Dầu Một, Bình Dương",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e2b7ead997d09a748ff5",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/binh-duong/vsip-ii/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-vsip-ii-bao-cao-ket-qua-khao-sat-dia-chat-binh-duong-kcn--qdnhvs.pdf",
+    "uploadedAt": "2026-11-26T07:41:49.635Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-duong-kcn-vsip-ii-vsipii-tan-uyen-binh-duong-pdf-9j75ok",
@@ -3767,11 +3853,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-phuoc-kcn-becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem-dia-chat-be-vnhdw9",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Becamex Bình Phước - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/DIA CHAT BECAMEX BINH PHUOC_NTTCONS.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-phuoc-kcn-becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem-dia-chat-be-6ifee3",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Becamex Bình Phước - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/DIA CHAT BECAMEX BINH PHUOC_NTTCONS- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Becamex Bình Phước - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM",
-   "fileName": "DIA CHAT BECAMEX BINH PHUOC_NTTCONS.pdf",
-   "title": "DIA CHAT BECAMEX BINH PHUOC NTTCONS",
+   "fileName": "DIA CHAT BECAMEX BINH PHUOC_NTTCONS- PHAT.pdf",
+   "title": "DIA CHAT BECAMEX BINH PHUOC NTTCONS- PHAT",
    "sizeBytes": 9670082,
    "modifiedAt": "2026-07-15T06:11:22.656Z",
    "collection": "zone-geology",
@@ -3795,25 +3881,25 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/binh-phuoc/becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem/DIA_CHAT_BECAMEX_BINH_PHUOC_NTTCONS_vnhdw9",
+    "publicId": "v-tnf/zone-geology/south/binh-phuoc/becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem/DIA_CHAT_BECAMEX_BINH_PHUOC_NTTCONS-_PHAT_6ifee3",
     "resourceType": "image",
-    "version": 1785401313,
+    "version": 1795678243,
     "format": "pdf",
     "bytes": 9670082,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401313/v-tnf/zone-geology/south/binh-phuoc/becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem/DIA_CHAT_BECAMEX_BINH_PHUOC_NTTCONS_vnhdw9.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678243/v-tnf/zone-geology/south/binh-phuoc/becamex-binh-phuoc-chua-co-ket-qua-thi-nghiem/DIA_CHAT_BECAMEX_BINH_PHUOC_NTTCONS-_PHAT_6ifee3.pdf",
     "pages": 61,
     "width": 612,
     "height": 792,
-    "uploadedAt": "2026-07-30T08:48:35.660Z"
+    "uploadedAt": "2026-11-26T07:30:43.905Z"
    },
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-phuoc-kcn-minh-hung-chua-co-ket-qua-thi-nghiem-bao-cao-ket-qua-khao-ijlf5w",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Minh Hưng  - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-binh-phuoc-kcn-minh-hung-chua-co-ket-qua-thi-nghiem-bao-cao-ket-qua-khao-6a9g3i",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Minh Hưng  - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Bình Phước/KCN Minh Hưng  - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN Minh Hung Sikico - Dong No - Hon Quan- PHAT",
    "sizeBytes": 2403960,
    "modifiedAt": "2026-07-15T06:10:52.636Z",
    "collection": "zone-geology",
@@ -3837,25 +3923,25 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/binh-phuoc/minh-hung-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_Minh_Hung_Sikico_-_D_ijlf5w",
+    "publicId": "v-tnf/zone-geology/south/binh-phuoc/minh-hung-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_Minh_Hung_Sikico_-_D_6a9g3i",
     "resourceType": "image",
-    "version": 1785401312,
+    "version": 1795678242,
     "format": "pdf",
     "bytes": 2403960,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401312/v-tnf/zone-geology/south/binh-phuoc/minh-hung-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_Minh_Hung_Sikico_-_D_ijlf5w.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678242/v-tnf/zone-geology/south/binh-phuoc/minh-hung-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KCN_Minh_Hung_Sikico_-_D_6a9g3i.pdf",
     "pages": 20,
     "width": 595,
     "height": 842,
-    "uploadedAt": "2026-07-30T08:48:34.661Z"
+    "uploadedAt": "2026-11-26T07:30:43.746Z"
    },
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ca-mau-tp-ca-mau-khom-5-phuong-1-bao-cao-ket-qua-khao-sat-dia-chat-tp-ca-dpt0x",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cà Mau/TP Cà Mau - Khóm 5 Phường 1/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ca-mau-tp-ca-mau-khom-5-phuong-1-bao-cao-ket-qua-khao-sat-dia-chat-tp-ca-uauek3",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cà Mau/TP Cà Mau - Khóm 5 Phường 1/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cà Mau/TP Cà Mau - Khóm 5 Phường 1",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TP CA MAU - KDT KHOM 5 P1- PHAT",
    "sizeBytes": 25669291,
    "modifiedAt": "2024-01-04T03:04:56.000Z",
    "collection": "zone-geology",
@@ -3879,7 +3965,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2ecead997d09a757feb",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/ca-mau/tp-ca-mau-khom-5-phuong-1/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ca-mau-tp-ca-mau-khom-5-phuong-1-bao-cao-ket-qua-khao-sat-dia-chat-tp-ca-uauek3.pdf",
+    "uploadedAt": "2026-11-26T07:42:42.738Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-ca-mau-tp-ca-mau-khom-5-phuong-1-mat-bang-ho-khoan-dwg-yjqibs",
@@ -3966,11 +4057,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-can-tho-kcn-thot-not-bao-cao-ket-qua-khao-sat-dia-chat-thot-not-pdf-x18vd4",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cần Thơ/KCN Thốt Nốt/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-can-tho-kcn-thot-not-bao-cao-ket-qua-khao-sat-dia-chat-thot-not-phat-pdf-3ndci2",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cần Thơ/KCN Thốt Nốt/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Cần Thơ/KCN Thốt Nốt",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - THOT NOT- PHAT",
    "sizeBytes": 25833188,
    "modifiedAt": "2026-07-15T06:04:51.634Z",
    "collection": "zone-geology",
@@ -3994,14 +4085,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2f6ead997d09a75b8fd",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/can-tho/thot-not/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-can-tho-kcn-thot-not-bao-cao-ket-qua-khao-sat-dia-chat-thot-not-phat-pdf-3ndci2.pdf",
+    "uploadedAt": "2026-11-26T07:42:52.313Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-bao-cao-ket-qua-khao-sat-dia-chat-kcn-an-phuoc-pdf-3j5xel",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN An Phước/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-bao-cao-ket-qua-khao-sat-dia-chat-kcn-an-phuoc-vin-dq5o6b",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN An Phước/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN An Phước",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - kcn AN PHƯỚC- VINH",
    "sizeBytes": 11248605,
    "modifiedAt": "2026-07-20T07:49:19.545Z",
    "collection": "zone-geology",
@@ -4025,7 +4121,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e272ead997d09a731962",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/dong-nai/an-phuoc/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-bao-cao-ket-qua-khao-sat-dia-chat-kcn-an-phuoc-vin-dq5o6b.pdf",
+    "uploadedAt": "2026-11-26T07:40:38.274Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-ksdc-ksdc-final-underground-test-report-thuyet-min-bv51ma",
@@ -4854,7 +4955,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e27dead997d09a7366cd",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/dong-nai/an-phuoc/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-ksdc-ksdc-final-underground-test-report-thuyet-min-9p12qd.pdf",
+    "uploadedAt": "2026-11-26T07:40:48.510Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-an-phuoc-ksdc-ksdc-logisvalley-hcmc-underground-test-report-q5gckq",
@@ -4983,11 +5089,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-nha-may-nesstle--a644v5",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-nha-may-nesstle--ya18bj",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHÀ MÁY NESSTLE ĐỒNG NAI- VINH",
    "sizeBytes": 18039088,
    "modifiedAt": "2026-07-15T06:13:32.472Z",
    "collection": "zone-geology",
@@ -5011,14 +5117,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2c1ead997d09a74bc26",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/dong-nai/bien-hoa/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-nha-may-nesstle--ya18bj.pdf",
+    "uploadedAt": "2026-11-26T07:41:57.979Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-west-lake-100520-hlzalc",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-west-lake-100520-vnk2e8",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Biên Hòa",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - WEST LAKE-10052022- VINH",
    "sizeBytes": 24537028,
    "modifiedAt": "2026-07-15T06:13:56.073Z",
    "collection": "zone-geology",
@@ -5042,14 +5153,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2e2ead997d09a755f1e",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/dong-nai/bien-hoa/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-bien-hoa-bao-cao-ket-qua-khao-sat-dia-chat-west-lake-100520-vnk2e8.pdf",
+    "uploadedAt": "2026-11-26T07:42:33.103Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-giang-dien-bao-cao-ket-qua-khao-sat-dia-chat-soil-report-se-4b5vt2",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Giang Điền/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-giang-dien-bao-cao-ket-qua-khao-sat-dia-chat-soil-report-se-rldu6c",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Giang Điền/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Giang Điền",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Soil report -Sechang- PHAT",
    "sizeBytes": 6274705,
    "modifiedAt": "2026-07-20T07:51:44.947Z",
    "collection": "zone-geology",
@@ -5073,16 +5189,16 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/dong-nai/giang-dien/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Soil_report_-Sechang_4b5vt2",
+    "publicId": "v-tnf/zone-geology/south/dong-nai/giang-dien/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Soil_report_-Sechang-_PH_rldu6c",
     "resourceType": "image",
-    "version": 1785401332,
+    "version": 1795678242,
     "format": "pdf",
     "bytes": 6274705,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401332/v-tnf/zone-geology/south/dong-nai/giang-dien/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Soil_report_-Sechang_4b5vt2.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678242/v-tnf/zone-geology/south/dong-nai/giang-dien/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_Soil_report_-Sechang-_PH_rldu6c.pdf",
     "pages": 111,
     "width": 595,
     "height": 842,
-    "uploadedAt": "2026-07-30T08:48:53.860Z"
+    "uploadedAt": "2026-11-26T07:30:43.077Z"
    },
    "source": "share"
   },
@@ -5255,11 +5371,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-factory-6-pdf-hctac",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-factory-6-phat-j11a4e",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - FACTORY 6- PHAT",
    "sizeBytes": 16475733,
    "modifiedAt": "2026-07-15T06:12:28.423Z",
    "collection": "zone-geology",
@@ -5283,14 +5399,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2aeead997d09a7460ef",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/dong-nai/nhon-trach/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-factory-6-phat-j11a4e.pdf",
+    "uploadedAt": "2026-11-26T07:41:39.680Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-nha-may-dien-n-ia5x3x",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-nha-may-dien-n-v519h",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA MAY DIEN NHON TRACH 3-4- PHAT",
    "sizeBytes": 110802931,
    "modifiedAt": "2026-07-15T06:13:52.356Z",
    "collection": "zone-geology",
@@ -5317,11 +5438,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-nha-xuong-idic-rir4jm",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-nai-kcn-nhon-trach-bao-cao-ket-qua-khao-sat-dia-chat-nha-xuong-idic-6u762o",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I- PHAT.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Nai/KCN Nhơn Trạch",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I- PHAT.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - NHA XUONG IDICO NHON TRACH I- PHAT",
    "sizeBytes": 31492819,
    "modifiedAt": "2022-04-01T03:40:27.000Z",
    "collection": "zone-geology",
@@ -5348,11 +5469,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-thap-huyen-cao-lanh-xa-my-long-bao-cao-ket-qua-khao-sat-dia-chat-do-bpc3jk",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Tháp/Huyện Cao Lãnh - xã Mỹ Long/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-dong-thap-huyen-cao-lanh-xa-my-long-bao-cao-ket-qua-khao-sat-dia-chat-do-utvaog",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Tháp/Huyện Cao Lãnh - xã Mỹ Long/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Đồng Tháp/Huyện Cao Lãnh - xã Mỹ Long",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - Dong Thap - Cao Lanh - My Long- VINH",
    "sizeBytes": 44888315,
    "modifiedAt": "2026-07-20T06:35:37.750Z",
    "collection": "zone-geology",
@@ -5379,11 +5500,11 @@
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-huu-thanh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-huu-thanh-lo-2llb1i",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Hựu Thạnh/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-huu-thanh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-huu-thanh-lo-vcldwa",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Hựu Thạnh/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Hựu Thạnh",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KCN HỰU THẠNH-LONG AN- VINH",
    "sizeBytes": 15012612,
    "modifiedAt": "2026-07-13T08:43:28.035Z",
    "collection": "zone-geology",
@@ -5407,14 +5528,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e29eead997d09a741814",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/long-an/huu-thanh/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-huu-thanh-bao-cao-ket-qua-khao-sat-dia-chat-kcn-huu-thanh-lo-vcldwa.pdf",
+    "uploadedAt": "2026-11-26T07:41:22.988Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-long-hau-bao-cao-ket-qua-khao-sat-dia-chat-tazmo-pdf-n4l6z",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Long Hậu/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT  - TAZMO.PDF",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-long-hau-bao-cao-ket-qua-khao-sat-dia-chat-tazmo-vinh-pdf-sqxj9n",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Long Hậu/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT  - TAZMO- VINH.PDF",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Long Hậu",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT  - TAZMO.PDF",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TAZMO",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT  - TAZMO- VINH.PDF",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - TAZMO- VINH",
    "sizeBytes": 9798778,
    "modifiedAt": "2026-07-13T08:44:39.158Z",
    "collection": "zone-geology",
@@ -5438,25 +5564,25 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/long-an/long-hau/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_TAZMO_0n4l6z",
+    "publicId": "v-tnf/zone-geology/south/long-an/long-hau/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_TAZMO-_VINH_sqxj9n",
     "resourceType": "image",
-    "version": 1785401334,
+    "version": 1795678245,
     "format": "pdf",
     "bytes": 9798778,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401334/v-tnf/zone-geology/south/long-an/long-hau/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_TAZMO_0n4l6z.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678245/v-tnf/zone-geology/south/long-an/long-hau/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_TAZMO-_VINH_sqxj9n.pdf",
     "pages": 93,
     "width": 595,
     "height": 841,
-    "uploadedAt": "2026-07-30T08:48:56.261Z"
+    "uploadedAt": "2026-11-26T07:30:45.688Z"
    },
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-thuan-dao-bao-cao-ket-qua-khao-sat-dia-chat-can-duoc-long-an-ffwge3",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Thuận Đạo/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-thuan-dao-bao-cao-ket-qua-khao-sat-dia-chat-can-duoc-long-an-nswebf",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Thuận Đạo/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Long An/KCN Thuận Đạo",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - CAN DUOC-LONG AN- VINH",
    "sizeBytes": 13181639,
    "modifiedAt": "2026-07-13T08:42:53.829Z",
    "collection": "zone-geology",
@@ -5480,7 +5606,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e290ead997d09a73d8f5",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/long-an/thuan-dao/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-thuan-dao-bao-cao-ket-qua-khao-sat-dia-chat-can-duoc-long-an-nswebf.pdf",
+    "uploadedAt": "2026-11-26T07:41:08.530Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-xuyen-a-bao-cao-ket-qua-khao-sat-dia-chat-cong-ty-nong-san-d-5ml4ns",
@@ -5511,7 +5642,12 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2daead997d09a75313a",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/long-an/xuyen-a/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-xuyen-a-bao-cao-ket-qua-khao-sat-dia-chat-cong-ty-nong-san-d-5ml4ns.pdf",
+    "uploadedAt": "2026-11-26T07:42:23.456Z"
+   }
   },
   {
    "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-xuyen-a-bao-cao-ket-qua-khao-sat-dia-chat-khao-sat-dia-chat--e28wf8",
@@ -5542,14 +5678,24 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "projectLocation": {
+    "project": "Nhà xưởng",
+    "address": "Lô LF5-LF6, Đường số 1, KCN Xuyên Á (Long An), Xã Mỹ Hạnh Bắc, Huyện Đức Hoà, Long An",
+    "source": "GEO_Database_KCN_MienNam -TAM.xlsx / 01_DuAn"
+   },
+   "imagekit": {
+    "fileId": "6b07e283ead997d09a738ae5",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/long-an/xuyen-a/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-long-an-kcn-xuyen-a-bao-cao-ket-qua-khao-sat-dia-chat-khao-sat-dia-chat--e28wf8.pdf",
+    "uploadedAt": "2026-11-26T07:40:55.297Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-tay-ninh-kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem-bao-cao-ket-qua-kha-fqqwks",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tây Ninh/KCX Linh Trung 3 - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-tay-ninh-kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem-bao-cao-ket-qua-kha-f1y5p0",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tây Ninh/KCX Linh Trung 3 - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tây Ninh/KCX Linh Trung 3 - CHƯA CÓ KẾT QUẢ THÍ NGHIỆM",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - KHU CHẾ XUẤT LINH TRUNG 3- VINH",
    "sizeBytes": 459708,
    "modifiedAt": "2026-07-15T06:15:24.419Z",
    "collection": "zone-geology",
@@ -5573,25 +5719,25 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/tay-ninh/kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KHU_CHE_XUAT_LINH_TRUNG__fqqwks",
+    "publicId": "v-tnf/zone-geology/south/tay-ninh/kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KHU_CHE_XUAT_LINH_TRUNG__f1y5p0",
     "resourceType": "image",
-    "version": 1785401333,
+    "version": 1795678244,
     "format": "pdf",
     "bytes": 459708,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401333/v-tnf/zone-geology/south/tay-ninh/kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KHU_CHE_XUAT_LINH_TRUNG__fqqwks.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678244/v-tnf/zone-geology/south/tay-ninh/kcx-linh-trung-3-chua-co-ket-qua-thi-nghiem/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_KHU_CHE_XUAT_LINH_TRUNG__f1y5p0.pdf",
     "pages": 36,
     "width": 595,
     "height": 842,
-    "uploadedAt": "2026-07-30T08:48:56.365Z"
+    "uploadedAt": "2026-11-26T07:30:44.797Z"
    },
    "source": "share"
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-tien-giang-tp-my-tho-xa-trung-an-bao-cao-ket-qua-khao-sat-dia-chat-bidip-sdwy5c",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tiền Giang/TP Mỹ Tho - xã Trung An/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-tien-giang-tp-my-tho-xa-trung-an-bao-cao-ket-qua-khao-sat-dia-chat-bidip-4x4tgg",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tiền Giang/TP Mỹ Tho - xã Trung An/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO- VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Tiền Giang/TP Mỹ Tho - xã Trung An",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO- VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - BIDIPHAR - TRUNG AN - MY THO- VINH",
    "sizeBytes": 19690034,
    "modifiedAt": "2026-07-20T06:35:32.617Z",
    "collection": "zone-geology",
@@ -5615,14 +5761,19 @@
    "uploadable": false,
    "sizeLimit": 10485760,
    "cloudinary": null,
-   "source": "share"
+   "source": "share",
+   "imagekit": {
+    "fileId": "6b07e2d1ead997d09a750727",
+    "url": "https://ik.imagekit.io/li4hrpatw/v-tnf/zone-geology/south/tien-giang/tp-my-tho-xa-trung-an/n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-tien-giang-tp-my-tho-xa-trung-an-bao-cao-ket-qua-khao-sat-dia-chat-bidip-4x4tgg.pdf",
+    "uploadedAt": "2026-11-26T07:42:14.844Z"
+   }
   },
   {
-   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-vinh-long-kcn-hoa-phu-bao-cao-ket-qua-khao-sat-dia-chat-long-ho-vinih-lo-hujwnp",
-   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Vĩnh Long/KCN Hòa Phú/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG.pdf",
+   "id": "n1-dia-chat-viet-nam-r1-2-dia-chat-kcn-mien-nam-vinh-long-kcn-hoa-phu-bao-cao-ket-qua-khao-sat-dia-chat-long-ho-vinih-lo-c4d559",
+   "relPath": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Vĩnh Long/KCN Hòa Phú/BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG - VINH.pdf",
    "folder": "N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/Vĩnh Long/KCN Hòa Phú",
-   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG.pdf",
-   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG",
+   "fileName": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG - VINH.pdf",
+   "title": "BÁO CÁO KẾT QUẢ KHẢO SÁT ĐỊA CHẤT - LONG HO - VINIH LONG - VINH",
    "sizeBytes": 2087065,
    "modifiedAt": "2026-07-15T06:16:36.908Z",
    "collection": "zone-geology",
@@ -5646,16 +5797,16 @@
    "uploadable": true,
    "sizeLimit": 10485760,
    "cloudinary": {
-    "publicId": "v-tnf/zone-geology/south/vinh-long/hoa-phu/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_LONG_HO_-_VINIH_LONG_hujwnp",
+    "publicId": "v-tnf/zone-geology/south/vinh-long/hoa-phu/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_LONG_HO_-_VINIH_LONG_-_V_c4d559",
     "resourceType": "image",
-    "version": 1785401338,
+    "version": 1795678244,
     "format": "pdf",
     "bytes": 2087065,
-    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1785401338/v-tnf/zone-geology/south/vinh-long/hoa-phu/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_LONG_HO_-_VINIH_LONG_hujwnp.pdf",
+    "secureUrl": "https://res.cloudinary.com/dmnkpblnx/image/upload/v1795678244/v-tnf/zone-geology/south/vinh-long/hoa-phu/BAO_CAO_KET_QUA_KHAO_SAT_DIA_CHAT_-_LONG_HO_-_VINIH_LONG_-_V_c4d559.pdf",
     "pages": 31,
     "width": 1190,
     "height": 841,
-    "uploadedAt": "2026-07-30T08:48:59.857Z"
+    "uploadedAt": "2026-11-26T07:30:45.093Z"
    },
    "source": "share"
   },
@@ -7897,5 +8048,6 @@
    },
    "source": "share"
   }
- ]
+ ],
+ "uploadedAt": "2026-11-26T07:30:45.688Z"
 }

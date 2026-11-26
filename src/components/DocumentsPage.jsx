@@ -696,6 +696,15 @@ function DocumentCard({ doc, dc, language, onOpen }) {
         <p className="docs-card-meta">
           {formatBytes(doc.sizeBytes)} · {formatDate(doc.modifiedAt, language)}
         </p>
+        {doc.projectLocation?.address ? (
+          <div className="docs-card-location">
+            <span>{doc.projectLocation.project}</span>
+            <p>{doc.projectLocation.address}</p>
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${doc.projectLocation.project}, ${doc.projectLocation.address}`)}`} target="_blank" rel="noreferrer">
+              {language === "ja" ? "地図で住所を検索" : language === "en" ? "Search address on map" : "Tra địa chỉ trên bản đồ"}
+            </a>
+          </div>
+        ) : null}
         <div className="docs-card-actions">
           {hosted ? (
             <>

@@ -22,12 +22,13 @@ const CONCURRENCY = 4;
 const MAX_ATTEMPTS = 3;
 
 function parseArgs(argv) {
-  const options = { only: null, limit: Infinity, dryRun: false, force: false, category: null };
+  const options = { only: null, limit: Infinity, dryRun: false, force: false, category: null, region: null };
   for (const arg of argv) {
     if (arg === "--dry-run") options.dryRun = true;
     else if (arg === "--force") options.force = true;
     else if (arg.startsWith("--only=")) options.only = arg.slice(7).split(",").filter(Boolean);
     else if (arg.startsWith("--category=")) options.category = arg.slice(11).split(",").filter(Boolean);
+    else if (arg.startsWith("--region=")) options.region = arg.slice(9);
     else if (arg.startsWith("--limit=")) options.limit = Number(arg.slice(8));
   }
   return options;
@@ -96,6 +97,7 @@ async function main() {
     if (!options.force && doc.cloudinary?.secureUrl) return false;
     if (options.only && !options.only.includes(doc.collection)) return false;
     if (options.category && !options.category.includes(doc.category)) return false;
+    if (options.region && doc.region !== options.region) return false;
     return true;
   });
   const queue = pending.slice(0, Number.isFinite(options.limit) ? options.limit : pending.length);
