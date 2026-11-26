@@ -1690,6 +1690,19 @@
 .docs-province-panel { border-radius: .85rem; gap: .8rem; }
 .docs-province-panel:has(.district-shortlist) { grid-template-rows: auto auto auto minmax(0, 1fr); }
 .docs-province-panel:has(.district-details) { grid-template-rows: auto auto auto minmax(0, 1fr); }
+.docs-province-panel:has(.province-preview) { grid-template-rows: auto auto auto minmax(70px, 1fr); }
+.docs-province-panel:has(.district-shortlist):has(.province-preview) { grid-template-rows: auto auto auto auto minmax(70px, 1fr); }
+.map-selection-reveal { animation: map-selection-reveal 240ms cubic-bezier(.16, 1, .3, 1) both; }
+@keyframes map-selection-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+@media (prefers-reduced-motion: reduce) { .map-selection-reveal { animation: none; } }
+.province-preview { border-top: 1px solid var(--atlas-line); padding-top: .55rem; min-width: 0; }
+.province-preview-heading { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .78rem; }
+.province-preview-heading button { color: var(--atlas-green); font-size: .73rem; font-weight: 800; text-align: right; }
+.province-preview-heading button:hover, .province-preview-heading button:focus-visible { text-decoration: underline; }
+.province-preview-row { display: grid; grid-template-columns: 1.35rem minmax(0, 1fr) auto; gap: .45rem; align-items: center; width: 100%; text-align: left; border-radius: .4rem; padding: .35rem .3rem; font-size: .75rem; }
+.province-preview-row:hover, .province-preview-row:focus-visible { background: oklch(93% .025 154); outline-offset: 2px; }
+.province-preview-row strong { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.province-preview-row small { display: block; color: var(--atlas-muted); font-size: .68rem; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .district-details { min-height: 0; overflow-y: auto; padding: .1rem .15rem .2rem; }
 .district-details-header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .85rem; }
 .district-details-header button { color: var(--atlas-green); font-size: .75rem; font-weight: 800; text-decoration: underline; }

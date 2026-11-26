@@ -160,6 +160,7 @@ export function DocumentsPage({ language }) {
   const districtDocuments = useMemo(() => selectedDistrict ? documents.filter((doc) =>
     doc.provinceSlug === selectedDistrict.provinceSlug && selectedDistrict.zones.includes(doc.zoneSlug) && doc.projectLocation
   ) : [], [documents, selectedDistrict]);
+  const provinceDocuments = useMemo(() => provinceSlug ? sortForCustomers(documents.filter((doc) => doc.provinceSlug === provinceSlug)).slice(0, 2) : [], [documents, provinceSlug]);
 
   const scopedDocuments = useMemo(
     () =>
@@ -192,7 +193,8 @@ export function DocumentsPage({ language }) {
   const openRecords = useCallback((nextZoneKey = undefined) => {
     if (nextZoneKey !== undefined) setZoneKey(nextZoneKey);
     setTab("map");
-    requestAnimationFrame(() => recordsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }));
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    requestAnimationFrame(() => recordsRef.current?.scrollIntoView({ behavior: reduceMotion ? "auto" : "smooth", block: "start" }));
   }, []);
 
   const resetFilters = useCallback(() => {
@@ -354,6 +356,7 @@ export function DocumentsPage({ language }) {
               selectedDistrict={districtKey}
               onSelectDistrict={selectDistrict}
               districtDocuments={districtDocuments}
+              provinceDocuments={provinceDocuments}
               onOpenDocument={setViewerDoc}
               onClearDistrict={() => setDistrictKey(null)}
             />
@@ -593,12 +596,12 @@ function ScopeBar({ dc, language, region, province, zone, total, onClearRegion, 
   );
 }
 
-function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince, districtPoints, selectedDistrict, onSelectDistrict, districtDocuments, onOpenDocument, onClearDistrict }) {
+function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince, districtPoints, selectedDistrict, onSelectDistrict, districtDocuments, provinceDocuments, onOpenDocument, onClearDistrict }) {
   if (!province) {
     return (
       <aside className="docs-province-panel is-empty">
         <h2>{dc.mapHint}</h2>
-        <ul className="docs-province-shortlist">
+        <ul key={regions.map((region) => region.id).join("-")} className="docs-province-shortlist map-selection-reveal">
           {regions.flatMap((region) =>
             region.provinces.slice(0, 6).map((item) => (
               <li key={item.slug}>
@@ -621,7 +624,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
 
   return (
     <aside className="docs-province-panel">
-      <header>
+      <header key={`header:${province.slug}`} className="map-selection-reveal">
         <div>
           <div className="eyebrow" style={{ color: regionMeta?.color }}>
             {regionMeta ? regionMeta.name[language] ?? regionMeta.name.vi : ""}
@@ -667,7 +670,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
         <div className="district-shortlist-items">{districtPoints.map((point) => <button key={point.key} type="button" className={selectedDistrict === point.key ? "is-active" : ""} aria-pressed={selectedDistrict === point.key} onClick={() => onSelectDistrict(point)}>{point.name}</button>)}</div>
       </section> : null}
 
-      {selectedDistrict && districtDocuments.length ? <section className="district-details" aria-live="polite">
+      {selectedDistrict && districtDocuments.length ? <section key={selectedDistrict} className="district-details map-selection-reveal" aria-live="polite">
         <div className="district-details-header">
           <strong>{language === "ja" ? "選択した地点の資料" : language === "en" ? "Records at this location" : "Hồ sơ tại khu vực đã chọn"}</strong>
           <button type="button" onClick={onClearDistrict}>{language === "ja" ? "解除" : language === "en" ? "Clear" : "Bỏ chọn"}</button>
@@ -683,8 +686,20 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
         </article>)}
       </section> : null}
 
+      {!selectedDistrict && provinceDocuments.length ? <section key={`preview:${province.slug}`} className="province-preview map-selection-reveal" aria-label={dc.provincePanel.documents}>
+        <div className="province-preview-heading">
+          <strong>{language === "ja" ? "資料を探す" : language === "en" ? "Explore records" : "Hồ sơ tại đây"}</strong>
+          <button type="button" onClick={() => onOpenRecords(null)}>{dc.provincePanel.openRecords} ({province.documentCount}) →</button>
+        </div>
+        {provinceDocuments.map((doc) => <button className="province-preview-row" type="button" key={doc.id} onClick={() => isHosted(doc) ? onOpenDocument(doc) : onOpenRecords(null)}>
+          <span aria-hidden="true">{KIND_ICONS[doc.kind] ?? "📁"}</span>
+          <span><strong>{doc.title}</strong><small>{doc.zoneName || province.name}</small></span>
+          <span aria-hidden="true">↗</span>
+        </button>)}
+      </section> : null}
+
       {/* List view: fixed-height rows in a scroll container, so adding parks never resizes them. */}
-      {!selectedDistrict ? <div className="docs-zone-listview">
+      {!selectedDistrict ? <div key={`zones:${province.slug}`} className="docs-zone-listview map-selection-reveal">
         <div className="docs-zone-listhead">
           <span>{dc.provincePanel.zones}</span>
           <span>{dc.provincePanel.coverageColumn}</span>
@@ -729,6 +744,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
           ))}
         </ul>
       </div> : null}
+
     </aside>
   );
 }
