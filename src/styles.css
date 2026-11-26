@@ -1403,8 +1403,9 @@ select {
 .app-shell {
   color: var(--atlas-ink);
   background:
-    linear-gradient(115deg, transparent 0 38%, oklch(83% 0.055 156 / 0.16) 38% 38.25%, transparent 38.25% 100%),
-    linear-gradient(180deg, var(--atlas-paper) 0%, oklch(96.5% 0.016 98) 46%, oklch(92.8% 0.026 144) 100%);
+    radial-gradient(ellipse at 92% 8%, oklch(87% 0.045 292 / .48), transparent 34%),
+    radial-gradient(ellipse at 8% 40%, oklch(88% 0.035 185 / .42), transparent 30%),
+    linear-gradient(180deg, oklch(97% 0.012 275), oklch(97% 0.01 125) 58%, oklch(94% 0.02 165));
   position: relative;
 }
 
@@ -1414,11 +1415,12 @@ select {
   inset: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(oklch(69% 0.028 154 / 0.11) 1px, transparent 1px),
-    linear-gradient(90deg, oklch(69% 0.028 154 / 0.09) 1px, transparent 1px);
-  background-size: 72px 72px;
-  mask-image: linear-gradient(180deg, oklch(0% 0 0 / 0.78), transparent 74%);
-  -webkit-mask-image: linear-gradient(180deg, oklch(0% 0 0 / 0.78), transparent 74%);
+    radial-gradient(circle, oklch(52% 0.08 286 / .25) 1px, transparent 1.6px),
+    radial-gradient(circle, oklch(52% 0.08 180 / .2) 1px, transparent 1.7px);
+  background-size: 113px 113px, 173px 173px;
+  background-position: 12px 34px, 76px 11px;
+  mask-image: linear-gradient(180deg, oklch(0% 0 0 / .75), transparent 85%);
+  -webkit-mask-image: linear-gradient(180deg, oklch(0% 0 0 / .75), transparent 85%);
   z-index: 0;
 }
 
@@ -2324,7 +2326,8 @@ header.sticky {
 @media (max-width: 760px) {
   .app-shell {
     background:
-      linear-gradient(180deg, var(--atlas-paper) 0%, oklch(94.5% 0.021 124) 100%);
+      radial-gradient(ellipse at 90% 6%, oklch(87% 0.045 292 / .4), transparent 35%),
+      linear-gradient(180deg, oklch(97% 0.012 275), oklch(95% 0.02 160));
   }
 
   .atlas-hero {

@@ -1637,11 +1637,39 @@
 
 /* Map workspace: quiet surfaces keep the geography and record names in focus. */
 .docs-header.is-single {
-  background: transparent;
+  background:
+    radial-gradient(ellipse at 79% 5%, oklch(58% 0.14 300 / .35), transparent 38%),
+    radial-gradient(ellipse at 87% 105%, oklch(62% 0.11 178 / .28), transparent 42%),
+    linear-gradient(115deg, oklch(21% 0.035 260), oklch(25% 0.065 286) 62%, oklch(24% 0.05 215));
   border: 0;
-  border-radius: 0;
-  padding: .5rem 0 .15rem;
+  border-radius: .9rem;
+  color: oklch(97% 0.01 260);
+  isolation: isolate;
+  overflow: hidden;
+  padding: 1.7rem 2rem;
+  position: relative;
 }
+.docs-header.is-single::before, .docs-header.is-single::after { content: ""; inset: 0; pointer-events: none; position: absolute; z-index: -1; }
+.docs-header.is-single::before {
+  background-image:
+    radial-gradient(circle, oklch(98% 0.01 260 / .8) 1px, transparent 1.7px),
+    radial-gradient(circle, oklch(90% 0.08 200 / .6) 1px, transparent 1.7px),
+    radial-gradient(circle, oklch(96% 0.02 280 / .5) 1px, transparent 1.8px);
+  background-size: 137px 103px, 197px 149px, 83px 173px;
+  background-position: 8px 16px, 82px 42px, 40px 78px;
+  animation: galaxy-glimmer 8s ease-in-out infinite alternate;
+}
+.docs-header.is-single::after {
+  border: 1px solid oklch(92% 0.035 235 / .13);
+  border-radius: 50%;
+  inset: -115% -12% -95% 48%;
+  transform: rotate(-22deg);
+}
+.docs-header.is-single .eyebrow { color: oklch(83% 0.07 183); }
+.docs-header.is-single p { color: oklch(88% 0.025 260); }
+@keyframes galaxy-glimmer { from { opacity: .5; } to { opacity: .95; } }
+@media (prefers-reduced-motion: reduce) { .docs-header.is-single::before { animation: none; } }
+@media (max-width: 600px) { .docs-header.is-single { padding: 1.35rem 1.2rem; } .docs-header.is-single::after { inset: -30% -65% -40% 45%; } }
 .docs-header h1 { max-width: 24ch; font-size: clamp(1.65rem, 2.4vw, 2.25rem); }
 .docs-header p { max-width: 68ch; margin-top: .7rem; }
 .docs-kpi-strip {
