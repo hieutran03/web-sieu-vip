@@ -1626,3 +1626,10 @@
 .docs-card-location span { font-weight: 700; }
 .docs-card-location p { margin: 0.2rem 0; }
 .docs-card-location a { color: oklch(41% 0.105 162); text-decoration: underline; }
+.district-map-point { cursor: pointer; }
+.district-point-hit { fill: transparent; }
+.district-point-dot { fill: oklch(41% 0.105 162); stroke: oklch(97.7% 0.009 98); stroke-width: 1px; vector-effect: non-scaling-stroke; }
+.district-map-point:focus-visible .district-point-dot, .district-map-point:hover .district-point-dot { fill: oklch(69% 0.14 76); stroke-width: 2px; }
+.district-selection { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; padding: .6rem .8rem; background: oklch(91.4% 0.041 154); color: oklch(22% 0.018 176); font-size: .85rem; }
+.district-selection a { color: oklch(41% 0.105 162); text-decoration: underline; }
+.district-selection button { margin-left: auto; padding: .2rem .5rem; font-size: 1.1rem; }

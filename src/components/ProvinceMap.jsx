@@ -260,7 +260,9 @@ function SvgProvinceMap({
   language = "vi",
   showIslands = true,
   zoomLabels,
-  renderPopover
+  renderPopover,
+  districtPoints = [],
+  onSelectDistrict
 }) {
   const projection = useMemo(() => svgProjection(features, { includeIslands: showIslands }), [features, showIslands]);
   const { svgRef, view, toPixels, zoomBy, reset, onWheel, onPointerDown, onPointerMove, endDrag } = useMapTransform(projection);
@@ -368,6 +370,17 @@ function SvgProvinceMap({
           ))}
 
           {showIslands ? <IslandOverlay projection={projection} language={language} scale={view.scale} /> : null}
+          {districtPoints.filter((point) => view.scale >= 2 || point.provinceSlug === selectedSlug).map((point) => {
+            const [cx, cy] = projection.project([point.lng, point.lat]);
+            return <g key={point.key} role="button" tabIndex={0} aria-label={point.name} className="district-map-point"
+              onPointerDown={(event) => event.stopPropagation()}
+              onClick={(event) => { event.stopPropagation(); onSelectDistrict(point); }}
+              onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelectDistrict(point); } }}>
+              <circle cx={cx} cy={cy} r={24 / view.scale} className="district-point-hit" />
+              <circle cx={cx} cy={cy} r={10 / view.scale} className="district-point-dot" />
+              <title>{point.name}</title>
+            </g>;
+          })}
         </g>
       </svg>
 
@@ -571,6 +584,26 @@ function MapViewport({ features, selectedSlug, region }) {
   return null;
 }
 
+function DistrictMarkers({ points, selectedSlug, onSelectDistrict }) {
+  const map = useMap();
+  useEffect(() => {
+    if (!map || !window.google?.maps) return;
+    let markers = [];
+    const update = () => {
+      markers.forEach((marker) => marker.setMap(null));
+      markers = points.filter((point) => (map.getZoom() ?? 0) >= 8 || point.provinceSlug === selectedSlug).map((point) => {
+        const marker = new window.google.maps.Marker({ map, position: { lat: point.lat, lng: point.lng }, title: point.name });
+        marker.addListener("click", () => onSelectDistrict(point));
+        return marker;
+      });
+    };
+    update();
+    const listener = map.addListener("zoom_changed", update);
+    return () => { listener.remove(); markers.forEach((marker) => marker.setMap(null)); };
+  }, [map, points, selectedSlug, onSelectDistrict]);
+  return null;
+}
+
 export const googleMapsAvailable = Boolean(GOOGLE_MAPS_API_KEY);
 
 export function ProvinceMap({
@@ -582,7 +615,9 @@ export function ProvinceMap({
   mode = "vector",
   language = "vi",
   zoomLabels,
-  renderPopover
+  renderPopover,
+  districtPoints = [],
+  onSelectDistrict
 }) {
   const forceFallback = mode !== "google";
   const features = useVisibleFeatures(region);
@@ -613,6 +648,8 @@ export function ProvinceMap({
         showIslands={showIslands}
         zoomLabels={zoomLabels}
         renderPopover={renderPopover}
+        districtPoints={districtPoints}
+        onSelectDistrict={onSelectDistrict}
       />
     );
   }
@@ -635,6 +672,7 @@ export function ProvinceMap({
       >
         <MapViewport features={features} selectedSlug={selectedSlug} region={region} />
         <IslandMarkers language={language} />
+        <DistrictMarkers points={districtPoints} selectedSlug={selectedSlug} onSelectDistrict={onSelectDistrict} />
         <ProvinceGeoJsonLayer
           features={features}
           countsBySlug={countsBySlug}

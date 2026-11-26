@@ -10,6 +10,7 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { documentCopy } from "../documentCopy.js";
+import { DISTRICT_LOCATIONS } from "../data/districtLocations.js";
 import {
   adminSession,
   api,
@@ -81,6 +82,7 @@ export function DocumentsPage({ language }) {
   const [region, setRegion] = useState(initial.region ?? null);
   const [provinceSlug, setProvinceSlug] = useState(initial.province ?? null);
   const [zoneKey, setZoneKey] = useState(initial.province && initial.zone ? `${initial.province}/${initial.zone}` : null);
+  const [districtKey, setDistrictKey] = useState(null);
   const [category, setCategory] = useState(null);
   const [kind, setKind] = useState(null);
   const [query, setQuery] = useState("");
@@ -152,6 +154,11 @@ export function DocumentsPage({ language }) {
     () => (zoneKey ? stats.zones.find((zone) => zone.key === zoneKey) ?? null : null),
     [stats.zones, zoneKey]
   );
+  const districtPoints = useMemo(() => DISTRICT_LOCATIONS.filter((point) =>
+    (!region || stats.provinces.some((province) => province.slug === point.provinceSlug && province.region === region)) &&
+    documents.some((doc) => doc.provinceSlug === point.provinceSlug && point.zones.includes(doc.zoneSlug) && doc.projectLocation)
+  ), [documents, region, stats.provinces]);
+  const selectedDistrict = districtPoints.find((point) => point.key === districtKey) ?? null;
 
   const scopedDocuments = useMemo(
     () =>
@@ -164,14 +171,21 @@ export function DocumentsPage({ language }) {
           kind,
           query: query.trim() || undefined,
           hostedOnly
-        })
+        }).filter((doc) => !selectedDistrict || (doc.provinceSlug === selectedDistrict.provinceSlug && selectedDistrict.zones.includes(doc.zoneSlug) && doc.projectLocation))
       ),
-    [category, documents, hostedOnly, kind, provinceSlug, query, region, selectedZone]
+    [category, documents, hostedOnly, kind, provinceSlug, query, region, selectedZone, selectedDistrict]
   );
 
   const selectProvince = useCallback((slug) => {
     setProvinceSlug((current) => (current === slug ? null : slug));
     setZoneKey(null);
+    setDistrictKey(null);
+  }, []);
+
+  const selectDistrict = useCallback((point) => {
+    setProvinceSlug(point.provinceSlug);
+    setZoneKey(null);
+    setDistrictKey(point.key);
   }, []);
 
   const openRecords = useCallback((nextZoneKey = undefined) => {
@@ -243,6 +257,7 @@ export function DocumentsPage({ language }) {
                   setRegion((current) => (current === item.id ? null : item.id));
                   setProvinceSlug(null);
                   setZoneKey(null);
+                  setDistrictKey(null);
                 }}
               >
                 {item.name[language] ?? item.name.vi}
@@ -262,7 +277,9 @@ export function DocumentsPage({ language }) {
                 mode={mapMode}
                 language={language}
                 zoomLabels={dc.zoom}
-                renderPopover={(slug) => {
+                districtPoints={districtPoints}
+                onSelectDistrict={selectDistrict}
+                renderPopover={selectedDistrict ? undefined : (slug) => {
                   const province = stats.provinces.find((item) => item.slug === slug);
                   if (!province) return null;
                   return (
@@ -309,6 +326,7 @@ export function DocumentsPage({ language }) {
                   </span>
                 </div>
                 <em>{dc.mapHint}</em>
+                <em>{language === "ja" ? "点は旧行政区のおおよその位置です。" : language === "en" ? "Dots show approximate former district locations." : "Chấm thể hiện vị trí đại diện cấp quận/huyện theo địa chỉ cũ."} <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noreferrer">© OpenStreetMap</a></em>
               </div>
             </div>
 
@@ -317,11 +335,12 @@ export function DocumentsPage({ language }) {
               language={language}
               province={selectedProvince}
               zoneKey={zoneKey}
-              onSelectZone={setZoneKey}
+              onSelectZone={(key) => { setDistrictKey(null); setZoneKey(key); }}
               onOpenRecords={openRecords}
               onClose={() => {
                 setProvinceSlug(null);
                 setZoneKey(null);
+                setDistrictKey(null);
               }}
               regions={activeRegions}
               onSelectProvince={selectProvince}
@@ -329,6 +348,12 @@ export function DocumentsPage({ language }) {
           </section>
 
           <div ref={recordsRef} className="docs-records-anchor" />
+
+          {selectedDistrict ? <div className="district-selection">
+            <span>{selectedDistrict.name} · {language === "ja" ? "区・郡のおおよその位置" : language === "en" ? "Approximate district location" : "Vị trí đại diện cấp quận/huyện"}</span>
+            <a href={selectedDistrict.source} target="_blank" rel="noreferrer">{language === "ja" ? "位置の出典" : language === "en" ? "Location source" : "Nguồn vị trí"}</a>
+            <button type="button" aria-label={language === "ja" ? "選択を解除" : language === "en" ? "Clear district" : "Bỏ chọn quận huyện"} onClick={() => setDistrictKey(null)}>×</button>
+          </div> : null}
 
           <ScopeBar
             dc={dc}
@@ -341,6 +366,7 @@ export function DocumentsPage({ language }) {
             onClearProvince={() => {
               setProvinceSlug(null);
               setZoneKey(null);
+              setDistrictKey(null);
             }}
             onClearZone={() => setZoneKey(null)}
           />
