@@ -1660,6 +1660,19 @@
 .docs-map-legend { max-width: min(17rem, calc(100% - 5.5rem)); border-radius: .65rem; }
 .docs-province-panel { border-radius: .85rem; gap: .8rem; }
 .docs-province-panel:has(.district-shortlist) { grid-template-rows: auto auto auto minmax(0, 1fr); }
+.docs-province-panel:has(.district-details) { grid-template-rows: auto auto auto minmax(0, 1fr); }
+.district-details { min-height: 0; overflow-y: auto; padding: .1rem .15rem .2rem; }
+.district-details-header { display: flex; align-items: center; justify-content: space-between; gap: .5rem; font-size: .85rem; }
+.district-details-header button { color: var(--atlas-green); font-size: .75rem; font-weight: 800; text-decoration: underline; }
+.district-precision { color: var(--atlas-muted); font-size: .75rem; line-height: 1.45; margin: .4rem 0 .65rem; }
+.district-record { border-top: 1px solid var(--atlas-line); display: grid; gap: .35rem; padding: .7rem 0; }
+.district-record strong { font-size: .88rem; line-height: 1.35; }
+.district-record > span { color: var(--atlas-muted); font-size: .8rem; line-height: 1.45; }
+.district-record-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; font-size: .78rem; font-weight: 800; }
+.district-record-actions button, .district-record-actions a { color: var(--atlas-green); text-decoration: underline; }
+.district-record-actions span { color: var(--atlas-muted); }
+.district-map-point.is-selected .district-point-dot { fill: oklch(69% 0.14 76); stroke-width: 2px; }
+.district-point-label { fill: oklch(22% 0.018 176); stroke: oklch(97.7% 0.009 98); stroke-width: 4px; paint-order: stroke; stroke-linejoin: round; vector-effect: non-scaling-stroke; font-weight: 800; pointer-events: none; }
 .district-shortlist { padding: .7rem .8rem; background: oklch(95% 0.02 154); border-radius: .6rem; }
 .district-shortlist-heading { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-size: .78rem; }
 .district-shortlist-heading span { color: var(--atlas-muted); font-size: .7rem; }

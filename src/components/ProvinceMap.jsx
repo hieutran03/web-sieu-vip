@@ -262,7 +262,8 @@ function SvgProvinceMap({
   zoomLabels,
   renderPopover,
   districtPoints = [],
-  onSelectDistrict
+  onSelectDistrict,
+  selectedDistrictKey
 }) {
   const projection = useMemo(() => svgProjection(features, { includeIslands: showIslands }), [features, showIslands]);
   const { svgRef, view, toPixels, zoomBy, reset, onWheel, onPointerDown, onPointerMove, endDrag } = useMapTransform(projection);
@@ -372,12 +373,13 @@ function SvgProvinceMap({
           {showIslands ? <IslandOverlay projection={projection} language={language} scale={view.scale} /> : null}
           {districtPoints.filter((point) => view.scale >= 2 || point.provinceSlug === selectedSlug).map((point) => {
             const [cx, cy] = projection.project([point.lng, point.lat]);
-            return <g key={point.key} role="button" tabIndex={0} aria-label={point.name} className="district-map-point"
+            return <g key={point.key} role="button" tabIndex={0} aria-label={point.name} className={`district-map-point ${point.key === selectedDistrictKey ? "is-selected" : ""}`}
               onPointerDown={(event) => event.stopPropagation()}
               onClick={(event) => { event.stopPropagation(); onSelectDistrict(point); }}
               onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelectDistrict(point); } }}>
               <circle cx={cx} cy={cy} r={24 / view.scale} className="district-point-hit" />
               <circle cx={cx} cy={cy} r={10 / view.scale} className="district-point-dot" />
+              {point.key === selectedDistrictKey ? <text x={cx + 15 / view.scale} y={cy - 12 / view.scale} fontSize={16 / view.scale} className="district-point-label">{point.name}</text> : null}
               <title>{point.name}</title>
             </g>;
           })}
@@ -617,7 +619,8 @@ export function ProvinceMap({
   zoomLabels,
   renderPopover,
   districtPoints = [],
-  onSelectDistrict
+  onSelectDistrict,
+  selectedDistrictKey
 }) {
   const forceFallback = mode !== "google";
   const features = useVisibleFeatures(region);
@@ -650,6 +653,7 @@ export function ProvinceMap({
         renderPopover={renderPopover}
         districtPoints={districtPoints}
         onSelectDistrict={onSelectDistrict}
+        selectedDistrictKey={selectedDistrictKey}
       />
     );
   }

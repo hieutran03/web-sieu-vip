@@ -157,6 +157,9 @@ export function DocumentsPage({ language }) {
     documents.some((doc) => doc.provinceSlug === point.provinceSlug && point.zones.includes(doc.zoneSlug) && doc.projectLocation)
   ), [documents, region, stats.provinces]);
   const selectedDistrict = districtPoints.find((point) => point.key === districtKey) ?? null;
+  const districtDocuments = useMemo(() => selectedDistrict ? documents.filter((doc) =>
+    doc.provinceSlug === selectedDistrict.provinceSlug && selectedDistrict.zones.includes(doc.zoneSlug) && doc.projectLocation
+  ) : [], [documents, selectedDistrict]);
 
   const scopedDocuments = useMemo(
     () =>
@@ -281,6 +284,7 @@ export function DocumentsPage({ language }) {
                 zoomLabels={dc.zoom}
                 districtPoints={districtPoints}
                 onSelectDistrict={selectDistrict}
+                selectedDistrictKey={districtKey}
                 renderPopover={selectedDistrict ? undefined : (slug) => {
                   const province = stats.provinces.find((item) => item.slug === slug);
                   if (!province) return null;
@@ -349,6 +353,9 @@ export function DocumentsPage({ language }) {
               districtPoints={districtPoints.filter((point) => point.provinceSlug === provinceSlug)}
               selectedDistrict={districtKey}
               onSelectDistrict={selectDistrict}
+              districtDocuments={districtDocuments}
+              onOpenDocument={setViewerDoc}
+              onClearDistrict={() => setDistrictKey(null)}
             />
           </section>
 
@@ -586,7 +593,7 @@ function ScopeBar({ dc, language, region, province, zone, total, onClearRegion, 
   );
 }
 
-function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince, districtPoints, selectedDistrict, onSelectDistrict }) {
+function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince, districtPoints, selectedDistrict, onSelectDistrict, districtDocuments, onOpenDocument, onClearDistrict }) {
   if (!province) {
     return (
       <aside className="docs-province-panel is-empty">
@@ -660,8 +667,24 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
         <div className="district-shortlist-items">{districtPoints.map((point) => <button key={point.key} type="button" className={selectedDistrict === point.key ? "is-active" : ""} aria-pressed={selectedDistrict === point.key} onClick={() => onSelectDistrict(point)}>{point.name}</button>)}</div>
       </section> : null}
 
+      {selectedDistrict && districtDocuments.length ? <section className="district-details" aria-live="polite">
+        <div className="district-details-header">
+          <strong>{language === "ja" ? "選択した地点の資料" : language === "en" ? "Records at this location" : "Hồ sơ tại khu vực đã chọn"}</strong>
+          <button type="button" onClick={onClearDistrict}>{language === "ja" ? "解除" : language === "en" ? "Clear" : "Bỏ chọn"}</button>
+        </div>
+        <p className="district-precision">{language === "ja" ? "地図上の点は旧区・郡の代表地点です。" : language === "en" ? "The map point represents the former district, not the exact project site." : "Điểm trên bản đồ đại diện cho quận/huyện cũ, chưa phải vị trí chính xác của công trình."}</p>
+        {districtDocuments.map((doc) => <article className="district-record" key={doc.id}>
+          <strong>{doc.projectLocation.project}</strong>
+          <span>{doc.projectLocation.address}</span>
+          <div className="district-record-actions">
+            {isHosted(doc) ? <button type="button" onClick={() => onOpenDocument(doc)}>{dc.card.open}</button> : <span>{dc.card.onRequest}</span>}
+            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${doc.projectLocation.project}, ${doc.projectLocation.address}`)}`} target="_blank" rel="noreferrer">{language === "ja" ? "住所を検索" : language === "en" ? "Search address" : "Tra địa chỉ"}</a>
+          </div>
+        </article>)}
+      </section> : null}
+
       {/* List view: fixed-height rows in a scroll container, so adding parks never resizes them. */}
-      <div className="docs-zone-listview">
+      {!selectedDistrict ? <div className="docs-zone-listview">
         <div className="docs-zone-listhead">
           <span>{dc.provincePanel.zones}</span>
           <span>{dc.provincePanel.coverageColumn}</span>
@@ -705,7 +728,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
             </li>
           ))}
         </ul>
-      </div>
+      </div> : null}
     </aside>
   );
 }
