@@ -231,6 +231,7 @@ export function DocumentsPage({ language }) {
   return (
     <div className="docs-page grid gap-5">
       <section className="docs-header is-single">
+        <span className="galaxy-meteor" aria-hidden="true" />
         <div>
           <div className="eyebrow">{dc.eyebrow}</div>
           <h1 className="mt-3 max-w-4xl text-3xl font-black leading-tight tracking-normal sm:text-4xl">{dc.title}</h1>

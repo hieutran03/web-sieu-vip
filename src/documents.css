@@ -1667,8 +1667,38 @@
 }
 .docs-header.is-single .eyebrow { color: oklch(83% 0.07 183); }
 .docs-header.is-single p { color: oklch(88% 0.025 260); }
+.galaxy-meteor {
+  position: absolute;
+  top: 12%;
+  right: 10%;
+  width: 130px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, oklch(99% .01 200), oklch(86% .09 200 / .65) 12%, transparent 100%);
+  box-shadow: 0 0 12px oklch(84% .1 205 / .5);
+  opacity: 0;
+  pointer-events: none;
+  transform: rotate(-24deg);
+  animation: galaxy-meteor-flight 9s ease-out infinite;
+}
+.galaxy-meteor::before {
+  content: "";
+  position: absolute;
+  left: -2px;
+  top: -3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: oklch(99% .01 200);
+  box-shadow: 0 0 12px 3px oklch(85% .1 205 / .65);
+}
+@keyframes galaxy-meteor-flight {
+  0%, 3% { opacity: 0; transform: translate(0, 0) rotate(-24deg); }
+  5% { opacity: .85; }
+  17%, 100% { opacity: 0; transform: translate(-220px, 98px) rotate(-24deg); }
+}
 @keyframes galaxy-glimmer { from { opacity: .5; } to { opacity: .95; } }
-@media (prefers-reduced-motion: reduce) { .docs-header.is-single::before { animation: none; } }
+@media (prefers-reduced-motion: reduce) { .docs-header.is-single::before { animation: none; } .galaxy-meteor { display: none; } }
 @media (max-width: 600px) { .docs-header.is-single { padding: 1.35rem 1.2rem; } .docs-header.is-single::after { inset: -30% -65% -40% 45%; } }
 .docs-header h1 { max-width: 24ch; font-size: clamp(1.65rem, 2.4vw, 2.25rem); }
 .docs-header p { max-width: 68ch; margin-top: .7rem; }
