@@ -644,7 +644,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
         <h2>{dc.mapHint}</h2>
         <ul key={regions.map((region) => region.id).join("-")} className="docs-province-shortlist map-selection-reveal">
           {regions.flatMap((region) =>
-            region.provinces.slice(0, 6).map((item) => (
+            region.provinces.map((item) => (
               <li key={item.slug}>
                 <button type="button" onClick={() => onSelectProvince(item.slug)}>
                   <span className="province-dot" style={{ background: region.color }} />

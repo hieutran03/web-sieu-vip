@@ -339,7 +339,11 @@
 
 .docs-province-shortlist {
   display: grid;
+  align-content: start;
+  grid-auto-rows: max-content;
   gap: 0.15rem;
+  min-height: 0;
+  max-height: 25rem;
   overflow-y: auto;
   padding-right: 0.25rem;
 }
@@ -470,12 +474,14 @@
   font-size: 0.8rem;
   font-weight: 700;
   gap: 0.5rem;
+  min-height: 2.75rem;
   padding: 0.4rem 0.5rem;
   text-align: left;
   width: 100%;
 }
 
-.docs-province-shortlist button:hover {
+.docs-province-shortlist button:hover,
+.docs-province-shortlist button:focus-visible {
   background: var(--atlas-surface);
 }
 
