@@ -21,3 +21,13 @@ export function routeUrl({ tab, region, province, zone, district }) {
   const query = params.toString();
   return `/${tabs.has(tab) ? tab : "map"}${query ? `?${query}` : ""}`;
 }
+
+/** Ignore geographic selections from older links that are absent in the current catalog. */
+export function resolveCatalogRoute(route, documents, districts) {
+  const region = documents.some((doc) => doc.region === route.region) ? route.region : null;
+  const provinceDocs = documents.filter((doc) => doc.provinceSlug && doc.provinceSlug === route.province);
+  const province = provinceDocs.length ? route.province : null;
+  const zone = province && provinceDocs.some((doc) => doc.zoneSlug === route.zone) ? route.zone : null;
+  const district = province && districts.some((point) => point.key === route.district && point.provinceSlug === province && provinceDocs.some((doc) => point.zones.includes(doc.zoneSlug) && doc.projectLocation)) ? route.district : null;
+  return { ...route, region: province && region && !provinceDocs.some((doc) => doc.region === region) ? null : region, province, zone: district ? null : zone, district };
+}

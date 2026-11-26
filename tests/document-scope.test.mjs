@@ -1,9 +1,12 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
+import { execFileSync } from "node:child_process";
 import { inSiteScope } from "../src/shared/scope.js";
 import { classifyDocument } from "../src/shared/classify.js";
 import { buildStats, filterDocuments, mergeHosting } from "../src/shared/catalogStats.js";
+import { readRoute, resolveCatalogRoute } from "../src/lib/routes.js";
+import { DISTRICT_LOCATIONS } from "../src/data/districtLocations.js";
 
 const catalog = JSON.parse(fs.readFileSync(new URL("../src/data/documentCatalog.json", import.meta.url), "utf8"));
 const docs = catalog.documents;
@@ -54,4 +57,24 @@ test("live data cannot replace a newer local file with an older size", () => {
   const current = { sizeBytes: 100, cloudinary: null };
   assert.equal(mergeHosting(current, { sizeBytes: 99, cloudinary: { secureUrl: "old" } }).cloudinary, null);
   assert.equal(mergeHosting(current, { sizeBytes: 100, cloudinary: { secureUrl: "current" } }).cloudinary.secureUrl, "current");
+});
+
+test("old links are reset when their location no longer exists in the catalog", () => {
+  const old = readRoute(new URL("https://example.test/map?region=north&province=bac-ninh&zone=vsip"));
+  const resolved = resolveCatalogRoute(old, docs, DISTRICT_LOCATIONS);
+  assert.equal(resolved.region, null);
+  assert.equal(resolved.province, null);
+  assert.equal(resolved.zone, null);
+  const current = resolveCatalogRoute(readRoute(new URL("https://example.test/map?province=long-an&district=duc-hoa")), docs, DISTRICT_LOCATIONS);
+  assert.equal(current.district, "duc-hoa");
+});
+
+test("live endpoint can fall back to the catalog when stores are not configured", () => {
+  const script = `import { liveDocuments, mergedDocuments } from './server/catalogSource.js';
+    const live = await liveDocuments(); const result = await mergedDocuments();
+    if (live.length !== 0 || result.documents.length !== ${docs.length} || result.liveError) process.exit(1);`;
+  execFileSync(process.execPath, ["--input-type=module", "-e", script], {
+    cwd: new URL("..", import.meta.url),
+    env: { ...process.env, CLOUDINARY_CLOUD_NAME: "", STORAGE_PUBLIC_URL: "", STORAGE_UPLOAD_SECRET: "" }
+  });
 });

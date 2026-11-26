@@ -27,7 +27,8 @@ export async function liveDocuments({ force = false } = {}) {
   const sources = [];
   if (process.env.CLOUDINARY_CLOUD_NAME) sources.push(cloudinaryDocuments());
   if (selfStorageConfigured()) sources.push(listStored({ prefix: `${ROOT_FOLDER()}/` }).then((items) => items.map(documentFromStored)));
-  if (!sources.length) throw new Error("No document store is configured");
+  // Deployments can serve the bundled catalog without server-side store credentials.
+  if (!sources.length) return [];
 
   // One store being down (e.g. the home server rebooting) must not hide the other one.
   const results = await Promise.allSettled(sources);

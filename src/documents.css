@@ -620,6 +620,8 @@
   padding: 0;
   place-items: center;
   position: relative;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .docs-card-media:disabled {
@@ -627,6 +629,8 @@
 }
 
 .docs-card-media img {
+  position: absolute;
+  inset: 0;
   height: 100%;
   object-fit: cover;
   width: 100%;
@@ -1683,6 +1687,11 @@
 .docs-card-location span { font-weight: 700; }
 .docs-card-location p { margin: 0.2rem 0; }
 .docs-card-location a { color: oklch(41% 0.105 162); text-decoration: underline; }
+.docs-location-filters { display: flex; flex-wrap: wrap; gap: .75rem; }
+.docs-location-filters label { display: grid; gap: .3rem; flex: 1 1 15rem; min-width: 0; color: var(--atlas-muted); font-size: .73rem; font-weight: 800; }
+.docs-location-filters select { width: 100%; min-height: 2.5rem; padding: .5rem .7rem; border: 1px solid var(--atlas-line); border-radius: .6rem; background: var(--atlas-paper); color: var(--atlas-ink); font-size: .85rem; }
+.docs-location-filters select:focus-visible { outline: 2px solid var(--atlas-green); outline-offset: 2px; }
+.docs-location-filters select:disabled { opacity: .6; cursor: not-allowed; }
 .district-map-point { cursor: pointer; }
 .district-point-hit { fill: transparent; }
 .district-point-pin { fill: oklch(41% 0.105 162); stroke: oklch(97.7% 0.009 98); stroke-width: 2px; vector-effect: non-scaling-stroke; }

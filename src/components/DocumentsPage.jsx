@@ -11,7 +11,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom";
 import { documentCopy } from "../documentCopy.js";
 import { DISTRICT_LOCATIONS } from "../data/districtLocations.js";
-import { readRoute, routeUrl } from "../lib/routes.js";
+import { readRoute, resolveCatalogRoute, routeUrl } from "../lib/routes.js";
 import {
   adminSession,
   api,
@@ -65,7 +65,7 @@ function sortForCustomers(documents) {
 
 export function DocumentsPage({ language }) {
   const dc = documentCopy[language] ?? documentCopy.vi;
-  const initial = useMemo(() => readRoute(window.location), []);
+  const initial = useMemo(() => resolveCatalogRoute(readRoute(window.location), snapshotDocuments, DISTRICT_LOCATIONS), []);
 
   const [tab, setTab] = useState(initial.tab);
   // The tab strip lives in the site header; the page owns the state and portals the buttons up.
@@ -124,7 +124,7 @@ export function DocumentsPage({ language }) {
 
   useEffect(() => {
     const restore = () => {
-      const state = readRoute(window.location);
+      const state = resolveCatalogRoute(readRoute(window.location), snapshotDocuments, DISTRICT_LOCATIONS);
       setTab(state.tab); setRegion(state.region); setProvinceSlug(state.province);
       setZoneKey(state.province && state.zone ? `${state.province}/${state.zone}` : null);
       setDistrictKey(state.district);
@@ -423,6 +423,28 @@ export function DocumentsPage({ language }) {
               <span className="docs-result-count">
                 {scopedDocuments.length} {dc.filters.results}
               </span>
+            </div>
+
+            <div className="docs-location-filters">
+              <label>
+                <span>{language === "ja" ? "省・市" : language === "en" ? "Province" : "Tỉnh/thành"}</span>
+                <select aria-label={language === "ja" ? "省・市" : language === "en" ? "Province" : "Tỉnh/thành"} value={provinceSlug ?? ""} onChange={(event) => {
+                  const next = event.target.value || null;
+                  const province = stats.provinces.find((item) => item.slug === next);
+                  if (region && province && province.region !== region) setRegion(null);
+                  setProvinceSlug(next); setZoneKey(null); setDistrictKey(null);
+                }}>
+                  <option value="">{language === "ja" ? "すべての省・市" : language === "en" ? "All provinces" : "Tất cả tỉnh/thành"}</option>
+                  {stats.provinces.filter((item) => !region || item.region === region).slice().sort((a, b) => a.name.localeCompare(b.name, "vi")).map((item) => <option key={item.slug} value={item.slug}>{item.name} ({item.documentCount})</option>)}
+                </select>
+              </label>
+              <label>
+                <span>{language === "ja" ? "地点・プロジェクト" : language === "en" ? "Location / project" : "Địa điểm / dự án"}</span>
+                <select aria-label={language === "ja" ? "地点・プロジェクト" : language === "en" ? "Location / project" : "Địa điểm / dự án"} value={zoneKey ?? ""} disabled={!selectedProvince} onChange={(event) => { setZoneKey(event.target.value || null); setDistrictKey(null); }}>
+                  <option value="">{language === "ja" ? "すべての地点" : language === "en" ? "All locations" : "Tất cả địa điểm"}</option>
+                  {(selectedProvince?.zones ?? []).slice().sort((a, b) => a.zoneName.localeCompare(b.zoneName, "vi")).map((item) => <option key={item.key} value={item.key}>{item.zoneName} ({item.documentCount})</option>)}
+                </select>
+              </label>
             </div>
 
             <div className="docs-chip-row">
