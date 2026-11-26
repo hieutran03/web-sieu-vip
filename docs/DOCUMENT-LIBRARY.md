@@ -86,7 +86,8 @@ Header có 2 tab:
 - Bấm một KCN → cuộn xuống mục **Danh mục hồ sơ** đã lọc theo KCN đó.
 - Danh mục hồ sơ: thanh phạm vi (vùng/tỉnh/KCN, bấm × để bỏ), tìm kiếm, lọc theo nhóm hồ sơ và
   định dạng, thẻ hồ sơ có ảnh xem trước (PNG resize, PDF render trang 1), xem trong modal, tải về.
-- Deep link chia sẻ được: `#map?region=north&province=bac-ninh&zone=vsip`.
+- Deep link chia sẻ được: `/map?region=north&province=bac-ninh&zone=vsip` hoặc
+  `/map?province=long-an&district=duc-hoa`; liên kết `#map?...` cũ vẫn hoạt động.
 
 **Phân tích** — số liệu tính từ chính bộ hồ sơ: hồ sơ theo tỉnh, cấu trúc nhóm hồ sơ, độ phủ KCN
 theo vùng, so sánh ba vùng, hồ sơ theo năm; kèm nhận định tiếng Việt sinh bằng luật. Nút

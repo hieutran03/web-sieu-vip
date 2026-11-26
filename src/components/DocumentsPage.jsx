@@ -11,6 +11,7 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { createPortal } from "react-dom";
 import { documentCopy } from "../documentCopy.js";
 import { DISTRICT_LOCATIONS } from "../data/districtLocations.js";
+import { readRoute, routeUrl } from "../lib/routes.js";
 import {
   adminSession,
   api,
@@ -50,15 +51,6 @@ const KIND_ICONS = {
 const TABS = ["map", "insights"];
 const PAGE_SIZE = 60;
 
-/** Deep-link state lives in the hash: #map?region=north&province=bac-ninh&zone=vsip */
-function readHash() {
-  if (typeof window === "undefined") return { tab: "map" };
-  const [page, search] = window.location.hash.replace("#", "").split("?");
-  const params = new URLSearchParams(search ?? "");
-  const tab = TABS.includes(page.replace("/", "")) ? page.replace("/", "") : "map";
-  return { tab, region: params.get("region"), province: params.get("province"), zone: params.get("zone") };
-}
-
 /** Records a customer can open come first; the rest keep a stable alphabetical order. */
 function sortForCustomers(documents) {
   return [...documents].sort((a, b) => {
@@ -70,7 +62,7 @@ function sortForCustomers(documents) {
 
 export function DocumentsPage({ language }) {
   const dc = documentCopy[language] ?? documentCopy.vi;
-  const initial = useMemo(readHash, []);
+  const initial = useMemo(() => readRoute(window.location), []);
 
   const [tab, setTab] = useState(initial.tab);
   // The tab strip lives in the site header; the page owns the state and portals the buttons up.
@@ -82,7 +74,7 @@ export function DocumentsPage({ language }) {
   const [region, setRegion] = useState(initial.region ?? null);
   const [provinceSlug, setProvinceSlug] = useState(initial.province ?? null);
   const [zoneKey, setZoneKey] = useState(initial.province && initial.zone ? `${initial.province}/${initial.zone}` : null);
-  const [districtKey, setDistrictKey] = useState(null);
+  const [districtKey, setDistrictKey] = useState(initial.district ?? null);
   const [category, setCategory] = useState(null);
   const [kind, setKind] = useState(null);
   const [query, setQuery] = useState("");
@@ -121,16 +113,22 @@ export function DocumentsPage({ language }) {
     return () => controller.abort();
   }, [refreshLive]);
 
-  // Keep the hash in sync so any view can be shared or reloaded.
+  // Keep selections shareable and convert old hash links to the new routes.
   useEffect(() => {
-    const params = new URLSearchParams();
-    if (region) params.set("region", region);
-    if (provinceSlug) params.set("province", provinceSlug);
-    if (zoneKey) params.set("zone", zoneKey.split("/")[1]);
-    const search = params.toString();
-    const nextHash = `#${tab}${search ? `?${search}` : ""}`;
-    if (window.location.hash !== nextHash) window.history.replaceState(null, "", nextHash);
-  }, [provinceSlug, region, tab, zoneKey]);
+    const url = routeUrl({ tab, region, province: provinceSlug, zone: zoneKey?.split("/")[1], district: districtKey });
+    if (`${window.location.pathname}${window.location.search}${window.location.hash}` !== url) window.history.replaceState(null, "", url);
+  }, [provinceSlug, region, tab, zoneKey, districtKey]);
+
+  useEffect(() => {
+    const restore = () => {
+      const state = readRoute(window.location);
+      setTab(state.tab); setRegion(state.region); setProvinceSlug(state.province);
+      setZoneKey(state.province && state.zone ? `${state.province}/${state.zone}` : null);
+      setDistrictKey(state.district);
+    };
+    window.addEventListener("popstate", restore);
+    return () => window.removeEventListener("popstate", restore);
+  }, []);
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
@@ -207,16 +205,20 @@ export function DocumentsPage({ language }) {
   const tabStrip = (
     <nav className="docs-tabs" aria-label={dc.tabs.label}>
       {TABS.map((item) => (
-        <button
+        <a
           key={item}
-          type="button"
+          href={routeUrl({ tab: item, region, province: provinceSlug, zone: zoneKey?.split("/")[1], district: districtKey })}
           className={`docs-tab ${tab === item ? "is-active" : ""}`}
           aria-current={tab === item ? "page" : undefined}
-          onClick={() => setTab(item)}
+          onClick={(event) => {
+            if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+            event.preventDefault();
+            if (item !== tab) { window.history.pushState(null, "", event.currentTarget.href); setTab(item); }
+          }}
         >
           {dc.tabs[item]}
           {tabCounts[item] !== null ? <span>{tabCounts[item]}</span> : null}
-        </button>
+        </a>
       ))}
     </nav>
   );
@@ -344,6 +346,9 @@ export function DocumentsPage({ language }) {
               }}
               regions={activeRegions}
               onSelectProvince={selectProvince}
+              districtPoints={districtPoints.filter((point) => point.provinceSlug === provinceSlug)}
+              selectedDistrict={districtKey}
+              onSelectDistrict={selectDistrict}
             />
           </section>
 
@@ -581,7 +586,7 @@ function ScopeBar({ dc, language, region, province, zone, total, onClearRegion, 
   );
 }
 
-function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince }) {
+function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRecords, onClose, regions, onSelectProvince, districtPoints, selectedDistrict, onSelectDistrict }) {
   if (!province) {
     return (
       <aside className="docs-province-panel is-empty">
@@ -647,6 +652,14 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
         </div>
       </dl>
 
+      {districtPoints.length ? <section className="district-shortlist" aria-label={language === "ja" ? "区・郡" : language === "en" ? "Districts" : "Quận/huyện"}>
+        <div className="district-shortlist-heading">
+          <strong>{language === "ja" ? "区・郡の地点" : language === "en" ? "District locations" : "Điểm quận/huyện"}</strong>
+          <span>{language === "ja" ? "概略位置" : language === "en" ? "Approximate" : "Vị trí đại diện"}</span>
+        </div>
+        <div className="district-shortlist-items">{districtPoints.map((point) => <button key={point.key} type="button" className={selectedDistrict === point.key ? "is-active" : ""} aria-pressed={selectedDistrict === point.key} onClick={() => onSelectDistrict(point)}>{point.name}</button>)}</div>
+      </section> : null}
+
       {/* List view: fixed-height rows in a scroll container, so adding parks never resizes them. */}
       <div className="docs-zone-listview">
         <div className="docs-zone-listhead">
@@ -659,7 +672,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
           <li>
             <button
               type="button"
-              className={`docs-zone-row is-all ${!zoneKey ? "is-active" : ""}`}
+              className={`docs-zone-row is-all ${!zoneKey && !selectedDistrict ? "is-active" : ""}`}
               onClick={() => {
                 onSelectZone(null);
                 onOpenRecords(null);
