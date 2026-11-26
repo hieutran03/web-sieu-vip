@@ -1628,8 +1628,9 @@
 .docs-card-location a { color: oklch(41% 0.105 162); text-decoration: underline; }
 .district-map-point { cursor: pointer; }
 .district-point-hit { fill: transparent; }
-.district-point-dot { fill: oklch(41% 0.105 162); stroke: oklch(97.7% 0.009 98); stroke-width: 1px; vector-effect: non-scaling-stroke; }
-.district-map-point:focus-visible .district-point-dot, .district-map-point:hover .district-point-dot { fill: oklch(69% 0.14 76); stroke-width: 2px; }
+.district-point-pin { fill: oklch(41% 0.105 162); stroke: oklch(97.7% 0.009 98); stroke-width: 2px; vector-effect: non-scaling-stroke; }
+.district-point-center { fill: oklch(97.7% 0.009 98); pointer-events: none; }
+.district-map-point:focus-visible .district-point-pin, .district-map-point:hover .district-point-pin { fill: oklch(48% 0.13 70); stroke-width: 3px; }
 .district-selection { display: flex; flex-wrap: wrap; align-items: center; gap: .6rem; padding: .6rem .8rem; background: oklch(91.4% 0.041 154); color: oklch(22% 0.018 176); font-size: .85rem; }
 .district-selection a { color: oklch(41% 0.105 162); text-decoration: underline; }
 .district-selection button { margin-left: auto; padding: .2rem .5rem; font-size: 1.1rem; }
@@ -1671,8 +1672,8 @@
 .district-record-actions { display: flex; flex-wrap: wrap; gap: .8rem; align-items: center; font-size: .78rem; font-weight: 800; }
 .district-record-actions button, .district-record-actions a { color: var(--atlas-green); text-decoration: underline; }
 .district-record-actions span { color: var(--atlas-muted); }
-.district-map-point.is-selected .district-point-dot { fill: oklch(69% 0.14 76); stroke-width: 2px; }
-.district-point-label { fill: oklch(22% 0.018 176); stroke: oklch(97.7% 0.009 98); stroke-width: 4px; paint-order: stroke; stroke-linejoin: round; vector-effect: non-scaling-stroke; font-weight: 800; pointer-events: none; }
+.district-map-point.is-selected .district-point-pin { fill: oklch(48% 0.13 70); stroke-width: 3px; }
+.district-point-label { fill: oklch(22% 0.018 176); stroke: oklch(97.7% 0.009 98); stroke-width: 4px; paint-order: stroke; stroke-linejoin: round; vector-effect: non-scaling-stroke; font-size: 13px; font-weight: 800; pointer-events: none; }
 .district-shortlist { padding: .7rem .8rem; background: oklch(95% 0.02 154); border-radius: .6rem; }
 .district-shortlist-heading { display: flex; align-items: baseline; justify-content: space-between; gap: .5rem; font-size: .78rem; }
 .district-shortlist-heading span { color: var(--atlas-muted); font-size: .7rem; }

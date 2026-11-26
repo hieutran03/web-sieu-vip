@@ -266,7 +266,7 @@ function SvgProvinceMap({
   selectedDistrictKey
 }) {
   const projection = useMemo(() => svgProjection(features, { includeIslands: showIslands }), [features, showIslands]);
-  const { svgRef, view, toPixels, zoomBy, reset, onWheel, onPointerDown, onPointerMove, endDrag } = useMapTransform(projection);
+  const { svgRef, view, layout, toPixels, zoomBy, reset, onWheel, onPointerDown, onPointerMove, endDrag } = useMapTransform(projection);
   const dragEndedRef = useRef(false);
 
   // Wheel needs a non-passive listener so it can preventDefault.
@@ -377,9 +377,12 @@ function SvgProvinceMap({
               onPointerDown={(event) => event.stopPropagation()}
               onClick={(event) => { event.stopPropagation(); onSelectDistrict(point); }}
               onKeyDown={(event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); onSelectDistrict(point); } }}>
-              <circle cx={cx} cy={cy} r={24 / view.scale} className="district-point-hit" />
-              <circle cx={cx} cy={cy} r={10 / view.scale} className="district-point-dot" />
-              {point.key === selectedDistrictKey ? <text x={cx + 15 / view.scale} y={cy - 12 / view.scale} fontSize={16 / view.scale} className="district-point-label">{point.name}</text> : null}
+              <g transform={`translate(${cx} ${cy}) scale(${1 / (view.scale * (layout?.displayScale || 1))})`}>
+                <circle cx="0" cy="-18" r="23" className="district-point-hit" />
+                <path d="M0 0 C-3 -5 -14 -15 -14 -22 A14 14 0 1 1 14 -22 C14 -15 3 -5 0 0 Z" className="district-point-pin" />
+                <circle cx="0" cy="-22" r="5" className="district-point-center" />
+                {point.key === selectedDistrictKey ? <text x="20" y="-22" className="district-point-label">{point.name}</text> : null}
+              </g>
               <title>{point.name}</title>
             </g>;
           })}
@@ -586,7 +589,7 @@ function MapViewport({ features, selectedSlug, region }) {
   return null;
 }
 
-function DistrictMarkers({ points, selectedSlug, onSelectDistrict }) {
+function DistrictMarkers({ points, selectedSlug, selectedDistrictKey, onSelectDistrict }) {
   const map = useMap();
   useEffect(() => {
     if (!map || !window.google?.maps) return;
@@ -594,7 +597,17 @@ function DistrictMarkers({ points, selectedSlug, onSelectDistrict }) {
     const update = () => {
       markers.forEach((marker) => marker.setMap(null));
       markers = points.filter((point) => (map.getZoom() ?? 0) >= 8 || point.provinceSlug === selectedSlug).map((point) => {
-        const marker = new window.google.maps.Marker({ map, position: { lat: point.lat, lng: point.lng }, title: point.name });
+        const selected = point.key === selectedDistrictKey;
+        const marker = new window.google.maps.Marker({
+          map, position: { lat: point.lat, lng: point.lng }, title: point.name,
+          icon: {
+            path: "M0 0 C-3 -5 -14 -15 -14 -22 A14 14 0 1 1 14 -22 C14 -15 3 -5 0 0 Z",
+            fillColor: selected ? "#a05c00" : "#145c43", fillOpacity: 1,
+            strokeColor: "#f8f7ee", strokeWeight: selected ? 3 : 2,
+            anchor: new window.google.maps.Point(0, 0), scale: 1.2
+          },
+          zIndex: selected ? 50 : 40
+        });
         marker.addListener("click", () => onSelectDistrict(point));
         return marker;
       });
@@ -602,7 +615,7 @@ function DistrictMarkers({ points, selectedSlug, onSelectDistrict }) {
     update();
     const listener = map.addListener("zoom_changed", update);
     return () => { listener.remove(); markers.forEach((marker) => marker.setMap(null)); };
-  }, [map, points, selectedSlug, onSelectDistrict]);
+  }, [map, points, selectedSlug, selectedDistrictKey, onSelectDistrict]);
   return null;
 }
 
@@ -676,7 +689,7 @@ export function ProvinceMap({
       >
         <MapViewport features={features} selectedSlug={selectedSlug} region={region} />
         <IslandMarkers language={language} />
-        <DistrictMarkers points={districtPoints} selectedSlug={selectedSlug} onSelectDistrict={onSelectDistrict} />
+        <DistrictMarkers points={districtPoints} selectedSlug={selectedSlug} selectedDistrictKey={selectedDistrictKey} onSelectDistrict={onSelectDistrict} />
         <ProvinceGeoJsonLayer
           features={features}
           countsBySlug={countsBySlug}
