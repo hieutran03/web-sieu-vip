@@ -254,9 +254,33 @@ export function buildNarrative(stats, language = "vi") {
   ].filter(Boolean);
 }
 
+// Folds case and Vietnamese diacritics so "Nhà xưởng" matches file names typed without accents.
+function foldText(text) {
+  return String(text)
+    .replace(/[Đđ]/g, "d")
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .toLowerCase();
+}
+
+// File names abbreviate these, while people search with the full words (and vice versa).
+const ABBREVIATIONS = [
+  [/\bbv\b/, "benh vien"],
+  [/\bkcn\b/, "khu cong nghiep"],
+  [/\bcty\b/, "cong ty"],
+  [/\bnm\b/, "nha may"]
+];
+
+function searchText(doc) {
+  const text = foldText(`${doc.title} ${doc.fileName} ${doc.relPath} ${doc.zoneName ?? ""} ${doc.provinceName ?? ""}`);
+  const expansions = ABBREVIATIONS.filter(([pattern]) => pattern.test(text)).map(([, full]) => full);
+  return expansions.length ? `${text} ${expansions.join(" ")}` : text;
+}
+
 export function filterDocuments(documents, filters = {}) {
   const { region, province, zone, category, collection, kind, language, query, hostedOnly } = filters;
-  const needle = query ? String(query).toLowerCase() : null;
+  // Every word must appear somewhere, in any order: "IDICO Nhơn Trạch nhà xưởng" still matches.
+  const words = query ? foldText(query).split(/[^a-z0-9]+/).filter(Boolean) : [];
 
   return documents.filter((doc) => {
     if (region && doc.region !== region) return false;
@@ -267,9 +291,9 @@ export function filterDocuments(documents, filters = {}) {
     if (kind && doc.kind !== kind) return false;
     if (language && doc.language !== language) return false;
     if (hostedOnly && !isHosted(doc)) return false;
-    if (needle) {
-      const haystack = `${doc.title} ${doc.fileName} ${doc.relPath} ${doc.zoneName ?? ""} ${doc.provinceName ?? ""}`.toLowerCase();
-      if (!haystack.includes(needle)) return false;
+    if (words.length) {
+      const haystack = searchText(doc);
+      if (!words.every((word) => haystack.includes(word))) return false;
     }
     return true;
   });
