@@ -4,6 +4,11 @@
 // page needs, so page 1 appears after a few hundred KB and later pages load as they scroll in.
 //
 // Loaded lazily from DocumentsPage, so the PDF.js bundle is only fetched when a viewer opens.
+//
+// `sources` lists the same file by preference: the fast Cloudflare tunnel first, then Funnel.
+// If a source cannot open the file, or stops answering while pages are read (the tunnel
+// restarted under a new hostname), the viewer moves to the next one and returns to the same
+// page. When every source fails it shows `fallback`, the browser's own viewer.
 
 import React, { useEffect, useRef, useState } from "react";
 import { getDocument, GlobalWorkerOptions, version } from "pdfjs-dist";
@@ -32,18 +37,36 @@ const RENDER_MARGIN = "1500px 0px";
 const MAX_PIXEL_RATIO = 1.5;
 const PAGE_GAP = 12;
 
-export default function PdfViewer({ url, labels, fallback }) {
+export default function PdfViewer({ sources, labels, fallback }) {
   const scrollRef = useRef(null);
+  const resumePageRef = useRef(null);
+  const [sourceIndex, setSourceIndex] = useState(0);
   const [root, setRoot] = useState(null);
   const [pdf, setPdf] = useState(null);
   const [firstRatio, setFirstRatio] = useState(Math.SQRT2);
   const [failed, setFailed] = useState(false);
   const [width, setWidth] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
+  const url = sources[sourceIndex];
+  const sourcesKey = sources.join(" ");
 
   useEffect(() => {
-    setPdf(null);
+    setSourceIndex(0);
     setFailed(false);
+    resumePageRef.current = null;
+  }, [sourcesKey]);
+
+  const tryNextSource = (reason) => {
+    if (sourceIndex + 1 >= sources.length) return false;
+    console.warn(`PDF source ${sourceIndex + 1}/${sources.length} failed, trying the next one`, reason);
+    resumePageRef.current = currentPage;
+    setSourceIndex(sourceIndex + 1);
+    return true;
+  };
+
+  useEffect(() => {
+    if (!url) return undefined;
+    setPdf(null);
     let cancelled = false;
     const task = getDocument({ url, ...DOCUMENT_OPTIONS });
     task.promise
@@ -55,7 +78,7 @@ export default function PdfViewer({ url, labels, fallback }) {
         setPdf(loaded);
       })
       .catch((error) => {
-        if (cancelled) return;
+        if (cancelled || tryNextSource(error)) return;
         console.warn("PDF.js could not open the document, falling back to the browser viewer", error);
         setFailed(true);
       });
@@ -63,7 +86,23 @@ export default function PdfViewer({ url, labels, fallback }) {
       cancelled = true;
       task.destroy();
     };
+    // tryNextSource only reads state that changes together with url.
   }, [url]);
+
+  useEffect(() => {
+    // After switching source, return to the page the reader was on.
+    const page = resumePageRef.current;
+    if (!pdf || !width || !page || !scrollRef.current) return;
+    resumePageRef.current = null;
+    const holder = scrollRef.current.querySelector(`[data-page="${page}"]`);
+    if (holder) scrollRef.current.scrollTop = holder.offsetTop - PAGE_GAP;
+  }, [pdf, width]);
+
+  // A page that cannot be fetched means the source went away mid-read; one that fails to render
+  // on the last source is a damaged page and is only logged.
+  const onPageError = (error) => {
+    if (!tryNextSource(error)) console.warn("PDF page failed", error);
+  };
 
   useEffect(() => {
     const element = scrollRef.current;
@@ -96,7 +135,7 @@ export default function PdfViewer({ url, labels, fallback }) {
       <div className="docs-pdf-scroll" ref={scrollRef} onScroll={onScroll}>
         {pdf && root && width
           ? Array.from({ length: pdf.numPages }, (_, index) => (
-              <PdfPage key={index + 1} pdf={pdf} pageNumber={index + 1} width={width} estimatedRatio={firstRatio} root={root} />
+              <PdfPage key={index + 1} pdf={pdf} pageNumber={index + 1} width={width} estimatedRatio={firstRatio} root={root} onError={onPageError} />
             ))
           : <p className="docs-pdf-status">{labels.loading}</p>}
       </div>
@@ -109,7 +148,9 @@ export default function PdfViewer({ url, labels, fallback }) {
   );
 }
 
-function PdfPage({ pdf, pageNumber, width, estimatedRatio, root }) {
+function PdfPage({ pdf, pageNumber, width, estimatedRatio, root, onError }) {
+  const onErrorRef = useRef(onError);
+  onErrorRef.current = onError;
   const holderRef = useRef(null);
   const canvasRef = useRef(null);
   const [nearViewport, setNearViewport] = useState(false);
@@ -153,7 +194,7 @@ function PdfPage({ pdf, pageNumber, width, estimatedRatio, root }) {
         });
       })
       .catch((error) => {
-        if (error?.name !== "RenderingCancelledException" && !cancelled) console.warn(`PDF page ${pageNumber} failed`, error);
+        if (error?.name !== "RenderingCancelledException" && !cancelled) onErrorRef.current(error);
       });
 
     return () => {

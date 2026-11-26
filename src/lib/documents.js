@@ -74,6 +74,42 @@ function selfhostUrl(doc) {
   return STORAGE_URL ? `${STORAGE_URL}/f/${key.split("/").map(encodeURIComponent).join("/")}` : doc.selfhost.url ?? null;
 }
 
+/*
+ * The storage server also answers through a free Cloudflare quick tunnel, several times faster
+ * than Funnel, whose hostname changes on every restart. GET <funnel>/tunnel names the current one
+ * (or null while it is down). Looked up once per few minutes and shared by every viewer.
+ */
+const TUNNEL_LOOKUP_TIMEOUT_MS = 4000;
+const TUNNEL_LOOKUP_TTL_MS = 5 * 60 * 1000;
+const tunnelLookups = new Map();
+
+function lookupTunnel(origin) {
+  const cached = tunnelLookups.get(origin);
+  if (cached && Date.now() - cached.at < TUNNEL_LOOKUP_TTL_MS) return cached.promise;
+  const promise = fetch(`${origin}/tunnel`, { cache: "no-store", signal: AbortSignal.timeout(TUNNEL_LOOKUP_TIMEOUT_MS) })
+    .then((response) => (response.ok ? response.json() : null))
+    .then((payload) => (typeof payload?.url === "string" && payload.url.startsWith("https://") ? payload.url.replace(/\/+$/, "") : null))
+    .catch(() => null);
+  tunnelLookups.set(origin, { at: Date.now(), promise });
+  return promise;
+}
+
+/**
+ * The same file through the fast tunnel, or null when the document is not self-hosted or the
+ * tunnel is down. Callers keep the original URL as the fallback.
+ */
+export async function fastUrl(doc, url) {
+  if (!doc.selfhost?.key || !url) return null;
+  let parsed;
+  try {
+    parsed = new URL(url);
+  } catch {
+    return null;
+  }
+  const tunnel = await lookupTunnel(parsed.origin);
+  return tunnel ? `${tunnel}${parsed.pathname}${parsed.search}` : null;
+}
+
 /** Full-size viewing URL (PDF/image inline, video streamed, raw downloaded). */
 export function viewUrl(doc) {
   return selfhostUrl(doc) ?? doc.imagekit?.url ?? doc.cloudinary?.secureUrl ?? null;

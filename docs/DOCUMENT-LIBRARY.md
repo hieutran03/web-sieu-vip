@@ -71,6 +71,11 @@ máy chủ xem [storage-server/README.md](../storage-server/README.md). Khi mộ
 lưu, link xem/tải ưu tiên theo thứ tự `selfhost` → ImageKit → Cloudinary. Ảnh xem trước vẫn chỉ
 có với hồ sơ trên Cloudinary.
 
+Với hồ sơ `selfhost`, trang hỏi `<Funnel>/tunnel` để lấy link Cloudflare quick tunnel hiện tại,
+rồi xem và tải qua link đó vì nhanh hơn. Khi không có link hoặc link lỗi, trang tự quay về
+Funnel. Link tunnel đổi thì không cần sửa env (xem phần "Đường tải nhanh" trong README của
+storage-server).
+
 Các PDF miền Nam chưa có trên Cloudinary có thể tải lên ImageKit bằng `npm run docs:upload-imagekit`.
 Đặt `IMAGEKIT_PRIVATE_KEY` trong `.env.local` và giữ khóa ở phía máy chủ. Danh mục lưu URL ImageKit
 cho từng hồ sơ và giữ lại khi quét lại nếu tệp nguồn không thay đổi. Giới hạn kích thước phụ thuộc

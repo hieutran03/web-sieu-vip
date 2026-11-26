@@ -48,6 +48,28 @@ Thử từ một máy khác: `curl https://homeserver.tail1234.ts.net/health`.
 
 Cấu hình Funnel được lưu lại và tự bật sau khi máy khởi động lại (do có cờ `--bg`).
 
+### Đường tải nhanh: Cloudflare quick tunnel (free, tự động)
+
+Funnel giới hạn mỗi kết nối còn khoảng 0,2 MB/s, nên PDF lớn mở rất chậm. `docker compose up`
+chạy thêm container `vtnf-tunnel` (cloudflared). Container này mở một link
+`https://<ngẫu-nhiên>.trycloudflare.com` miễn phí, không cần tài khoản hay domain, và đo được
+nhanh hơn Funnel khoảng 7 lần.
+
+```
+Trình duyệt ──► Funnel /tunnel ──► "link Cloudflare hiện tại là ..."
+Trình duyệt ──► https://xxx.trycloudflare.com/f/... (tải PDF nhanh)
+            └─► lỗi / chưa có link ──► tự quay về Funnel
+```
+
+- Link Cloudflare **đổi mỗi lần container khởi động lại**. Server tự đọc link mới từ cloudflared,
+  kiểm tra nó chạy được, rồi trả về ở `GET /tunnel`. Không cần sửa env hay redeploy Vercel.
+- Upload, xoá, liệt kê vẫn đi qua Funnel. Cloudflare chỉ dùng để đọc file.
+- Kiểm tra: `curl http://127.0.0.1:8080/tunnel`. Kết quả `{"url":"https://...trycloudflare.com"}`
+  là đang chạy. Kết quả `{"url":null}` nghĩa là chỉ còn Funnel (đợi khoảng 30 giây sau khi khởi
+  động, hoặc xem `docker logs vtnf-tunnel`).
+- Quick tunnel là dịch vụ thử nghiệm của Cloudflare, không cam kết uptime. Khi nó lỗi, trang vẫn
+  chạy qua Funnel, chỉ chậm hơn.
+
 ## 3. Cấu hình web
 
 Thêm vào **Vercel → Settings → Environment Variables** và vào `.env.local` của máy chạy script

@@ -853,6 +853,8 @@
   height: 100%;
   overflow: auto;
   padding: 12px;
+  /* Page offsetTop is then measured from here (page counter, resume after a source switch). */
+  position: relative;
 }
 
 .docs-pdf-page {

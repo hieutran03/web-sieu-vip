@@ -6,6 +6,13 @@
 //   DELETE   /f/<key>?exp=&sig=            signed delete
 //   GET      /list?prefix=&exp=&sig=       signed listing (key, bytes, modifiedAt, meta)
 //   GET      /health                       liveness + free disk space
+//   GET      /tunnel                       current fast public URL (Cloudflare quick tunnel) or null
+//
+// Tailscale Funnel throttles each connection to roughly 0.2 MB/s, so reads also go out through a
+// free Cloudflare quick tunnel (the `tunnel` service in docker-compose.yml). Its hostname changes
+// on every restart: this server reads it from cloudflared's metrics endpoint, checks it end to
+// end, and publishes it on /tunnel. The site asks the stable Funnel URL for it and falls back to
+// Funnel whenever it is null or stops answering. Uploads, deletes and listings stay on Funnel.
 //
 // Signatures: base64url(HMAC-SHA256(UPLOAD_SECRET, `${METHOD}\n${key}\n${exp}\n${meta}`)).
 // The same scheme lives in ../server/selfStorage.mjs (the side that issues signed URLs);
@@ -26,6 +33,9 @@ const TMP_DIR = path.join(DATA_DIR, "tmp");
 const SECRET = process.env.UPLOAD_SECRET ?? "";
 const MAX_BYTES = Number(process.env.MAX_BYTES ?? 5 * 1024 * 1024 * 1024);
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? "*").split(",").map((origin) => origin.trim()).filter(Boolean);
+// cloudflared's metrics server, e.g. http://tunnel:20241. Unset: no fast tunnel, /tunnel says null.
+const TUNNEL_METRICS_URL = (process.env.TUNNEL_METRICS_URL ?? "").replace(/\/+$/, "");
+const TUNNEL_CHECK_MS = 30 * 1000;
 
 if (SECRET.length < 32) {
   console.error("UPLOAD_SECRET must be set to a random string of at least 32 characters.");
@@ -163,7 +173,10 @@ async function handleRead(request, response, key, params) {
     "Accept-Ranges": "bytes",
     ETag: etag,
     "Last-Modified": stat.mtime.toUTCString(),
-    "Cache-Control": "public, max-age=3600",
+    // Requests through the Cloudflare tunnel carry cf-ray. Keep them out of Cloudflare's edge
+    // cache: on a miss it fetches the whole file before answering a range, which would stall
+    // PDF.js (it reads the end of the file first) for as long as a full download takes.
+    "Cache-Control": request.headers["cf-ray"] ? "private, max-age=3600" : "public, max-age=3600",
     "Content-Disposition": contentDisposition(download ? "attachment" : "inline", fileName),
     "X-Content-Type-Options": "nosniff"
   };
@@ -289,6 +302,37 @@ async function handleHealth(response) {
   });
 }
 
+/* ─── Fast tunnel ─────────────────────────────────────────────────── */
+
+const tunnel = { url: null, checkedAt: null };
+
+async function checkTunnel() {
+  let url = null;
+  try {
+    const info = await fetch(`${TUNNEL_METRICS_URL}/quicktunnel`, { signal: AbortSignal.timeout(5000) }).then((res) => res.json());
+    const hostname = typeof info?.hostname === "string" ? info.hostname.trim() : "";
+    if (/^[a-z0-9.-]+$/i.test(hostname)) {
+      // End to end through Cloudflare: a fresh hostname takes a few seconds to resolve.
+      const health = await fetch(`https://${hostname}/health`, { signal: AbortSignal.timeout(10 * 1000) });
+      if (health.ok && (await health.json())?.ok === true) url = `https://${hostname}`;
+    }
+  } catch {
+    // cloudflared restarting, or the tunnel not reachable yet: serve Funnel only until it is.
+  }
+  if (url !== tunnel.url) console.log(url ? `fast tunnel up: ${url}` : "fast tunnel down, Funnel only");
+  tunnel.url = url;
+  tunnel.checkedAt = new Date().toISOString();
+}
+
+function handleTunnel(response) {
+  sendJson(response, 200, tunnel);
+}
+
+if (TUNNEL_METRICS_URL) {
+  checkTunnel();
+  setInterval(checkTunnel, TUNNEL_CHECK_MS).unref();
+}
+
 /* ─── Server ──────────────────────────────────────────────────────── */
 
 const server = http.createServer(async (request, response) => {
@@ -301,6 +345,7 @@ const server = http.createServer(async (request, response) => {
       return response.end();
     }
     if (url.pathname === "/health" && request.method === "GET") return await handleHealth(response);
+    if (url.pathname === "/tunnel" && request.method === "GET") return handleTunnel(response);
     if (url.pathname === "/list" && request.method === "GET") return await handleList(response, url.searchParams);
 
     if (url.pathname.startsWith("/f/")) {

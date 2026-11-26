@@ -19,6 +19,7 @@ import {
   CATEGORIES,
   computeStats,
   downloadUrl,
+  fastUrl,
   filterDocuments,
   formatBytes,
   formatDate,
@@ -790,9 +791,35 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
   );
 }
 
+/**
+ * The fast-tunnel copy of a self-hosted URL: a string, null when there is none (not self-hosted,
+ * tunnel down), undefined while the storage server is still being asked.
+ */
+function useFastUrl(doc, url) {
+  const selfhosted = Boolean(doc.selfhost?.key && url);
+  const [fast, setFast] = useState(selfhosted ? undefined : null);
+  useEffect(() => {
+    if (!selfhosted) {
+      setFast(null);
+      return undefined;
+    }
+    let active = true;
+    setFast(undefined);
+    fastUrl(doc, url).then((resolved) => {
+      if (active) setFast(resolved);
+    });
+    return () => {
+      active = false;
+    };
+  }, [doc, url, selfhosted]);
+  return fast;
+}
+
 function DocumentCard({ doc, dc, language, onOpen }) {
   const thumbnail = thumbnailUrl(doc);
   const hosted = isHosted(doc);
+  const download = downloadUrl(doc);
+  const fastDownload = useFastUrl(doc, download);
 
   return (
     <article className={`docs-card ${hosted ? "" : "is-share-only"}`}>
@@ -830,7 +857,7 @@ function DocumentCard({ doc, dc, language, onOpen }) {
               <button type="button" onClick={() => onOpen(doc)}>
                 {dc.card.open}
               </button>
-              <a href={downloadUrl(doc)} download>
+              <a href={fastDownload ?? download} download>
                 {dc.card.download}
               </a>
             </>
@@ -845,19 +872,25 @@ function DocumentCard({ doc, dc, language, onOpen }) {
 
 // Self-hosted PDFs are the large ones (above the Cloudinary limit) and the store serves byte
 // ranges, so they get the progressive PDF.js viewer; the rest keep the browser's own viewer.
-function PdfFrame({ doc, url, dc }) {
+// The viewer reads through the fast tunnel when there is one and falls back to Funnel.
+function PdfFrame({ doc, url, fast, dc }) {
   const iframe = <iframe src={`${url}#view=FitH`} title={doc.title} />;
   if (!doc.selfhost?.key) return iframe;
   const labels = { loading: dc.viewer.loading, page: dc.viewer.page };
+  const loading = <p className="docs-pdf-status">{labels.loading}</p>;
+  if (fast === undefined) return loading;
   return (
-    <React.Suspense fallback={<p className="docs-pdf-status">{labels.loading}</p>}>
-      <PdfViewer url={url} labels={labels} fallback={iframe} />
+    <React.Suspense fallback={loading}>
+      <PdfViewer sources={fast ? [fast, url] : [url]} labels={labels} fallback={iframe} />
     </React.Suspense>
   );
 }
 
 function DocumentViewer({ doc, dc, language, onClose }) {
   const url = viewUrl(doc);
+  const download = downloadUrl(doc);
+  const fastView = useFastUrl(doc, url);
+  const fastDownload = useFastUrl(doc, download);
 
   useEffect(() => {
     const onKeyDown = (event) => {
@@ -881,10 +914,10 @@ function DocumentViewer({ doc, dc, language, onClose }) {
             </p>
           </div>
           <div className="docs-viewer-actions">
-            <a href={url} target="_blank" rel="noreferrer">
+            <a href={fastView ?? url} target="_blank" rel="noreferrer">
               {dc.viewer.openNewTab}
             </a>
-            <a href={downloadUrl(doc)} download>
+            <a href={fastDownload ?? download} download>
               {dc.viewer.download}
             </a>
             <button type="button" onClick={onClose} aria-label={dc.viewer.close}>
@@ -895,13 +928,13 @@ function DocumentViewer({ doc, dc, language, onClose }) {
 
         <div className="docs-viewer-body">
           {doc.kind === "image" ? <img src={url} alt={doc.title} /> : null}
-          {doc.kind === "pdf" ? <PdfFrame doc={doc} url={url} dc={dc} /> : null}
+          {doc.kind === "pdf" ? <PdfFrame doc={doc} url={url} fast={fastView} dc={dc} /> : null}
           {doc.kind === "video" ? <video src={url} controls preload="metadata" /> : null}
           {!canPreviewInline(doc) ? (
             <div className="docs-viewer-fallback">
               <span>{KIND_ICONS[doc.kind] ?? "📁"}</span>
               <p>{dc.card.noPreview}</p>
-              <a className="docs-primary-link" href={downloadUrl(doc)} download>
+              <a className="docs-primary-link" href={fastDownload ?? download} download>
                 {dc.card.download}
               </a>
             </div>
