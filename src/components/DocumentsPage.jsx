@@ -135,7 +135,7 @@ export function DocumentsPage({ language }) {
 
   useEffect(() => {
     setVisibleCount(PAGE_SIZE);
-  }, [category, kind, provinceSlug, query, region, zoneKey, hostedOnly]);
+  }, [category, kind, provinceSlug, query, region, zoneKey, districtKey, hostedOnly]);
 
   const countsBySlug = useMemo(() => {
     const counts = {};
@@ -180,6 +180,20 @@ export function DocumentsPage({ language }) {
       ),
     [category, documents, hostedOnly, kind, provinceSlug, query, region, selectedZone, selectedDistrict]
   );
+  const facetCounts = useMemo(() => {
+    const common = { region, province: provinceSlug, zone: selectedZone?.zoneSlug, query: query.trim() || undefined, hostedOnly };
+    const inDistrict = (doc) => !selectedDistrict || (doc.provinceSlug === selectedDistrict.provinceSlug && selectedDistrict.zones.includes(doc.zoneSlug) && doc.projectLocation);
+    const tally = (items, field) => items.filter(inDistrict).reduce((counts, doc) => {
+      counts[doc[field]] = (counts[doc[field]] ?? 0) + 1;
+      return counts;
+    }, {});
+    return {
+      categories: tally(filterDocuments(documents, { ...common, kind }), "category"),
+      kinds: tally(filterDocuments(documents, { ...common, category }), "kind")
+    };
+  }, [documents, region, provinceSlug, selectedZone, selectedDistrict, query, hostedOnly, kind, category]);
+  const analysisZone = selectedZone?.zoneSlug ?? (selectedDistrict?.zones.length === 1 ? selectedDistrict.zones[0] : undefined);
+  const analysisStats = useMemo(() => computeStats(filterDocuments(documents, { region, province: provinceSlug, zone: analysisZone }).filter((doc) => !selectedDistrict || Boolean(doc.projectLocation))), [documents, region, provinceSlug, analysisZone, selectedDistrict]);
 
   const selectProvince = useCallback((slug) => {
     setProvinceSlug((current) => (current === slug ? null : slug));
@@ -254,11 +268,11 @@ export function DocumentsPage({ language }) {
           </section>
 
           <section className="docs-region-tabs" aria-label={dc.regionAll}>
-            <button type="button" className={`region-tab ${!region ? "is-active" : ""}`} onClick={() => setRegion(null)}>
+            <button type="button" className={`region-tab ${!region ? "is-active" : ""}`} onClick={() => { setRegion(null); setProvinceSlug(null); setZoneKey(null); setDistrictKey(null); }}>
               {dc.regionAll}
               <span>{stats.totals.documents}</span>
             </button>
-            {stats.regions.map((item) => (
+            {stats.regions.filter((item) => item.documentCount > 0).map((item) => (
               <button
                 key={item.id}
                 type="button"
@@ -415,7 +429,7 @@ export function DocumentsPage({ language }) {
               <button type="button" className={`docs-chip ${!category ? "is-active" : ""}`} onClick={() => setCategory(null)}>
                 {dc.filters.all}
               </button>
-              {CATEGORIES.filter((item) => stats.byCategory[item.id]).map((item) => (
+              {CATEGORIES.filter((item) => facetCounts.categories[item.id] || item.id === category).map((item) => (
                 <button
                   key={item.id}
                   type="button"
@@ -424,7 +438,7 @@ export function DocumentsPage({ language }) {
                   onClick={() => setCategory((current) => (current === item.id ? null : item.id))}
                 >
                   {categoryLabel(item.id, language)}
-                  <span>{stats.byCategory[item.id]}</span>
+                  <span>{facetCounts.categories[item.id] ?? 0}</span>
                 </button>
               ))}
             </div>
@@ -434,7 +448,7 @@ export function DocumentsPage({ language }) {
                 {dc.filters.kind}: {dc.filters.all}
               </button>
               {Object.values(MEDIA_KINDS)
-                .filter((item) => stats.byKind[item.id])
+                .filter((item) => facetCounts.kinds[item.id] || item.id === kind)
                 .map((item) => (
                   <button
                     key={item.id}
@@ -443,7 +457,7 @@ export function DocumentsPage({ language }) {
                     onClick={() => setKind((current) => (current === item.id ? null : item.id))}
                   >
                     {KIND_ICONS[item.id]} {kindLabel(item.id, language)}
-                    <span>{stats.byKind[item.id]}</span>
+                    <span>{facetCounts.kinds[item.id] ?? 0}</span>
                   </button>
                 ))}
             </div>
@@ -453,7 +467,7 @@ export function DocumentsPage({ language }) {
             {scopedDocuments.slice(0, visibleCount).map((doc) => (
               <DocumentCard key={doc.id} doc={doc} dc={dc} language={language} onOpen={setViewerDoc} />
             ))}
-            {!scopedDocuments.length ? <p className="docs-empty">{dc.provincePanel.empty}</p> : null}
+            {!scopedDocuments.length ? <p className="docs-empty">{language === "ja" ? "条件に一致する資料がありません。" : language === "en" ? "No documents match these filters." : "Không có tài liệu phù hợp với bộ lọc."}</p> : null}
           </section>
 
           {scopedDocuments.length > visibleCount ? (
@@ -468,10 +482,11 @@ export function DocumentsPage({ language }) {
         <DocumentAnalytics
           dc={dc}
           language={language}
-          stats={stats}
+          stats={analysisStats}
           region={region}
           provinceSlug={provinceSlug}
-          aiEnabled={health?.ai?.enabled ?? false}
+          zoneSlug={analysisZone}
+          aiEnabled={!selectedDistrict && (health?.ai?.enabled ?? false)}
         />
       ) : null}
 
@@ -613,7 +628,7 @@ function ProvincePanel({ dc, language, province, zoneKey, onSelectZone, onOpenRe
                   <span className="province-dot" style={{ background: region.color }} />
                   <span className="province-name">{item.name}</span>
                   <em>
-                    {item.documentCount} · {item.zoneCount} KCN
+                    {item.documentCount} · {item.zoneCount} {dc.provincePanel.zonesShort}
                   </em>
                 </button>
               </li>

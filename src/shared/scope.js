@@ -1,12 +1,11 @@
-// What belongs on this site: geotechnical surveys and layouts of industrial parks, placed on the
-// map. A record needs a known province and a zone; other material (TNF/TCCS packages, cement
-// studies, nationwide atlases) is out of scope even if it is still stored in Cloudinary from an
-// earlier upload — which is why the filter is applied to live listings, not just to the snapshot.
+import { normalizeKey } from "./text.js";
 
-export const SITE_COLLECTIONS = new Set(["industrial-zones", "zone-geology"]);
-
+// Only the requested southern geology source tree is part of the public library.
 export function inSiteScope(doc) {
-  return SITE_COLLECTIONS.has(doc.collection) && Boolean(doc.provinceSlug) && Boolean(doc.zoneSlug);
+  const segments = String(doc.relPath ?? "").replace(/\\/g, "/").split("/");
+  return normalizeKey(segments[0]) === "n1 dia chat viet nam" &&
+    normalizeKey(segments[1]) === "r1 2 dia chat kcn mien nam" &&
+    !doc.archived && !segments.some((segment) => normalizeKey(segment) === "old");
 }
 
 export function filterToSiteScope(documents) {

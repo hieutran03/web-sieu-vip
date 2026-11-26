@@ -4,9 +4,8 @@
 //   npm run docs:catalog -- "D:\some\dir"   # explicit root
 //   npm run docs:catalog -- --all           # keep every collection, not just the industrial zones
 //
-// Scope: by default only the industrial-zone trees are catalogued — the zone layouts
-// (R1.1 Khu công nghiệp) and the geotechnical surveys per zone (R1.2 / R1.6 / R1.8 Địa chất KCN).
-// That is what the public site is about; the TNF/TCCS/cement folders stay out of it.
+// Scope: by default only R1.2 Địa chất KCN miền Nam, excluding OLD, is catalogued.
+// Source-wide records without a province are retained without inventing a location.
 //
 // Classification is rule-based (see src/shared/classify.js): region / province / industrial zone
 // come from the folder names, document category from folder + file name keywords.
@@ -16,13 +15,13 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import { classifyDocument, shouldIgnore } from "../src/shared/classify.js";
 import { slugify } from "../src/shared/text.js";
+import { inSiteScope } from "../src/shared/scope.js";
 import { loadEnv, REPO_ROOT } from "./lib/env.mjs";
 
 loadEnv();
 
 const OUTPUT = path.join(REPO_ROOT, "src", "data", "documentCatalog.json");
 const MAX_DEPTH = 12;
-const ZONE_COLLECTIONS = new Set(["industrial-zones", "zone-geology"]);
 // Cloudinary free plan ceilings; anything larger stays on the share and is flagged in the UI.
 const LIMITS = { image: 10 * 1024 * 1024, video: 100 * 1024 * 1024, raw: 10 * 1024 * 1024 };
 
@@ -159,16 +158,13 @@ async function main() {
     };
   });
 
-  // A document only belongs on the site when it can be placed on the map: an industrial zone in a
-  // known province. Anything else (nationwide atlases, TNF/TCCS packages) is skipped.
-  const documents = keepEverything
-    ? allDocuments
-    : allDocuments.filter((doc) => ZONE_COLLECTIONS.has(doc.collection) && doc.provinceSlug && doc.zoneSlug);
+  // The public scope is enforced again by the API and the client, including after an --all scan.
+  const documents = keepEverything ? allDocuments : allDocuments.filter(inSiteScope);
 
   const catalog = {
     generatedAt: new Date().toISOString(),
     sourceRoot,
-    scope: keepEverything ? "all" : "industrial-zones",
+    scope: keepEverything ? "all" : "southern-geology",
     skipped: allDocuments.length - documents.length,
     summary: summarize(documents),
     documents

@@ -28,6 +28,8 @@ for (const kind of Object.values(MEDIA_KINDS)) {
 
 // Semantic buckets. Order matters: the first matching rule wins.
 export const CATEGORIES = [
+  { id: "dataset", label: { vi: "Bảng dữ liệu tổng hợp", en: "Summary dataset", ja: "集計データ" }, color: "oklch(55% 0.1 286)" },
+  { id: "topography", label: { vi: "Khảo sát địa hình", en: "Topographic survey", ja: "地形測量" }, color: "oklch(50% 0.12 235)" },
   { id: "zone-map", label: { vi: "Sơ đồ / mặt bằng KCN", en: "Industrial zone map", ja: "工業団地図" }, color: "oklch(50% 0.12 235)" },
   { id: "zone-profile", label: { vi: "Hồ sơ khu công nghiệp", en: "Industrial zone profile", ja: "工業団地資料" }, color: "oklch(58% 0.13 168)" },
   { id: "geology", label: { vi: "Khảo sát địa chất", en: "Geotechnical survey", ja: "地盤調査" }, color: "oklch(52% 0.11 76)" },
@@ -128,6 +130,8 @@ function detectCategory({ segments, fileName, kind, collection }) {
   if (collection === "industrial-zones") {
     return kind === "image" || kind === "pdf" ? "zone-map" : "zone-profile";
   }
+  if (collection === "zone-geology" && segments.length === 2 && kind === "spreadsheet") return "dataset";
+  if (collection === "zone-geology" && segments.some((segment) => /dia hinh|dia dinh/.test(normalizeKey(segment)))) return "topography";
   if (collection === "zone-geology" || collection === "geology") return "geology";
   if (collection === "materials") return has("tcvn", "tccs", "tieu chuan") ? "standard" : "materials";
   if (has("khao sat dia chat", "ho so dia chat", "tru ho khoan", "borehole", "geological", "ksdc", "bcdc", "bc dia chat", "bckh dia chat", "soil investigation", "地盤調査")) {
@@ -224,7 +228,8 @@ export function classifyDocument(segments, fileName) {
     }
   }
 
-  const zoneName = zone ? cleanZoneName(zone) : null;
+  // A source-wide workbook or other unlocated record must not become a made-up park.
+  const zoneName = zone && province ? cleanZoneName(zone) : null;
 
   return {
     collection,
@@ -269,6 +274,7 @@ const ACRONYMS = new Set(["VSIP", "DEEP", "C", "KCN", "CCN", "VN", "JV", "TNF", 
 export function cleanZoneName(value) {
   const stripped = String(value)
     .replace(/\.[A-Za-z0-9]+$/, "")
+    .replace(/\s*-\s*chưa có kết quả thí nghiệm\s*$/i, "")
     .replace(/^\s*(kcn|khu cong nghiep|khu công nghiệp|ip)\s*/i, "")
     .replace(/\s+/g, " ")
     .trim();

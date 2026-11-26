@@ -1,6 +1,6 @@
 // GET /api/documents?region=&province=&zone=&category=&collection=&kind=&query=&hostedOnly=&scope=
-//   scope=merged (default) snapshot + Cloudinary, scope=live only Cloudinary, scope=snapshot no network.
-// Used by the app to pick up admin uploads without a rebuild, and by the MCP server.
+//   scope=merged (default) snapshot + hosting, scope=live hosted catalog records, scope=snapshot no network.
+// Live data never expands the source catalog.
 
 import { filterDocuments } from "../src/shared/catalogStats.js";
 import { catalogSnapshot, liveDocuments, mergedDocuments } from "../server/catalogSource.js";

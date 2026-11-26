@@ -28,6 +28,8 @@ const HOSTING_FIELDS = ["cloudinary", "imagekit", "selfhost"];
  * store never erases the location recorded for another.
  */
 export function mergeHosting(existing, live) {
+  // A path can be reused for a newer version. Never attach an older hosted file to it.
+  if (Number.isFinite(existing.sizeBytes) && Number.isFinite(live.sizeBytes) && existing.sizeBytes !== live.sizeBytes) return existing;
   const merged = { ...existing };
   for (const field of HOSTING_FIELDS) {
     if (live[field]) merged[field] = live[field];
@@ -186,7 +188,7 @@ export function buildStats(documents) {
   }
 
   const hosted = documents.filter(isHosted);
-  const shareOnly = documents.filter((doc) => !doc.uploadable);
+  const shareOnly = documents.filter((doc) => !isHosted(doc));
 
   return {
     totals: {
@@ -231,25 +233,25 @@ export function buildNarrative(stats, language = "vi") {
 
   if (language === "en") {
     return [
-      `${totals.documents} records across ${totals.provinces} provinces and ${totals.zones} industrial parks.`,
-      `${totals.completeZones} park(s) have both a site layout and a geotechnical record.`,
-      topRegion ? `${topRegion.name.en} is the deepest region: ${topRegion.documentCount} records over ${topRegion.provinceCount} provinces and ${topRegion.zoneCount} parks.` : "",
+      `${totals.documents} records across ${totals.provinces} provinces and ${totals.zones} locations.`,
+      `${totals.completeZones} location(s) have both a site layout and a geotechnical record.`,
+      topRegion ? `${topRegion.name.en} has ${topRegion.documentCount} records over ${topRegion.provinceCount} provinces and ${topRegion.zoneCount} locations.` : "",
       topProvinces.length ? `Best-covered provinces: ${topProvinces.map((province) => `${province.name} (${province.documentCount})`).join(", ")}.` : "",
       categoryLeaders.length ? `Record mix: ${categoryLeaders.join(", ")}.` : "",
       gaps.geologyOnly.length || gaps.mapOnly.length
-        ? `Gaps: ${gaps.geologyOnly.length} park(s) have geology but no layout, ${gaps.mapOnly.length} have a layout but no geotechnical record yet.`
+        ? `Gaps: ${gaps.geologyOnly.length} location(s) have geology but no layout, ${gaps.mapOnly.length} have a layout but no geotechnical record yet.`
         : ""
     ].filter(Boolean);
   }
 
   return [
-    `${totals.documents} hồ sơ trên ${totals.provinces} tỉnh/thành và ${totals.zones} khu công nghiệp.`,
-    `${totals.completeZones} KCN có đủ cả sơ đồ mặt bằng và hồ sơ khảo sát địa chất.`,
-    topRegion ? `${topRegion.name.vi} là vùng có dữ liệu dày nhất: ${topRegion.documentCount} hồ sơ trên ${topRegion.provinceCount} tỉnh và ${topRegion.zoneCount} KCN.` : "",
+    `${totals.documents} hồ sơ trên ${totals.provinces} tỉnh/thành và ${totals.zones} địa điểm.`,
+    `${totals.completeZones} địa điểm có đủ cả sơ đồ mặt bằng và hồ sơ khảo sát địa chất.`,
+    topRegion ? `${topRegion.name.vi} có ${topRegion.documentCount} hồ sơ trên ${topRegion.provinceCount} tỉnh và ${topRegion.zoneCount} địa điểm.` : "",
     topProvinces.length ? `Tỉnh được phủ tốt nhất: ${topProvinces.map((province) => `${province.name} (${province.documentCount})`).join(", ")}.` : "",
     categoryLeaders.length ? `Cấu trúc hồ sơ: ${categoryLeaders.join(", ")}.` : "",
     gaps.geologyOnly.length || gaps.mapOnly.length
-      ? `Khoảng trống: ${gaps.geologyOnly.length} KCN có hồ sơ địa chất nhưng chưa có sơ đồ, ${gaps.mapOnly.length} KCN có sơ đồ nhưng chưa có hồ sơ địa chất.`
+      ? `Khoảng trống: ${gaps.geologyOnly.length} địa điểm có hồ sơ địa chất nhưng chưa có sơ đồ, ${gaps.mapOnly.length} địa điểm có sơ đồ nhưng chưa có hồ sơ địa chất.`
       : ""
   ].filter(Boolean);
 }
@@ -272,7 +274,7 @@ const ABBREVIATIONS = [
 ];
 
 function searchText(doc) {
-  const text = foldText(`${doc.title} ${doc.fileName} ${doc.relPath} ${doc.zoneName ?? ""} ${doc.provinceName ?? ""}`);
+  const text = foldText(`${doc.title} ${doc.fileName} ${doc.relPath} ${doc.zoneName ?? ""} ${doc.provinceName ?? ""} ${doc.projectLocation?.project ?? ""} ${doc.projectLocation?.address ?? ""}`);
   const expansions = ABBREVIATIONS.filter(([pattern]) => pattern.test(text)).map(([, full]) => full);
   return expansions.length ? `${text} ${expansions.join(" ")}` : text;
 }
@@ -292,8 +294,8 @@ export function filterDocuments(documents, filters = {}) {
     if (language && doc.language !== language) return false;
     if (hostedOnly && !isHosted(doc)) return false;
     if (words.length) {
-      const haystack = searchText(doc);
-      if (!words.every((word) => haystack.includes(word))) return false;
+      const tokens = searchText(doc).split(/[^a-z0-9]+/).filter(Boolean);
+      if (!words.every((word) => tokens.some((token) => token.startsWith(word)))) return false;
     }
     return true;
   });

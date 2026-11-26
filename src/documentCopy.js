@@ -3,15 +3,15 @@
 export const documentCopy = {
   vi: {
     nav: "Bản đồ địa chất KCN",
-    eyebrow: "Khảo sát địa chất khu công nghiệp",
-    title: "Bản đồ hồ sơ địa chất khu công nghiệp Việt Nam",
+    eyebrow: "Hồ sơ khảo sát miền Nam",
+    title: "Bản đồ hồ sơ địa chất miền Nam",
     intro:
-      "Chọn vùng hoặc bấm vào tỉnh trên bản đồ để xem các khu công nghiệp đã có dữ liệu, kèm hồ sơ khảo sát địa chất và sơ đồ mặt bằng của từng khu.",
+      "Chọn tỉnh trên bản đồ để xem hồ sơ khảo sát theo địa điểm. Dữ liệu gồm các khu công nghiệp và công trình trong thư mục địa chất miền Nam.",
     kpi: {
       documents: "hồ sơ tài liệu",
       geology: "hồ sơ khảo sát địa chất",
       provinces: "tỉnh/thành",
-      zones: "khu công nghiệp"
+      zones: "địa điểm / dự án"
     },
     tabs: { label: "Khu vực nội dung", map: "Bản đồ & hồ sơ", records: "Danh mục hồ sơ", insights: "Phân tích" },
     regionAll: "Toàn quốc",
@@ -22,19 +22,19 @@ export const documentCopy = {
     zoom: { label: "Phóng to / thu nhỏ", zoomIn: "Phóng to", zoomOut: "Thu nhỏ", reset: "Về mặc định" },
     noApiKey: "Chưa có Google Maps API key — đang dùng bản đồ SVG nội bộ (vẫn bấm được vào từng tỉnh).",
     provincePanel: {
-      zones: "Khu công nghiệp",
+      zones: "Địa điểm / dự án",
       documents: "Tài liệu",
       readiness: "Độ đầy đủ dữ liệu",
-      complete: "KCN đủ dữ liệu",
+      complete: "Địa điểm có sơ đồ và địa chất",
       coverageColumn: "Dữ liệu",
       countColumn: "Hồ sơ",
       openRecords: "Xem hồ sơ",
-      zonesShort: "KCN",
+      zonesShort: "Địa điểm",
       completeShort: "Đủ dữ liệu",
       mergedInto: "Sau sáp nhập 01/07/2025 thuộc",
       lastUpdate: "Cập nhật gần nhất",
       empty: "Chưa có tài liệu nào cho tỉnh này.",
-      allZones: "Tất cả KCN",
+      allZones: "Tất cả địa điểm",
       provincesAxis: "Số tỉnh",
       otherDocuments: "Hồ sơ cấp tỉnh",
       close: "Đóng"
@@ -49,7 +49,7 @@ export const documentCopy = {
       category: "Nhóm tài liệu",
       kind: "Định dạng",
       all: "Tất cả",
-      search: "Tìm theo tên tài liệu, KCN, tỉnh…",
+      search: "Tìm theo tài liệu, địa chỉ, địa điểm, tỉnh…",
       hostedOnly: "Chỉ hồ sơ xem được ngay",
       reset: "Xóa lọc",
       loadMore: "Xem thêm",
@@ -70,11 +70,11 @@ export const documentCopy = {
       byProvince: "Tài liệu theo tỉnh",
       byProvinceNote: "12 tỉnh có nhiều hồ sơ nhất, tô màu theo vùng.",
       byCategory: "Cấu trúc nhóm tài liệu",
-      byCategoryNote: "Tỷ lệ giữa hồ sơ khảo sát địa chất và sơ đồ mặt bằng khu công nghiệp.",
-      coverage: "Độ phủ dữ liệu KCN",
-      coverageNote: "Mỗi KCN được xếp theo việc có sơ đồ mặt bằng và/hoặc hồ sơ địa chất.",
+      byCategoryNote: "Tỷ lệ tài liệu theo nhóm trong bộ dữ liệu đã chọn.",
+      coverage: "Độ phủ dữ liệu theo địa điểm",
+      coverageNote: "Mỗi địa điểm được xếp theo việc có sơ đồ mặt bằng và/hoặc hồ sơ địa chất.",
       readiness: "So sánh ba vùng",
-      readinessNote: "So sánh tương đối giữa các vùng: số tài liệu, số KCN, số KCN có đủ dữ liệu.",
+      readinessNote: "So sánh số tài liệu, địa điểm và địa điểm có đủ dữ liệu theo vùng.",
       byYear: "Hồ sơ theo năm",
       byYearNote: "Số hồ sơ theo năm cập nhật gần nhất.",
       narrativeTitle: "Nhận định",
@@ -106,20 +106,20 @@ export const documentCopy = {
       done: "Đã tải lên xong",
       failed: "Tải lên thất bại",
       notConfigured: "Server chưa cấu hình ADMIN_PASSWORD.",
-      hint: "Tài liệu tải lên sẽ được gắn thẻ vùng/tỉnh/KCN và hiện ngay trên bản đồ."
+      hint: "Web chỉ hiển thị các tệp có trong danh mục đã đồng bộ từ thư mục địa chất miền Nam."
     }
   },
   en: {
     nav: "Industrial park geology",
     eyebrow: "Industrial park geotechnical surveys",
-    title: "Geotechnical record map of Vietnam's industrial parks",
+    title: "Southern Vietnam geotechnical records map",
     intro:
-      "Pick a region or click a province on the map to see the industrial parks with data, together with their geotechnical survey reports and site layouts.",
+      "Select a province to explore the southern survey records by location, including industrial parks and other projects.",
     kpi: {
       documents: "records",
       geology: "geotechnical surveys",
       provinces: "provinces",
-      zones: "industrial parks"
+      zones: "locations / projects"
     },
     tabs: { label: "Sections", map: "Map & records", records: "Records", insights: "Insights" },
     regionAll: "Nationwide",
@@ -130,19 +130,19 @@ export const documentCopy = {
     zoom: { label: "Zoom", zoomIn: "Zoom in", zoomOut: "Zoom out", reset: "Reset view" },
     noApiKey: "No Google Maps API key — using the built-in SVG map (provinces are still clickable).",
     provincePanel: {
-      zones: "Industrial parks",
+      zones: "Locations / projects",
       documents: "Documents",
       readiness: "Data completeness",
       complete: "Parks with full data",
       coverageColumn: "Data",
       countColumn: "Records",
       openRecords: "View records",
-      zonesShort: "Parks",
+      zonesShort: "Locations",
       completeShort: "Complete",
       mergedInto: "After the 01/07/2025 merger, part of",
       lastUpdate: "Last updated",
       empty: "No documents for this province yet.",
-      allZones: "All parks",
+      allZones: "All locations",
       provincesAxis: "Provinces",
       otherDocuments: "Province-level records",
       close: "Close"
@@ -178,9 +178,9 @@ export const documentCopy = {
       byProvince: "Documents per province",
       byProvinceNote: "Top 12 provinces, coloured by region.",
       byCategory: "Category mix",
-      byCategoryNote: "Split between geotechnical surveys and industrial park layouts.",
-      coverage: "Industrial park coverage",
-      coverageNote: "Each park is bucketed by whether it has a layout map and/or a geotechnical record.",
+      byCategoryNote: "Record categories within the selected data.",
+      coverage: "Location coverage",
+      coverageNote: "Locations are grouped by the presence of a layout and/or a geotechnical record.",
       readiness: "Regions compared",
       readinessNote: "Relative comparison: records, parks, parks with complete data.",
       byYear: "Records by year",
@@ -214,20 +214,20 @@ export const documentCopy = {
       done: "Uploaded",
       failed: "Upload failed",
       notConfigured: "ADMIN_PASSWORD is not configured on the server.",
-      hint: "Uploads are tagged with region/province/park and appear on the map immediately."
+      hint: "Only files in the catalog synced from the southern geology source appear on the site."
     }
   },
   ja: {
     nav: "工業団地の地盤資料",
     eyebrow: "工業団地の地盤調査",
-    title: "ベトナム工業団地 地盤資料マップ",
+    title: "ベトナム南部 地盤資料マップ",
     intro:
-      "地域を選ぶか地図上の省をクリックすると、資料のある工業団地と、その地盤調査報告書・配置図が表示されます。",
+      "地図上の省を選択すると、南部の工業団地や建設プロジェクトの調査資料を地点別に確認できます。",
     kpi: {
       documents: "件の資料",
       geology: "件の地盤調査資料",
       provinces: "省・市",
-      zones: "工業団地"
+      zones: "地点・プロジェクト"
     },
     tabs: { label: "セクション", map: "地図と資料", records: "資料一覧", insights: "分析" },
     regionAll: "全国",
@@ -238,19 +238,19 @@ export const documentCopy = {
     zoom: { label: "拡大・縮小", zoomIn: "拡大", zoomOut: "縮小", reset: "初期表示に戻す" },
     noApiKey: "Google Maps API キーがないため内蔵 SVG 地図を表示しています（省はクリック可能）。",
     provincePanel: {
-      zones: "工業団地",
+      zones: "地点・プロジェクト",
       documents: "資料",
       readiness: "データ充足度",
       complete: "データが揃った団地",
       coverageColumn: "データ",
       countColumn: "件数",
       openRecords: "資料を見る",
-      zonesShort: "団地",
+      zonesShort: "地点",
       completeShort: "充足",
       mergedInto: "2025/07/01 の統合後の所属",
       lastUpdate: "最終更新",
       empty: "この省の資料はまだありません。",
-      allZones: "すべての団地",
+      allZones: "すべての地点",
       provincesAxis: "省の数",
       otherDocuments: "省レベルの資料",
       close: "閉じる"
@@ -285,9 +285,9 @@ export const documentCopy = {
       byProvince: "省別の資料数",
       byProvinceNote: "資料が多い上位 12 省（色は地域）。",
       byCategory: "資料区分の構成",
-      byCategoryNote: "地盤調査資料と工業団地配置図の比率。",
-      coverage: "工業団地のデータ充足",
-      coverageNote: "配置図・地盤資料の有無で各団地を分類。",
+      byCategoryNote: "選択した資料の区分別構成。",
+      coverage: "地点別のデータ充足",
+      coverageNote: "配置図・地盤資料の有無で各地点を分類。",
       readiness: "地域の比較",
       readinessNote: "資料数・団地数・データが揃った団地数の相対比較。",
       byYear: "年別の資料数",
@@ -321,7 +321,7 @@ export const documentCopy = {
       done: "完了",
       failed: "失敗",
       notConfigured: "サーバーに ADMIN_PASSWORD が設定されていません。",
-      hint: "アップロードした資料は地域・省・団地のタグが付き、すぐ地図に表示されます。"
+      hint: "南部の地盤資料フォルダから同期されたカタログ内のファイルのみ表示されます。"
     }
   }
 };

@@ -55,7 +55,7 @@ function axisOptions() {
   };
 }
 
-export function DocumentAnalytics({ dc, language, stats, region, provinceSlug, aiEnabled }) {
+export function DocumentAnalytics({ dc, language, stats, region, provinceSlug, zoneSlug, aiEnabled }) {
   const [insight, setInsight] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -163,7 +163,7 @@ export function DocumentAnalytics({ dc, language, stats, region, provinceSlug, a
     setLoading(true);
     setError(null);
     try {
-      const payload = await api.analyze({ region, province: provinceSlug, language, ai: true });
+      const payload = await api.analyze({ region, province: provinceSlug, zone: zoneSlug, language, ai: true });
       setInsight(payload.insight);
       if (payload.insight?.aiError) setError(payload.insight.aiError);
     } catch (requestError) {

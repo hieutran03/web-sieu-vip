@@ -17,7 +17,7 @@ const CACHE_TTL_MS = 60 * 1000;
 let cache = { at: 0, documents: null };
 
 export function catalogSnapshot() {
-  return snapshot;
+  return { ...snapshot, documents: snapshot.documents.filter(inSiteScope) };
 }
 
 /** Every document Cloudinary or the self-hosted store knows about. */
@@ -35,8 +35,16 @@ export async function liveDocuments({ force = false } = {}) {
   const failure = results.find((result) => result.status === "rejected");
   if (failure && !documents.length) throw failure.reason;
 
-  cache = { at: Date.now(), documents };
-  return documents;
+  const snapshotById = new Map(snapshot.documents.filter(inSiteScope).map((doc) => [doc.id, doc]));
+  const byId = new Map();
+  for (const live of documents) {
+    const source = snapshotById.get(live.id);
+    if (!source || (Number.isFinite(source.sizeBytes) && Number.isFinite(live.sizeBytes) && source.sizeBytes !== live.sizeBytes)) continue;
+    byId.set(live.id, mergeHosting(byId.get(live.id) ?? source, live));
+  }
+  const current = [...byId.values()];
+  cache = { at: Date.now(), documents: current };
+  return current;
 }
 
 async function cloudinaryDocuments() {
@@ -73,18 +81,16 @@ async function cloudinaryDocuments() {
 /**
  * Snapshot + live merge. The snapshot stays authoritative for titles and classification of
  * documents it knows (it is rebuilt from the share); the live record contributes the delivery
- * URL, plus any document that only exists in Cloudinary (admin uploads). Snapshot rows that are
- * not hosted survive so the UI can still show share-only documents.
+ * URL. Only catalogued source records are included, including records that are not hosted yet.
  */
 export async function mergedDocuments({ includeLive = true, force = false } = {}) {
-  const byId = new Map(snapshot.documents.map((doc) => [doc.id, doc]));
+  const byId = new Map(snapshot.documents.filter(inSiteScope).map((doc) => [doc.id, doc]));
 
   if (includeLive) {
     try {
       for (const live of await liveDocuments({ force })) {
         const existing = byId.get(live.id);
         if (existing) byId.set(live.id, mergeHosting(existing, live));
-        else if (inSiteScope(live)) byId.set(live.id, live);
       }
     } catch (error) {
       return { documents: [...byId.values()], liveError: String(error.message ?? error) };

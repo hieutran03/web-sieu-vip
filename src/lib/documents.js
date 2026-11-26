@@ -24,21 +24,17 @@ export const catalogMeta = {
 export const provinceFeatures = provinceGeo.features;
 
 /**
- * Merge admin uploads (fetched live) into the bundled snapshot, keyed by document id.
+ * Merge hosting information (fetched live) into the bundled snapshot, keyed by document id.
  * For documents that exist in both, the snapshot stays authoritative for titles and
  * classification (it is rebuilt from the share) and the live record only supplies the
- * delivery URL. Documents that only exist live — i.e. admin uploads — are added as-is.
+ * delivery URL. Files outside the current source catalog are not added.
  */
 export function mergeDocuments(snapshotDocuments, liveDocuments = []) {
-  if (!liveDocuments.length) return snapshotDocuments;
-  const byId = new Map(snapshotDocuments.map((doc) => [doc.id, doc]));
+  const byId = new Map(snapshotDocuments.filter(inSiteScope).map((doc) => [doc.id, doc]));
   for (const live of liveDocuments) {
     const existing = byId.get(live.id);
     if (existing) {
       byId.set(live.id, mergeHosting(existing, live));
-    } else if (inSiteScope(live)) {
-      // New upload the snapshot has not seen yet — only if it belongs on this site.
-      byId.set(live.id, live);
     }
   }
   return [...byId.values()];

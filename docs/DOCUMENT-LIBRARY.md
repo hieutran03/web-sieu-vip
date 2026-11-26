@@ -1,18 +1,17 @@
 # V-TNF · Bản đồ hồ sơ địa chất khu công nghiệp
 
-Trang tra cứu dành cho khách hàng: bản đồ toàn bộ lãnh thổ Việt Nam (kể cả Hoàng Sa, Trường Sa) →
-tỉnh → khu công nghiệp → hồ sơ khảo sát địa chất và sơ đồ mặt bằng, lưu trên Cloudinary.
+Trang tra cứu hồ sơ khảo sát trong thư mục địa chất KCN miền Nam, theo tỉnh và địa điểm/dự án.
+Bản đồ vẫn hiển thị toàn bộ lãnh thổ Việt Nam (kể cả Hoàng Sa, Trường Sa).
 
 ## 1. Luồng dữ liệu
 
 ```
 Z:\...\★開発関係資料
-   ├── N1-Địa chất Việt Nam/R1.1. Khu công nghiệp/KCN miền {Bắc,Trung,Nam}/<tỉnh>/<KCN>/…
-   └── N1-Địa chất Việt Nam/R1.{2,6,8}. Địa chất KCN miền {Nam,Bắc,Trung}/<tỉnh>/<KCN>/…
+   └── N1-Địa chất Việt Nam/R1.2. Địa chất  KCN miền Nam/<tỉnh>/<địa điểm>/…
         │
         │  npm run docs:catalog     quét + phân loại theo LUẬT (không dùng AI)
         ▼
-src/data/documentCatalog.json      197 hồ sơ · 141 KCN · 34 tỉnh
+src/data/documentCatalog.json      danh mục của đúng thư mục trên
         │
         │  npm run docs:upload      signed upload lên Cloudinary (tag + context metadata)
         ▼
@@ -23,13 +22,15 @@ Cloudinary  v-tnf/<collection>/<region>/<province>/<zone>/<file>_<hash>
         └── MCP  (mcp/server.mjs)                     search_documents, get_province, …
 ```
 
-**Phạm vi**: chỉ tài liệu gắn được lên bản đồ — hồ sơ địa chất và sơ đồ của khu công nghiệp, có
-tỉnh và tên KCN xác định. Các thư mục khác trên ổ chia sẻ (TNF/TCCS, xi măng, hồ sơ địa chất cầu
-đường, atlas toàn quốc) bị loại khỏi catalog; muốn quét hết thì `npm run docs:catalog -- --all`.
-Bộ lọc phạm vi nằm ở [src/shared/scope.js](../src/shared/scope.js) và cũng áp cho dữ liệu đọc
-trực tiếp từ Cloudinary, nên tài liệu cũ còn sót trên Cloudinary không hiện lên trang.
+**Phạm vi**: chỉ tệp hợp lệ trong `R1.2. Địa chất  KCN miền Nam`, trừ thư mục `OLD`. Bảng Excel
+tổng hợp ở gốc được giữ trong danh mục mà không gán vào một tỉnh hay địa điểm giả. Bộ lọc phạm vi
+nằm ở [src/shared/scope.js](../src/shared/scope.js). API và web chỉ gộp trạng thái lưu trữ theo ID
+đã có trong catalog, nên các bản cũ hoặc tệp ngoài thư mục không tự hiện lại từ kho lưu trữ.
 
-Nguyên tắc: **catalog là nguồn sự thật cho metadata**, Cloudinary là nguồn sự thật cho URL.
+Các tệp cũ trên ổ chia sẻ và kho lưu trữ không bị xóa vật lý. Không dùng `docs:prune -- --delete`
+để dọn chúng khi chưa kiểm tra riêng, vì catalog hiện chỉ bao gồm một phần của kho.
+
+Nguyên tắc: **catalog là nguồn sự thật cho danh sách và metadata**; các kho cung cấp URL.
 
 ## 2. Biến môi trường (`.env.local`)
 
@@ -80,8 +81,9 @@ vào tài khoản ImageKit; những tệp bị từ chối vẫn hiển thị �
 Header có 2 tab:
 
 **Bản đồ & hồ sơ**
-- 4 chỉ số: tổng hồ sơ, hồ sơ khảo sát địa chất, số KCN, số tỉnh/thành.
-- Lọc theo vùng (Toàn quốc / Bắc / Trung / Nam).
+- 4 chỉ số: tổng hồ sơ, hồ sơ khảo sát địa chất, số địa điểm/dự án, số tỉnh/thành.
+- Lọc theo phạm vi có dữ liệu, nhóm tài liệu, định dạng, tên và địa chỉ; số đếm ở các bộ lọc
+  phản ánh các điều kiện khác đang được chọn.
 - Bản đồ choropleth theo mật độ hồ sơ:
   - tỉnh **có dữ liệu**: tô màu theo vùng, viền đậm + đổ bóng, bấm được;
   - tỉnh **chưa có dữ liệu**: nền xám nhạt, viền mảnh, không bấm được;
@@ -95,7 +97,7 @@ Header có 2 tab:
 - Bấm một KCN → cuộn xuống mục **Danh mục hồ sơ** đã lọc theo KCN đó.
 - Danh mục hồ sơ: thanh phạm vi (vùng/tỉnh/KCN, bấm × để bỏ), tìm kiếm, lọc theo nhóm hồ sơ và
   định dạng, thẻ hồ sơ có ảnh xem trước (PNG resize, PDF render trang 1), xem trong modal, tải về.
-- Deep link chia sẻ được: `/map?region=north&province=bac-ninh&zone=vsip` hoặc
+- Deep link chia sẻ được: `/map?region=south&province=long-an&zone=xuyen-a` hoặc
   `/map?province=long-an&district=duc-hoa`; liên kết `#map?...` cũ vẫn hoạt động.
 
 **Phân tích** — số liệu tính từ chính bộ hồ sơ: hồ sơ theo tỉnh, cấu trúc nhóm hồ sơ, độ phủ KCN
